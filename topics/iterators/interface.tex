@@ -1,0 +1,12 @@
+%ID: 612102
+In Java, an \define{iterator} is an object which allows us to traverse a data
+structure. This can be helpful if we'd like to loop through every element in said data structure,
+and allows us to take advantage of Java's enhanced \lstinline{for} loops. 
+Every iterator has two methods: \lstinline$hasNext$ and \lstinline$next$.
+
+\begin{lstlisting}
+interface Iterator<E> {
+    boolean hasNext();
+    E next();
+}
+\end{lstlisting}

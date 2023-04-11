@@ -1,0 +1,45 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{7}
+\title{ADTs and BSTs}
+\date{March 1 - March 5, 2021}
+
+\begin{document}
+\maketitle
+
+
+\section{Abstract Data Types}
+\subimport{../../topics/abstract-data-types/text/}{list-set-map.tex}
+\clearpage
+
+\section{ADT Practice}
+\begin{questions}
+\subimport{../../topics/abstract-data-types/easy/}{sum-up.tex}
+\subimport{../../topics/abstract-data-types/medium/}{find-duplicates-within-k.tex}
+\end{questions}
+
+\section{Array Lists}
+\begin{questions}
+\subimport{../../topics/asymptotics/medium/}{amortized-analysis.tex}
+\end{questions}
+\clearpage
+
+\section{Stacks and Queues}
+\begin{questions}
+\subimport{../../topics/trees/binary-trees/text/}{fringe.tex}
+\subimport{../../topics/trees/binary-trees/medium/}{traversals.tex}
+\end{questions}
+\clearpage
+
+\section{Binary Search Trees}
+\begin{questions}
+\subimport{../../topics/trees/binary-search-trees/medium/}{from-sorted-array.tex}
+\end{questions}
+\clearpage
+
+\end{document}

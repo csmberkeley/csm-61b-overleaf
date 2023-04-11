@@ -1,0 +1,117 @@
+%ID: 61238
+\question Let x be a single-bit input. Fill in the following blanks with either 0, 1, x, or $\sim$x. Putting x means that x is the output (no change), and $\sim$x means that the flip of x is the output.
+
+\begin{lstlisting}
+x & 1 = ___
+x & 0 = ___ 
+x & x = ___
+x | 0 = ___ 
+x | 1 = ___ 
+x | x = ___
+x ^ 1 = ___ 
+x ^ 0 = ___ 
+x ^ x = ___
+\end{lstlisting}
+
+
+\begin{solution}
+\begin{lstlisting}
+ x & 1 = x
+ And looks at 2 bits returns 1 if they both are one, and 0 otherwise. Therefore 1 & 1 returns 1, 0 & 1 returns 0. So any bit &'ed with 1 is preserved.
+
+ x & 0 = 0
+ Any number &'ed with 0 returns 0. & only returns 1 if both numbers are 1.
+ 
+ x & x = x
+ 1 & 1 = 1 and 0 & 0 = 0. Any number &'ed with itself is preserved.
+
+ x | 0 = x
+ Or compares 2 bits returns 1 if either digit is a one. Therefore 1 | 0 returns 1, 0 | 0 returns 0. So any bit or'ed with 0 is preserved. 
+
+ x | 1 = 1
+ Since or returns 1 if either digit is 1, any number or'ed with 1 will always be 1. 
+ 
+ x | x = x
+ 1 | 1 = 1 and 0 | 0 = 0. Any number or'ed with itself is preserved.
+
+ x ^ 1 = $\sim$x
+ Xor compares 2 bits and returns 1 if they are different, and 0 if they are the same. So 0 ^ 1 will return 1, and 1 ^ 1 returns 0. So we see that xor-ing a bit with 1 essentially functions as a flip operation.
+
+ x ^ 0 = x
+ 1 ^ 0 returns 1 and 0 ^ 0 returns 0, so we see that any bit xor'ed with 0 is preserved.
+ 
+ x ^ x = 0
+ 1 ^ 1 = 0 and 0 ^ 0 = 0. Any number xor'ed with itself returns 0.
+\end{lstlisting}
+\end{solution}
+
+\question Let n be an 8 bit number. Explain what each function does. 
+
+\begin{lstlisting}
+int mystery_1(int n) {
+	Random r = new Random();
+	int b =  1 << r.nextInt(7); 
+	return n ^ b;
+}
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Flips one random bit and leaves the rest unchanged.
+
+Here b is the result of left shifting 1 by r, which means it has 1 in the rth position and 0's everywhere else. When this is xor'ed with n, all the bits of n corresponding to the positions of 0's in b will be preserved because x ^ 0 = x, and just the bit in the rth position will be flipped because x ^ 1 = $\sim$x.
+
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+int mystery_1_1(int n) {
+    Random r = new Random();
+	int b =  1 << r.nextInt(7); 
+    return n & ~b;
+}
+\end{lstlisting}
+
+
+\begin{solution}
+\begin{lstlisting}
+Turns one random bit OFF and leaves the rest unchanged.
+
+Here too b is the result of left shifting 1 by r, which means it has 1 in the rth position and 0's everywhere else. If this number is flipped, then it ends up with 0 in the rth position and 1's everywhere else. If this is &'ed with n, all the bits of n in the positions corresponding to the 1's in b will be preserved, and the rth bit, which is &'ed with 0, will become 0. 
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+int mystery_2(int n) {
+	return n | 01010101;
+}
+\end{lstlisting}
+\begin{solution}
+Turns ON every other bit, start from least significant side (right), leaving the rest unchanged.
+
+\end{solution}
+
+\begin{lstlisting}
+void mystery_3(int x, int y) {
+    x = x ^ y; 
+    y = x ^ y; 
+    x = x ^ y; 
+}
+\end{lstlisting}
+\begin{solution}
+Swaps x,y (only in the function call) without using a temporary variable.
+
+\begin{lstlisting}
+void mystery_3(int x, int y) {
+    x = x ^ y; // x now becomes x ^ y 
+    y = x ^ y; // y = (x ^ y) ^ y => x ^ (y ^ y) => x ^ 0 = x 
+    x = x ^ y; // x = (x ^ y) ^ x => (x ^ x) ^ y => 0 ^ y = y
+}
+
+void mystery_3(int x, int y) {
+    // Code to swap 'x' (1010) and 'y' (0101) 
+    x = x ^ y; // x now becomes 15 (1111) 
+    y = x ^ y; // y becomes 10 (1010) 
+    x = x ^ y; // x becomes 5 (0101) 
+}
+\end{lstlisting}
+\end{solution}

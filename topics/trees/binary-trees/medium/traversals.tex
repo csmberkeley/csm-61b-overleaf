@@ -1,0 +1,58 @@
+%ID: 61244
+\question
+
+\begin{lstlisting}
+public void treeTraversal(Fringe<Node> fringe) {
+    fringe.add(root);
+    while (!fringe.isEmpty()) {
+        Node node = fringe.remove();
+        System.out.print(node.value);
+        if (node.left != null) {
+            fringe.add(node.left);
+        }
+        if (node.right != null) {
+            fringe.add(node.right);
+        }
+    }
+}
+\end{lstlisting}
+
+\marginpar{\subimport{../}{example-tree.tex}}
+
+What would Java display?
+
+\begin{parts}
+
+\part \lstinline$tree.traversal(new Stack<Node>());$
+\begin{solution}[0.75in]
+\begin{verbatim}
+1734295
+\end{verbatim}
+
+A Stack has a LIFO (Last in First Out) nature that is used to perform the traversal. \\
+To be more specific, you add node 1 to the queue. Pop it, add its children, 2 and then 7 to the queue. (Every time you pop a node it gets printed). Since it is LIFO, you would pop 7 out first and add all its children, 3 to the queue. Then you would pop 3, and add its child 4, to the queue. Then you would pop 4, but since it has no children, you would not add anything to the Stack. Once you've popped 4, you would pop 2, and add its children to the Stack - 5 and then 9. Then you would pop 9, and lastly, pop 5!
+\end{solution}
+
+\part \lstinline$tree.traversal(new Queue<Node>());$
+\begin{solution}[0.75in]
+\begin{verbatim}
+1275934
+\end{verbatim}
+\newpage
+A Queue has a FIFO (First in First Out) nature that is used to perform the traversal. \\
+To be more specific, you add node 1 to the queue. You then pop it and print its value, and add its children, 2 and then 7 to the queue. Since it is FIFO, you would pop 2 out first and add all its children, 5 and then 9 to the queue. Then you would pop 7, and add its child 3 to the queue. Then you would pop 5 and 9. Next, you pop 3, add 4 to queue.
+
+Make sure you explain the FIFO nature of the Queue and visually represent how the solution 1275934 is arrived at using a Queue.
+\end{solution}
+
+%\part As seen in part (b), our BFS always explores from left to right in the same level (2 then 7, 5 then 9 then 3, etc). How can we modify the \lstinline$treeTraversal(new Queue<Node>());$ to alternate the order in which we traverse? So instead of traversing in order of 1275934, we should get 17259346. Explaining in English and/or Pseudocode is sufficient.
+%\begin{solution}[0.75in]
+
+%The key idea is to keep 2 queues, 1 for the current level that we're traversing, and another one for the next level. So while we are traversing through the current level, we add the children that we see along the way to the queue for the next level. Then right before the next iteration, we set the next level = curr level to pop through, and we reverse the queue so that it pops in the appropriate direction.
+%\end{solution}
+
+%\begin{meta}
+%Make sure for this section to draw out a stack/queue and walk through the code line by line so students get a better understanding of why the code translates to the specific type of traversals. It also helps with the intuitive understanding of stacks and queues.
+%\end{meta}
+\end{parts}
+

@@ -1,0 +1,63 @@
+%ID: 61223
+%\begin{blocksection}
+%Sieve of Eratosthenes
+\question
+\textit{Eratosthenes was an ancient Greek polymath and chief librarian at the Library of Alexandria. He's well known for being the first known person to have calculated the circumference of the earth, and to have found the tilt of the earth's axis. He also developed a fairly fast algorithm for finding prime numbers which we will be discussing in this problem, although it is beat out by the Sieve of Atkins.}\\
+
+The Sieve of Eratosthenes is a method of finding prime numbers under a max value $n$ by eliminating all possible composite numbers. Start with the smallest prime number $(2)$, and eliminate every number from $2$ to $n$ which is divisible by $2$. Then do the same with the next smallest number that has not been eliminated. Continue until you run out of numbers. All numbers that were not eliminated are prime. 
+
+\\
+
+Implement this algorithm in Java using an int[] array such that if a number is prime, the value at the corresponding index is $-1$. Otherwise, the value recorded is that of the smallest prime that it was divisible by. (The values recorded at 0 and 1 are arbitrary). \\
+\begin{lstlisting}
+public int[] sieve (int n) {
+
+    ___________________________ = _______________________________;
+
+    ___________________________ = _______________________________;
+
+    ___________________________ = _______________________________;
+
+    for(___________________________________________________){
+
+        if(________________________________________________){
+
+            _______________________ = _____________________________;
+
+            _______________________ = _____________________________;
+
+            for(___________________________________________________){
+
+                if(________________________________________________){
+
+                _______________________ = _____________________________;
+                }
+            }
+        }
+    }
+    
+    return __________________________________________;
+}
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+public int[] sieve (int n) {
+
+    int[] result = new int[n];
+    int prime = 2;
+    for(int iter = 2; iter < n; iter++){
+        if(result[iter] == 0){
+            prime = iter;
+            result[iter] = -1;
+        for(int k = 2; k*prime < n; k++){ //this can also be be 1 or 0
+            if(result[k*prime] == 0){
+                result[k*prime] = prime;
+                }
+            }
+        }
+    }
+    return sieve;
+}
+\end{lstlisting}
+\end{solution}
+%\end{blocksection}

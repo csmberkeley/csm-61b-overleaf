@@ -1,0 +1,33 @@
+\ifprintanswers\else
+
+Suppose that we have a list of $N$ words, where $R$ is the size of the alphabet (radix), and $W$ is the length of the longest word. Fill in the table below with each sort's runtime and stability:
+
+{
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{12pt}
+\begin{tabularx}{\textwidth}{Xlll}
+Algorithm         & Best-case       & Worst-case          & Stable \\\hline
+Counting Sort     &                 &                     &        \\
+LSD Radix Sort    &                 &                     &        \\
+MSD Radix Sort    &                 &                     &
+\end{tabularx}
+}
+\fi
+
+\begin{solution}
+{
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{12pt}
+\begin{tabularx}{\textwidth}{Xlll}
+Algorithm         & Best-case          & Worst-case          & Stable? \\\hline
+Counting Sort     & $\Theta(N + R)$    & $\Theta(N + R)$     & Yes    \\
+LSD Radix Sort    & $\Theta(W(N + R))$ & $\Theta(W(N + R))$  & Yes    \\
+MSD Radix Sort    & $\Theta(N + R)$    & $\Theta(W(N + R))$  & Yes
+\end{tabularx}
+}
+
+Where $N$ is the length of the list, $R$ is the size of the alphabet (radix),
+and $W$ is the length of the longest word.
+
+Extra: MSD radix sort is stable when implemented with additional space for a buffer.
+\end{solution}

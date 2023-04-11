@@ -1,0 +1,80 @@
+\question
+
+Consider the following interface and implementing class:
+
+\begin{lstlisting}
+
+interface Kitten {
+    public String favorite_toy();
+    public String best_friend();
+    
+    default void play_time() {
+        System.out.println("Playing with " + favorite_toy() + " & " + best_friend() + "!");
+    }
+}
+
+class BabyKitten implements Kitten {
+    @Override
+    public String favorite_toy() {
+        return "lasers";
+    }
+
+    @Override
+    public String best_friend() {
+        return "Kelvin the kitten";
+    }
+}
+\end{lstlisting}
+
+\begin{parts}
+\begin{blocksection}
+\part Do we need a \lstinline{play_time} method in \lstinline{BabyKitten} in order to make a BabyKitten have playtime?
+\begin{solution}[1in]
+No, we do not need the \lstinline{play_time} method because it is already defined as a default method in the \lstinline{Kitten} interface.
+Java will look up the parent's (which in this case is an interface) method if it cannot find one in the child class.
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part What does the following two lines print?
+\begin{lstlisting}
+Kitten kitty = new BabyKitten();
+kitty.play_time();
+\end{lstlisting}
+\begin{solution}[1in]
+\lstinline{Playing with lasers & Kelvin the kitten!}
+
+Even though \lstinline{favorite_toy} and \lstinline{best_friend} are not implemented
+in \lstinline{Kitten}, they are implemented within the \lstinline{BabyKitten} class, which will be looked
+up by Java.
+\end{solution}
+\end{blocksection}
+
+
+\begin{blocksection}
+\part Now let's suppose we define a new class that inherits from \lstinline{Kitten} and attempt to run a few lines of code:
+\begin{lstlisting}
+class AdultKitty implements Kitten {
+    @Override
+    public String favorite_toy() {
+        return "stuffed mouse";
+    }
+}
+
+Kitten adult = new AdultKitty();
+adult.play_time();
+\end{lstlisting}
+Do these lines error? Is it a compile-time or run-time error?
+
+\begin{solution}[0.5in]
+These lines result in a compile-time error. Some students may be tempted into saying it is a run-time error,
+since when the \lstinline{play_time} method in \lstinline{Kitten} looks for \lstinline{AdultKitten}'s \lstinline{best_friend} method,
+it sees that the method is not implemented. Keep in mind that compile-time always comes before run-time, so \lstinline{adult.play_time()} actually never runs!
+
+However, it is important to keep in mind that an implementing class must implement all methods declared in its parent interface.
+As a result, the Java compiler will see that \lstinline{best_friend} is not implemented, triggering a compile-time error.
+This is where IntelliJ's "does not override" warning comes from.
+\end{solution}
+\end{blocksection}
+
+\end{parts}

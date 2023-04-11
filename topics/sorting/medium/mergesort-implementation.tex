@@ -1,0 +1,105 @@
+\question In this problem, we will implement MergeSort using an auxiliary array.
+Note that this implementation of MergeSort should modify the given array \lstinline{arr}.
+
+\begin{lstlisting}
+
+    public static void mergeSort(int[] arr) {
+        int n = arr.length;
+        if (______________________) {
+            return;
+        }
+        
+        int mid = n / 2;
+        int[] left = new int[____________];
+        int[] right = new int [____________];
+
+        for (int i = 0; i < ___________; i++) {
+            ____________________________________;
+        }
+        for (int i = mid; i < ____________; i++) {
+            ____________________________________;
+        }
+        mergeSort(______________);
+        mergeSort(______________);
+
+        merge(____________, _____________, _____________);
+    }
+
+    public static void merge(int[] arr, int[] left, int[] right) {
+        int left_len = left.length;
+        int right_len = right.length;
+
+        int arr_ptr = 0, left_ptr = 0, right_ptr = 0;
+        while (left_ptr < left_len || right_ptr < right_len) {
+            if (left_ptr < left_len && right_ptr < right_len) {
+                if (_____________________________) {
+                    // You may not need to use all lines
+                    _______________________________;
+                    _______________________________;
+                    _______________________________;
+                } else {
+                    // You may not need to use all lines
+                    _______________________________;
+                    _______________________________;
+                    _______________________________;
+                }
+            } else if (___________________________) {
+                // You may not need to use all lines
+                _______________________________;
+                _______________________________;
+                _______________________________;
+            } else {
+                // You may not need to use all lines
+                _______________________________;
+                _______________________________;
+                _______________________________;
+            }
+        }
+    }
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+    public static void mergeSort(int[] arr) {
+        int n = arr.length;
+        if (n < 2) {
+            return;
+        }
+        
+        int mid = n / 2;
+        int[] left = new int[mid];
+        int[] right = new int [n - mid];
+
+        for (int i = 0; i < mid; i++) {
+            left[i] = arr[i];
+        }
+        for (int i = mid; i < n; i++) {
+            right[i - mid] = arr[i];
+        }
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, left, right);
+    }
+
+    public static void merge(int[] arr, int[] left, int[] right) {
+        int left_len = left.length;
+        int right_len = right.length;
+
+        int arr_ptr = 0, left_ptr = 0, right_ptr = 0;
+        while (left_ptr < left_len || right_ptr < right_len) {
+            if (left_ptr < left_len && right_ptr < right_len) {
+                if (left[left_ptr] <= right[right_ptr]) {
+                    arr[arr_ptr++] = left[left_ptr++];
+                } else {
+                    arr[arr_ptr++] = right[right_ptr++];
+                }
+            } else if (left_ptr < left_len) {
+                arr[arr_ptr++] = left[left_ptr++];
+            } else {
+                arr[arr_ptr++] = right[right_ptr++];
+            }
+        }
+    }
+\end{lstlisting}
+\end{solution}

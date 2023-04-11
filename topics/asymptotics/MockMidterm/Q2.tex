@@ -1,0 +1,42 @@
+\question Under what conditions are the best case runtime achieved? Under what conditions are the worst case runtime achieved? Please give a tight overall runtime bound of the function using $\Omega$, $O$, and/or $\Theta$ notation in terms of $N$ and the size of the list \lstinline{x}, $M$.
+
+% \begin{lstlisting}
+% // x has nonnegative integers and the size is M 
+% void t(int[] x; int N) {
+%     boolean flag = true;
+%     while (flag) {
+% 	    flag = false;
+% 	    for (int i = 0; i < x.length; i++) {
+% 		    if(x[i] < N) {
+% 			    x[i] += 1;
+%                 flag = true;
+%             }
+%         }
+%     }
+% }
+% \end{lstlisting}
+
+\begin{lstlisting}
+// x is an array of nonnegative integers of size M
+void t(int[] x; int N) {
+    boolean flag = true;
+    while (flag) {
+        flag = false;
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] < N) {
+                x[i] += 1;
+                flag = true;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{solution}
+The best case runtime is achieved if all of the elements have values greater than $N$. In this case, the program will loop once over all the elements in the array and the best case runtime is $\Theta(M)$
+
+The worst case runtime is achieved if at least one element has a value of 0. This is because on each loop over the entire array, elements are only incremented by 1. This means that if a single element has a value of zero, the program will need to loop over the array $N$ times to increase the element in question to $N$. This means that the worst case runtime is $\Theta(MN)$. Note that this worst case runtime is met even if there is only a single 0 in the array.
+
+Hence, the overall runtime is given by $\Omega(M)$, $O(MN)$.
+
+\end{solution}

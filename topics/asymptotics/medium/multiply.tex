@@ -1,0 +1,47 @@
+\question As you are helping your little sister with her math homework, you become curious what the runtime of grade-school multiplication is. Provided the below implementation of grade-school multiplication, give the runtime in terms of $N$ and $M$ where $N$ and $M$ are the amount of digits in $X$ and $Y$ respectively. 
+
+\begin{lstlisting}
+int gradeschool_multiplication(int[] X, int[] Y) {
+    /* X is an int array representing each digit of a number in descending order. Y behaves similarly. For example, if we are multiplying 61 and 8357, X = [1, 6] and Y = [7, 5, 3, 8]. */
+    int result = 0;
+    int N = X.length;
+    int M = Y.length;
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            result += Math.pow(10, i)*X[j]*Y[i]l // assume this takes constant time
+        }
+    }
+    return result;
+}
+\end{lstlisting}
+
+\begin{solution}[1in]
+$\Theta(MN)$
+\end{solution}
+
+\question You've done some research and happened upon a faster way of doing multiplication with multiple digits recursively, but the article doesn't give the asymptotic runtime of the method. Find the asymptotic runtime of this method. (Hint: You do not need to understand how this algorithm works to find the runtime)\\
+
+The method uses a method $splice$ whose code is not shared. Suppose $splice(arr, start, end)$ takes in a java primitive array $arr$ and returns a splice of that array starting at $start$ and including the last element before $end$. For example, $splice([0, 5, 6, 1], 1, 3)$ returns $[5, 6]$. \\
+
+$arr_add$ adds the values of two arrays index-wise. It allows for two arrays to have differing lengths. For example, $arr_add([1, 2], [3, 4, 10, -1])$ returns $[4, 6, 10, -1]$. 
+
+\begin{lstlisting}
+int karatsubas(int[] X, int[] Y) {
+    /* X is an int array representing each digit of a number in descending order. Y behaves similarly. For example, if we are multiplying 61 and 8357, X = [1, 6] and Y = [7, 5, 3, 8]. 
+    */
+    int N = X.length;
+    int M = Y.length;
+    if (M == 0 || N == 0) {
+        return 0;
+    } else if (M == 1 && N == 1) {
+        return X[0]*Y[0];
+    } else {
+        COMPLETE THIS
+    }
+    return result;
+}
+\end{lstlisting}
+
+\begin{solution}[1in]
+$\Theta(MN)$
+\end{solution}

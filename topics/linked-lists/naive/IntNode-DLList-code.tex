@@ -1,0 +1,40 @@
+\begin{lstlisting}
+public class IntNode {
+    int item;
+    IntNode prev;
+    IntNode next;
+    
+    public IntNode(int i, IntNode p, IntNode n) {
+        item = i;
+        prev = p;
+        next = n;
+        }
+}
+
+public class DLList {
+    int size;
+    IntNode first;
+    IntNode last;
+    IntNode sentFront;
+    IntNode sentLast;
+    
+    public DLList() {
+        //size initialized to 0, initialize sentFront and sentLast as empty IntNodes, initialize first and last as null, and set sentFront.next and sentLast.prev to be first and last respectively.
+    }
+    
+    public addFirst(int x) {
+        if (first == null) {
+            first = new IntNode(x, sentFront, sentLast);
+            last = first;
+        } else {
+            first.prev = new IntNode(x, sentFront, first);
+            first = first.prev;
+            sentFront.next = first;
+        }
+        size++;
+    }
+    
+    //other methods not shown
+    
+}
+\end{lstlisting}

@@ -1,0 +1,107 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+ %\printmeta %
+
+\discnumber{BONUS}
+\title{Mock Midterm 1}
+\date{Feburary 5th, 2023}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%
+% Andy: Box and Pointer % NO VIDEO
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Box and Pointers: Sonic}
+
+\begin{questions}
+\subimport{topics/linked-lists/naive/easy/}{box-and-pointer1.tex}
+\end{questions}
+
+%\includegraphics[scale=0.75]{sonic-box-pointers.png}
+
+\\
+\\
+\\
+\\
+\\
+\clearpage
+
+\begin{questions}
+\subimport{topics/linked-lists/naive/easy/}{box-and-pointer2.tex}
+\end{questions}
+
+%\includegraphics[scale=0.75]{sonic-box-pointers2.png}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Noemi: WWJD % NO VIDEO
+%%%%%%%%%%%%%%%%%%%%
+
+\section{What would Java do?: Multigenerational}
+
+\begin{questions}
+\subimport{topics/polymorphism/easy/}{castingChild.tex} 
+\end{questions}
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%
+% Ashna: Linked Lists % NO VIDEO
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Linked Lists: Multiples}
+
+\begin{questions}
+\subimport{topics/linked-lists/encapsulated/medium/}{multiples.tex}
+\end{questions}
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%
+% Nitya: Arrays % HAS VIDEO: https://www.youtube.com/watch?v=KcAMPshYbqE
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Arrays: Square Sum}
+
+\begin{questions}
+\subimport{topics/arrays/text/}{intro.tex} 
+\subimport{topics/arrays/easy/}{square-sum.tex} 
+\subimport{topics/arrays/medium/}{square-sum-recursive.tex} 
+\end{questions}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Noemi: Inheritance %  HAS VIDEO: https://www.youtube.com/watch?v=CUazPnepG9o
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Inheritance: Starcraft II}
+
+\begin{questions}
+\subimport{topics/inheritance/easy/}{starcraft.tex}
+\end{questions}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Ayati: Bonus Problem % check? prob not tho
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Bonus Problem: Doubly Linked Lists}
+
+\begin{questions}
+\subimport{topics/linked-lists/naive/medium/}{fold-DLL.tex} 
+\end{questions}
+
+
+\end{document}

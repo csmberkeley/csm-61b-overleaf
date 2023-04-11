@@ -1,0 +1,30 @@
+%ID: 61212
+\question State if the following statements are True or False, and justify. For all graphs, assume that edge weights are positive and distinct, unless otherwise stated.
+
+\begin{parts}
+  \part Adding some positive constant $k$ to every edge weight does not change the shortest path tree from vertex $S$.
+  \begin{solution}[0.5in]
+    False. A counterexample can be thought of as follows: take a triangular graph with 3 vertices A, B, and C and 3 edges: A-B with weight 1, B-C with weight 2, and A-C with weight 5. We would like to start at A and end at C. The original shortest path from A --> C involves passing through B, but after adding a constant of 3, the shortest path is now directly taking the edge from A to C.
+  \end{solution}
+  \part Doubling every edge weight does not change the shortest path tree.
+  \begin{solution}[0.5in]
+    True. Doubling the weight of every edge, the equivalent of multiplying by 2, applies the exact same transformation to every edge. This means the relationship between the edges remains constant the same edges will be selected and the final cost of the shortest path will be doubled. 
+    
+    Following from the example above if we have a graph with edge A→ B (w = 1), B→ C (w = 2), and A→C(w =5)  the shortest path will be A → B → C. However when we double each edge weight we have  A→ B (w = 2), B→ C (w = 4), and A→C(w =10) and run disjkstras again from A → C our shortest path will be A → B → C with a cost of 8 compared to A → C at a cost of 10. Multiplying our edges by values ensures that they maintain the same ratio and the shortest path will not change.
+  \end{solution}
+  \part If the weight of each edge is decreased by 1, then the resulting shortest path in any graph from u to v is unchanged.
+  \begin{solution}[0.5in]
+    False. \\
+    The effect of adding/subtracting a constant to/from each edge depends on the number of edges in a path. Subtracting 1 from every edge makes paths with more edges shorter. Subtracting from an edge can also make it negative.
+  \end{solution}
+  \part If an edge $e$ is the lightest edge connected to vertex $S$, it must be a part of the shortest path tree from vertex $S$.
+  \begin{solution}[0.5in]
+    True. \\
+    Starting from vertex $S$, you will always choose the lightest edge connected to vertex $S$. 
+  \end{solution}
+  \part Consider a graph G, where every edge is nonnegative, except the edges adjacent to vertex s. Dijkstra’s usually fails on graphs with negative edge weights, however if we run Dijkstra’s starting from s, we will get the correct shortest paths tree.
+  \begin{solution}[0.5in]
+    True. \\
+    Dijkstra’s fails if incorporating a negative edge not yet seen decreases the shortest path. In the case, all negative edges have been seen and added to the fringe. That means adding more edges to any forming path can only increase the total distance (since all other edge weights are nonnegative.
+  \end{solution}
+\end{parts}

@@ -1,0 +1,51 @@
+%ID: 61249
+\begin{blocksection}
+\question
+\begin{parts}
+\part In the worst case, how long does it take to get the nth element of a singly-linked list?
+\begin{solution}[0.75in]
+$\Theta(N)$
+\end{solution}
+
+\part In the worst case, how long does it take to get the nth element of an array?
+\begin{solution}[0.75in]
+$\Theta(1)$
+\end{solution}
+
+\part In the worst case, how long does it take to insert into a linked list?
+\begin{solution}[0.75in]
+$\Theta(N)$, where $N$ is the length of the linked list.
+\end{solution}
+
+\part Assuming there's space, what are the runtime bounds of putting a element in an array?
+\begin{solution}[0.75in]
+$\Theta(1)$. The $O$ bound and $\Omega$ bound are the same in this case, so they converge to a $\Theta$ bound.
+\end{solution}
+
+\part What if we assume there is no longer any space left in the array?
+\begin{solution}[0.75in]
+$\Theta(N)$ to copy over $N$ elements into the new array.
+\end{solution}
+
+\part How would knowing the size of our data structure in advance impact our decision to use linked lists or arrays in a hashtable? Brainstorm with your section. 
+\begin{solution}[1.25in]
+There are plenty of good answers to this question, but here are some ideas.
+\\
+If you know in advance how large your data structure is, arrays are faster than
+linked lists in insertion, mutation, etc. However, if the array needs to expand
+frequently then things get expensive.  But there are ways to amortize the cost
+of resizing with \lstinline$ArrayLists$, for example.
+
+\begin{itemize}
+\item An array of linked lists will offer constant look up to a certain linked
+list, and adding to the front of that linked list will also be constant. This
+is a \lstinline$HashMap$.
+\item Objects with rows and columns (like a chessboard) where we wish to
+randomly index into exact position and where the board is of a fixed size
+\item Arguments to a java program: \lstinline$String[] args$. Using a resizing
+\lstinline$List$ in this scenario doesn't necessarily make things better since
+the arguments to a program don't change once we start the program.
+\end{itemize}
+\end{solution}
+\end{parts}
+\end{blocksection}

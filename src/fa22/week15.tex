@@ -1,0 +1,48 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+\usepackage{forest}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{15}
+\title{Radix Sorts and Compression}
+\date{November 30 - December 1, 2022}
+
+\begin{document}
+\maketitle
+
+\section{Counting (but not the CS70 kind)}
+\begin{questions}
+\subimport{topics/sorting/medium/}{rgb-sort.tex}
+\end{questions}
+
+\pagebreak
+\section{Berkeley Bytes}
+\begin{questions}
+\subimport{topics/sorting/berkeley-bytes/text}{berkeley-bytes-buffet.tex}
+\subimport{topics/sorting/berkeley-bytes/easy}{age-sort.tex}
+\subimport{topics/sorting/berkeley-bytes/easy}{radix-sort.tex}
+\end{questions}
+
+\pagebreak
+\section{What's Radix's Radix?}
+\begin{questions}
+\subimport{topics/sorting/medium/}{dna-sorting.tex}
+\subimport{topics/sorting/medium/}{lsd.tex}
+\subimport{topics/sorting/medium/}{need-radix.tex}
+\end{questions}
+
+\pagebreak
+\section{A Return to Runtimes}
+\begin{questions}
+\question\subimport{topics/sorting/runtime/}{counting.tex}
+\end{questions}
+
+\pagebreak
+\section{Discovering Huffman}
+\begin{questions}
+\subimport{topics/compression/medium/}{discover-huffman.tex}
+\end{questions}
+
+\end{document}

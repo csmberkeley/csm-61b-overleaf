@@ -1,0 +1,43 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{7}
+\title{Asymptotics}
+\date{February 28 - March 4, 2021}
+
+\begin{document}
+\maketitle
+
+% \href{https://youtube.com/playlist?list=PLN303KpCz_KTJYTMmSRJTDrdrXevGWgDt}{Walkthrough Videos}
+
+\section{Big Sets}
+
+\begin{questions}
+\subimport{topics/asymptotics/easy/}{set-theory.tex}
+\end{questions}
+
+\clearpage
+
+\section{Something Fishy}
+Give a tight asymptotic runtime bound for each of the following functions. Assume array is an M × N matrix (rows × cols) and that M and N are both large.
+\begin{questions}
+\subimport{topics/asymptotics/fish/easy}{red-herring.tex}
+\subimport{topics/asymptotics/fish/easy}{crimson-tuna.tex}
+\subimport{topics/asymptotics/fish/medium}{scarlet-koi.tex}
+\end{questions}
+
+\clearpage
+
+\section{Shoutout Recursion}
+
+\begin{questions}
+\subimport{topics/asymptotics/recursive/}{recursive.tex}
+\end{questions}
+
+
+
+
+\end{document}

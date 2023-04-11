@@ -1,0 +1,7 @@
+\question Why does Java's built-in \lstinline$Array.sort$ method use quicksort
+for \lstinline$int$, \lstinline$long$, \lstinline$char$, or other primitive
+arrays, but mergesort for all \lstinline$Object$ arrays?
+
+\begin{solution}[1in]
+Fast, in-place solutions for quicksort are unstable. Unstable means that for any two equivalent elements, their final order in the output is not guaranteed to be the same as the order in which they were inputted. Mergesort has good asyptotic behavior without sacrificing stability. For primitive arrays, stability does not matter because one cannot differentiate any two primitive elements i, j if $i == j$. 
+\end{solution}

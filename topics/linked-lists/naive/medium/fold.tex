@@ -1,0 +1,77 @@
+%ID: 612095
+\question Implement \lstinline$center$, which returns the middle node of an \lstinline$IntList$. If there are an even number of nodes in the list, return the one to the right.
+\begin{lstlisting}
+
+public IntList center(IntList head) {
+
+
+
+
+
+
+
+}
+\end{lstlisting}
+\question Now, implement \lstinline$fold$, which "folds" the first half of an \lstinline$IntList$ over its second half, merging the intersecting nodes by summing their values.
+
+For the linked list \lstinline$3->1->2->4$, the first half \lstinline$3->1$ folds over the second half \lstinline$2->4$, which results in the linked list \lstinline$3->7$.
+
+For the linked list \lstinline$1->2->3$, the hinge is the second node \lstinline$2$, so the \lstinline$1$ node folds over and results in the linked list \lstinline$2->4$.
+\begin{lstlisting}
+
+public IntList fold(IntList head) {
+    IntList result = 
+    Deque<IntList> dq = new ArrayDeque<IntList>();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return result;
+}
+\end{lstlisting}
+
+\newpage
+\begin{solution}
+\begin{lstlisting}
+public IntList center(IntList head) {
+	IntList slow = head;
+	IntList fast = head;
+	
+	// advance fast twice as fast as the other
+	while (fast != null && fast.next != null) {
+		slow = slow.next;
+		fast = fast.next.next;
+	}
+
+	return slow;
+}
+
+public IntList foldIntList(IntList head) {
+	IntList result = center(head);
+	
+	// add all elements to a Deque
+	Deque<IntList> dq = new ArrayDeque<IntList>();
+	IntList curr = head;
+	while (curr != null) {
+		dq.add(curr);
+		curr = curr.next;
+	}
+
+	// pop the left and right nodes simultaneously, mutate the right
+	// stop when one or 0 nodes are left
+	while (dq.size() > 1) {
+		IntList left = dq.removeFirst();
+		IntList right = dq.removeLast();
+		right.val += left.val;
+	}
+	
+	return result;
+}
+\end{lstlisting}
+\end{solution}

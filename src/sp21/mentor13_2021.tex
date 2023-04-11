@@ -1,0 +1,67 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+\printmeta % uncomment me
+
+\discnumber{13}
+\title{Sorting}
+\date{April 9, 2021}
+
+\begin{document}
+\maketitle
+
+\section{Sorting}
+\begin{questions}
+\subimport{../../topics/sorting/text/}{basic-sorts.tex}
+\subimport{../../topics/sorting/runtime/}{basic-with-quicksort-copy-2020.tex}
+\subimport{../../topics/sorting/easy/}{insertion-sort-cases.tex}
+\vspace{15mm}
+\subimport{../../topics/sorting/easy/}{selection-vs-insertion-sort.tex}
+\pagebreak
+\vspace{15mm}
+\subimport{../../topics/sorting/easy/}{heapsort-intro.tex}
+\vspace{15mm}
+\subimport{../../topics/sorting/easy/}{heapsort-mech.tex}
+\vspace{15mm}
+\subimport{../../topics/sorting/easy/}{quicksort.tex}
+\end{questions}
+
+\section{Stability}
+\subimport{../../topics/sorting/text/}{stability.tex}
+\begin{questions}
+\subimport{../../topics/sorting/easy/}{stability.tex}
+\end{questions}
+
+\pagebreak
+
+\pagebreak
+\section{Quicksort Pivot Choice}
+\begin{questions}
+\subimport{../../topics/sorting/medium/}{pivot-choice.tex}
+\end{questions}
+
+\pagebreak
+\section{QuickSort vs. Merge Sort}
+\begin{questions}
+\subimport{../../topics/sorting/medium/}{quicksort-vs-merge-sort.tex}
+\end{questions}
+\clearpage
+
+\pagebreak
+\section{*In'sort' Meme Here*}
+\begin{questions}
+\subimport{../../topics/sorting/hard/}{identify-sort.tex}
+\end{questions}
+
+% \section{Sorting Out My Head!}
+% \begin{questions}
+% \subimport{../topics/sorting/medium/}{which-sort.tex}
+% \end{questions}
+
+\pagebreak
+
+
+
+\end{document}

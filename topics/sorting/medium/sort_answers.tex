@@ -1,0 +1,71 @@
+%ID: 612083
+\question Which sorting algorithm(s) perform the best given that the input array
+contains only duplicates of the same number (and is therefore already sorted)? Why?
+
+\ifprintanswers\else
+\hspace \\ \\ \\ \\ \\ \\
+\fi 
+
+\begin{solution}
+\textbf{Insertion sort:} $\Theta(N)$. We scan the array once and perform 0 swaps.
+\\
+\textbf{Heap sort:} $\Theta(N)$. Heapifying takes $\Theta(N)$ since there is no bubbling/sink-
+ing to be done (the input array is already a valid max-heap). Popping $N$ elements off of the heap takes $\Theta(N)$ time for the same reason. \\
+Practically, heap sort will be slower since it must first create the heap then
+pop everything off the heap.
+\end{solution}
+
+\question You are given a list of first and last names. Your task is to produce a list
+sorted by last name, then by first. For example, given the names 
+\\ \\ 
+\lstinline{"Josh Hug" "Paul Hilfinger" "John DeNero" "Dawn Song" "Hany Farid" "Dan Garcia" "Yun Song" "Bora Nikolic" "Satish Rao"}, 
+\\ \\ 
+you should output 
+\\ \\
+\lstinline{"John DeNero" "Hany Farid" "Dan Garcia" "Paul Hilfinger" "Josh Hug" "Bora Nikolic" "Satish Rao" "Dawn Song" "Yun Song"}.
+
+\begin{parts}
+\item Given a list already sorted by first name, what sorting algorithm(s)
+would perform the best to complete the task? Why? 
+
+\ifprintanswers\else
+\hspace \\ \\ \\ \\ \\ \\ \\
+\fi 
+
+\begin{solution}
+Since the input list is already sorted by first name, we want to run the
+fastest \textbf{stable} sorting algorithm to sort the last names.
+\\
+Out of the comparison sorts, the fastest stable algorithm is merge sort
+running in $\Theta(N \log N)$ time. Heap sort is naturally unstable as it builds the output in reverse order. While the most space efficient implementation of quicksort is unstable, it can be modified to use $\Theta(N)$ extra space to maintain stability.
+\\
+Because we are sorting Strings (whose characters belong to a finite
+alphabet), we can use radix sorts as well. LSD and MSD radix sort are
+both good candidates for the fastest algorithm. They have the same
+worst-case runtimes of $\Theta(W N + W R)$ (where $W$ = length of longest
+last name, $R$ = size of alphabet). MSD has a faster best-case runtime
+of $\Theta(N + R)$ if all the last names have different first letters. However,
+MSD would take more space due to its recursive nature.
+\end{solution}
+
+\item Again, you are given a list already sorted by first name. Suppose now you must finish sorting the list completely in-place. That is, you cannot create any additional arrays or data structures. What sorting algorithm(s) would perform the best? Why? 
+
+\ifprintanswers\else
+\hpace \\ \\ \\ \\ \\ \\ \\
+\fi 
+
+\begin{solution}
+\textbf{Insertion sort:} $\Theta(N)$. We scan the array once and perform 0 swaps.
+\\
+Since our algorithm must take constant space, neither of our radix sorts
+will work as they require external data structures to store the number of
+occurrences in the alphabet. Quicksort must take up additional space
+as described above in order to maintain stability. Merge sort loses
+its $\Theta(N \log N)$ runtime when converted to an in-place implementation
+(becoming $\Theta(N^2)$ due to the merge operation taking $\Theta(N^2)$ time).
+Then, our best bet is insertion sort as it runs in $\Theta(N^2)$ time, uses
+constant space, and is stable. It can, however, run faster in cases where
+the list of names is already nearly sorted.
+\end{solution}
+
+\end{parts}

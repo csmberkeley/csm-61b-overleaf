@@ -1,0 +1,44 @@
+\begin{blocksection}
+\question Given an array and integer \lstinline$k$, find the kth largest number in the array in an efficient manner. Relative to \lstinline$k$, the size of the array can be very large.
+You are allowed to use the \lstinline$PriorityQueue$ class. When constructing the Priority Queue, you must specify its max capacity.
+
+The class has three methods you can use:
+\begin{itemize}
+    \item\lstinline$add(E e)$ (push element onto heap), 
+    \item\lstinline$poll()$ (get and remove minimum element from heap) 
+    \item\lstinline$size()$ (get number of elements in heap)
+\end{itemize}
+
+\begin{lstlisting}
+public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> topK = new PriorityQueue<Integer>(k + 1);
+
+
+
+
+
+
+}
+\end{lstlisting}
+
+% \ifprintanswers
+% \else
+
+% \fi
+
+\begin{solution}
+\begin{lstlisting}
+public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> topK = new PriorityQueue<Integer>(k + 1);
+    for(int el : nums) {
+        topK.add(el);
+        if (topK.size() > k) {
+            topK.poll();
+        }
+    }
+    return topK.poll();
+}
+
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,94 @@
+%ID: 61219
+\begin{blocksection}
+\question Give a tight asymptotic bound for \lstinline$many_N$ as a
+function of $N$ and $M$. If possible, give a $\Theta(\cdot)$ bound for the overall
+runtime. Otherwise, provide a $\Theta(\cdot)$ bound for both the best case and
+worst case runtime.
+
+\begin{lstlisting}
+int many_N(int N, int M) {
+    if (N == 0) { return 1;}
+    int k = 0;
+    for (int i = 0; i <= M; i++) {
+        k += many_N(N-1, M)
+    }
+    return k;
+}
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+$\Theta(M^N)$
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=20mm/#1},level distance=35pt]
+\node[vertex]{$M$}
+child {
+    node[vertex]{$M$}
+}
+child {
+    node[vertex]{$M$}
+}
+child {
+    node[vertex]{$...$}
+}
+child {
+    node[vertex]{$M$}
+}
+child {
+    node[vertex]{$M$}
+};
+\end{tikzpicture}
+\end{center}
+
+We only draw the first two levels of the recursive tree above. The value inside each node represents its corresponding function call's runtime. Since we loop M times, we know that the runtime of the first function call is M. This also means we make M recursive calls, meaning that there will be M child nodes branching from the root nodes. An important observation to make is that the value of M never changes in our recursive calls. This suggests that each of the child nodes will also have a runtime of M which implies that their branching factor will also be M. Now that we have ascertained the branching factor and runtime of each node, all that remains is finding the height of the tree. We note that since N is decremented by 1 on each recursive call, the height of the tree will be N.
+
+The information we have so far is the following
+\begin{itemize}
+    \item Runtime of each node is $M$
+    \item Branching factor of each node is $M$
+    \item Height of tree is $N$
+\end{itemize}
+
+We can use this information to calculate the total work being done at each level of the tree. The first level is doing M work. The second level is doing $M^2$ work. The third level is doing $M^3$ work. We can make the following summation 
+$M + M^2 + M^3 + ... + M^N \approx M^N$
+
+
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\question Give a tight asymptotic bound for \lstinline$skip$ as a
+function of $N$. If possible, give a $\Theta(\cdot)$ bound for the overall
+runtime. Otherwise, provide a $\Theta(\cdot)$ bound for both the best case and
+worst case runtime.
+
+\begin{lstlisting}
+void skip(int N) {
+    if (N <= 1) { return;}
+    else {
+        skip(N/N);
+        skip(N/2);
+    }
+}
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+$\Theta(log(N)))$
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=20mm/#1},level distance=35pt]
+\node[vertex]{$1$}
+child {
+    node[vertex]{$1$}
+    child {
+        node[vertex]{$...$}
+        child{
+            node[vertex]{$1$}
+        }
+    }
+};
+\end{tikzpicture}
+\end{center}
+
+Every function call (node) in the tree above is given a constant runtime since regardless of what the value of N, we are always processing less than 5 lines of code. The branching factor is 1 for every node since the first recursive call skip(N/N) returns immediately. This means we simply need to get the height of the tree to solve for the overall runtime. Since N is being divided by 2 on each function call, the height of the tree is $logN$ which implies the runtime is always $logN$
+
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,48 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{5}
+\title{Midterm 1 Review}
+\date{February 14 - 18, 2022}
+
+\begin{document}
+\maketitle
+
+\href{https://youtube.com/playlist?list=PLN303KpCz_KRtU6eH7zynC3qkxtip-Nzo}{Walkthrough Videos}
+
+\section{centerfold}
+\begin{questions}
+\subimport{topics/linked-lists/naive/medium}{fold.tex}
+\end{questions}
+
+% \pagebreak
+
+\section{Flatter Me}
+\subimport{topics/arrays/text/}{intro.tex}
+\begin{questions}
+\subimport{topics/arrays/easy/}{middle.tex}
+\subimport{topics/arrays/medium/}{flatten.tex}
+\end{questions}
+
+\pagebreak
+\section{pokemon}
+\begin{questions}
+\marginpar{\subimport{topics/polymorphism/medium/pokemon/}{commands.tex}}
+\subimport{topics/polymorphism/medium/pokemon/}{question.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{code.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{solution.tex}
+\end{questions}
+
+\pagebreak
+\section{iterator}
+\begin{questions}
+\subimport{topics/iterators/}{interface.tex}
+\subimport{topics/iterators/easy/int-iterator}{array-iterator.tex}
+\subimport{topics/iterators/easy/int-iterator}{intlist-iterator.tex}
+\subimport{topics/iterators/easy/int-iterator}{print-all.tex}
+\end{questions}
+\end{document}

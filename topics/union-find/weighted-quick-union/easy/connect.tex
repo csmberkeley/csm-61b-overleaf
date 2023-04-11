@@ -1,0 +1,65 @@
+%ID:612004
+\question Implement \lstinline$connect$ for \lstinline$UnionTree$ such that for nodes x and y, the root of the node with the smaller sized union becomes the child of the root of the node with the larger sized union. (If they are equally sized, make the child of the root of x the child of y.)
+
+\begin{lstlisting} 
+public void connect(int x, int y) {
+        ______________________________________________;
+        ______________________________________________;
+        if (__________________________________________________________) { 
+            ______________________________ += ___________________________;
+            ______________________________ = ____________________________;
+        }
+        else {
+            ______________________________ += ___________________________;
+            ______________________________ = ____________________________;
+        }
+    }
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting} 
+public void connect(int x, int y) {
+        int rootx = findRoot(x);
+        int rooty = findRoot(y);
+        if (-parentArr[rootx] >= -parentArr[rooty]) { //remember the size is stored as a negative value!
+            parentArr[rootx] += parentArr[rooty];
+            parentArr[rooty] = rootx; 
+        }
+        else {
+            parentArr[rooty] += parentArr[rootx];
+            parentArr[rootx] = rooty; 
+        }
+    }
+\end{lstlisting}
+\end{solution}
+
+\question What is the worst case bound for height increase per node increase, given the \lstinline$connect$ method you implemented in the last part?
+
+\begin{solution}[1.5in]
+
+$\Theta(\log N)$.
+
+The only way the height of a tree can increase from \lstinline$n$ is when we connect another tree of height \lstinline$> n$ to its root. This is because if we add a tree of height \lstinline$n - 1$, since we are connecting that tree to the root of our tree of height \lstinline$n$, the height from the root to the bottom of the added tree will just be 
+$1 (root) + height of added tree = 1 + n - 1 = n$,
+which is the same height as what we originally had. For this reason, we must only add new trees of the same or greater height at each step to maximize height per added node.
+
+To maximize height per added node further, we want to make sure that we only add trees of maximum height relative to size. This means that we cannot add trees of greater height. This is because if a tree is of greater height, that must mean that it also has a greater amount of nodes (if both trees are of maximum height relative to their size). This would mean that when we run connect(), our tree would be connected to the root of the taller tree (since it is also larger), which would not increase the taller tree's height, decreasing its height-per-added-node ratio. 
+
+
+So the fastest way to grow the height is to combine two tallest-possible trees of the same size at every step. (For more visualization, look at  \href{ https://docs.google.com/presentation/d/1I9Jzt95GvxRqwGMzN7DSEIREKhMZ0qEUzPyWLl6CU5g/edit#slide=id.g4fdd128987_4_292}{slide 47 of this lecture (linked))}. 
+
+To do this, we first connect two trees of height $1$ to create a tree of height $2$ (size $1 + 1 = 2$), then two trees of height $2$ to create a tree height $3$ (size $2 + 2 = 4$), then two trees height $3$ to create a tree height $4$ (size $4 + 4 = 8$), and so on. Because the amount of new nodes added we need to increase the height doubles at every new height, the amount of nodes $N$ we need to get to some height $h$ is roughly $log N = h$. 
+
+The bound is a $\Theta$ bound rather than a $O$ bound because this refers to the worst \textif{case} bound for height increase per node increase. The worst case is simply that we only connect max-height same-size trees to each other, and in that case our upper bound and lower bound are the same value ($\Omega(log N)$ = $O(log N)$), converging to a $\Theta$ bound. 
+\end{solution}
+
+\question What are the worst case and best case runtime bounds for \lstinline$connect$?
+
+\begin{solution}[1.5in]
+$\Theta(log N$) and $\Theta(1)$.
+
+findRoot(tree) has worst case runtime bound $log N$ for a tree with $N$ nodes, because the worst case height is $log N$. The if-else statements take constant time, so the longest operation in connect is findRoot, which would take $log N$ time. Since findRoot is used twice (constant with regard to the size of $N$), and not a factor of $N$ time times, our worst case asymptotic runtime bound is $\Theta(log N)$. 
+
+Best case runtime bound is just $\Theta(1)$. This is because if both $x$ and $y$ are roots, no matter the size of the union findRoot will take constant time. The if-else still takes constant time. Nothing is repeated a factor of N times, so our best case asymptotic runtime is $\Theta(1)$. 
+
+\end{solution}

@@ -1,0 +1,50 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{8}
+\title{So Many Trees}
+\date{October 12 - October 16, 2020}
+\noprintmeta
+
+\begin{document}
+\maketitle
+
+\section{Binary Trees}
+\begin{questions}
+\marginpar{\subimport{../../topics/trees/binary-trees/}{code.tex}}
+\marginpar{\subimport{../../topics/trees/binary-trees/}{example-tree.tex}}
+\subimport{../../topics/trees/binary-trees/easy/}{height.tex}
+\subimport{../../topics/trees/binary-trees/easy/}{is-balanced.tex}
+\end{questions}
+\clearpage
+
+\section{Traversals}
+\subimport{../../topics/trees/binary-trees/text/}{traversals.tex}
+\subimport{../../topics/trees/binary-trees/}{example-tree.tex}
+\begin{questions}
+\subimport{../../topics/trees/binary-trees/easy/}{depth-first-traversals.tex}
+\subimport{../../topics/trees/binary-trees/easy/}{level-order-traversal.tex}
+\enlargethispage{2in}
+% ^ this line is to fit (b) on this page ... so we don't print out an extra sheet
+\subimport{../../topics/trees/binary-trees/medium/}{traversals.tex}
+\end{questions}
+\clearpage
+
+\section{Binary Search Trees}
+\begin{questions}
+\subimport{../../topics/trees/binary-search-trees/medium/}{from-sorted-array.tex}
+\end{questions}
+\clearpage
+
+\section{2-3 Forever}
+\subimport{../../topics/trees/balanced-search-trees/}{example-2-3-tree.tex}
+\begin{questions}
+\subimport{../../topics/trees/balanced-search-trees/easy/}{2-3-tree-insertion.tex}
+\subimport{../../topics/trees/balanced-search-trees/easy/}{2-3-tree-to-llrb.tex}
+\end{questions}
+
+\end{document}

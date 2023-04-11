@@ -1,0 +1,12 @@
+\question For most of the programming assignments in CS 61B, we would write some code in Java, compile it with the \texttt{javac} command, then execute it with the \texttt{java} command. To truly understand threads, let's dive deeper into the compilation and execution stages.
+
+The Java compiler is invoked by the \texttt{javac} command and turns human-written Java code into an \textit{executable} file written in Java bytecode. The {executable} is the \texttt{sample.class} file that results from running \texttt{javac sample.java} in the command line.
+
+This executable is a Java program. When we later run this executable (with \texttt{java sample.class}), our operating system creates a new process to run the program. By definition, a \textit{program} is the result of compiling code and a \textit{process} is a program currently in execution. 
+
+A process that executes a Java program consists of multiple threads. A thread is an independent execution sequence of code. If you have taken CS 61A, one way to think about it is that each thread has its own environment diagram. Another way to think about it is that each thread executes its own chunk of code.
+
+One of the reasons why Java is considered a ``high-level" programming language is because each of these threads (within a running Java program) has its own specialized task. For instance, one thread executes the code that we have written (i.e. the \texttt{main()} function), another thread frees up unused memory (i.e. garbage collection), another thread may update the display, etc.
+
+\textbf{Threads within the same process share the same memory.} This is extremely useful in the age of parallel computing since it allows us to take advantage of multi-core processors. However, there lies danger in the concurrent access of shared memory (i.e. race conditions). With great power comes great responsibility, and CS 61C and CS 162 will teach you methods to write code that is \textit{thread-safe}.
+

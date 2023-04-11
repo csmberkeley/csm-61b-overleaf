@@ -1,0 +1,67 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{5}
+\title{Polymorphism \& Interfaces}
+\date{September 19 - 23, 2022}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Interfaces problem %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Starcraft 2}
+\begin{questions}
+\subimport{topics/inheritance/easy/}{starcraft.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%
+% Casting problem %
+%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{pokemon}
+\begin{questions}
+\marginpar{\subimport{topics/polymorphism/medium/pokemon/}{commands.tex}}
+\subimport{topics/polymorphism/medium/pokemon/}{question.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{trimmed-code.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{solution.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% Iterator problem %
+%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{What List?}
+\begin{questions}
+\subimport{topics/iterators}{interface.tex}
+\subimport{topics/iterators/easy/int-iterator}{array-iterator.tex}
+\pagebreak
+\subimport{topics/iterators/easy/int-iterator}{intlist-iterator.tex}
+\subimport{topics/iterators/easy/int-iterator}{print-all.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Exceptions problem %
+%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{CSM Bank}
+\begin{questions}
+\subimport{topics/exceptions/easy/}{banking-short.tex}
+\end{questions}
+
+% \section{Mercantilism}
+% \begin{questions}
+% \subimport{topics/exceptions/medium/}{mercantilism.tex}
+% \end{questions}
+
+
+\end{document}

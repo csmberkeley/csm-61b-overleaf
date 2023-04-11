@@ -1,0 +1,35 @@
+% use in caution: duplicate with official hw worksheet Sp '22
+\emph{After spending a long night doing 61B Homework, I couldn't help but wonder... Are there real "red-black" trees? After much research, I stumbled upon the Black Diamond Crepe Myrtle, a real black-leaved tree with red flowers that isn't a data structure. }
+\\
+\\
+Here is a refresher on inserting into a red-black tree:
+\begin{lstlisting}
+     public void put(Key key, Value val) {
+        root = put(root, key, val);
+        root.color = BLACK;
+    }
+    
+     private Node put(Node h, Key key, Value val) { 
+        if (h == null){
+            return new Node(key, val, RED, 1);
+        }
+        int cmp = key.compareTo(h.key);
+        if  (cmp < 0) {
+            h.left  = put(h.left,  key, val); 
+        } else if (cmp > 0) {
+            h.right = put(h.right, key, val); 
+        } else {
+             h.val = val;
+        }          
+        if (isRed(h.right) && !isRed(h.left)) {
+             h = rotateLeft(h); // color of h and h.right are swapped.
+        }    
+        if (isRed(h.left)  &&  isRed(h.left.left)) {
+            h = rotateRight(h); // color of h and h.left are swapped.
+        }
+        if (isRed(h.left)  &&  isRed(h.right)) {
+            flipColors(h); // colors of children are swapped with color of h
+        }    
+        return h; }
+
+\end{lstlisting}

@@ -1,0 +1,46 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+%\printmeta % uncomment me
+
+\discnumber{13}
+\title{Graph Algorithms}
+\date{November 15 - 19, 2021}
+\begin{document}
+\maketitle
+
+\section{Search Intro}
+\begin{questions}
+\subimport{topics/graphs/search/medium/}{searches.tex}
+\end{questions}
+\pagebreak
+
+\section{Dijkstra's \& A*}
+\begin{questions}
+\subimport{topics/graphs/shortest-paths/a-star/easy/}{s-a-d-g-revised.tex}
+
+\end{questions}
+
+\pagebreak
+\section{Prim's}
+\begin{questions}
+\subimport{topics/graphs/minimum-spanning-trees/easy/}{network-prims.tex}
+\end{questions}
+\pagebreak
+
+\vspace{25mm}
+
+\section{T,F,G,V,E}
+\begin{questions}
+\subimport{topics/graphs/}{review-true-false.tex}
+\end{questions}
+
+% \section{MST Potpourri}
+% \begin{questions}
+% \subimport{../topics/graphs/minimum-spanning-trees/easy/}{primsVskruskals.tex}
+% \end{questions}
+
+
+\end{document}

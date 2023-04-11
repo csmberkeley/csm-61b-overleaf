@@ -1,0 +1,76 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+% \discnumber{15}
+\title{CSM Mock Final}
+\date{May 5, 2022}
+\begin{document}
+\maketitle
+If you have any feedback on the mock final, please let us know in this form: \href{https://forms.gle/p7ECSEK6ErH7r3bFA}{https://forms.gle/p7ECSEK6ErH7r3bFA}
+
+% Question 1: Bit Operations
+% \section{Time for Bits}
+% \begin{questions}
+% \subimport{topics/bit-manipulation/easy/}{n-and-n-minus-1.tex}
+% \subimport{topics/bit-manipulation/easy/}{number_of_one_bits.tex}
+% \subimport{topics/bit-manipulation/easy/}{times-27.tex}
+% \end{questions}
+
+% Question 2: Runtime Multiple Choice/Short Answer (convert f2020 Asymptotics to Multiple Choice)
+% \newpage
+\section{Asymptotic Ascent}
+\subimport{topics/asymptotics/medium/}{asymptotic-ascent-intro.tex}
+\begin{questions}
+\subimport{topics/asymptotics/medium/}{asymptotic-ascent.tex}
+
+\end{questions}
+
+% Question 3: Function Subset Multiple Choice/Short Answer (similar to #4 in past finals)
+\newpage
+\section{Function Fun}
+\subimport{topics/asymptotics/easy/}{runtime-functions-intro.tex}
+\begin{questions}
+\subimport{topics/asymptotics/easy/}{runtime-functions-questions.tex}
+\end{questions}
+
+% Question 4: some other multiple choice/short answer? or BFS/DFS tree type question
+\newpage
+\section{Mirror Mirror on the Tree}
+\begin{questions}
+\subimport{topics/trees/binary-trees/medium/}{is-symmetric.tex}
+\end{questions}
+
+
+% Question 5: 2.1 + 2.2 from Sorting from f2020 Mock Final
+\newpage
+\section{Sort Answer}
+\begin{questions}
+\subimport{topics/sorting/medium/}{sort_answers.tex}
+\end{questions}
+
+% % Question 6: LLRB / 2-3 / 2-4 tree question
+% \newpage
+% \section{LLRB Insertion}
+% \begin{questions}
+% \subimport{topics/trees/balanced-search-trees/medium/}{llrb-rotations.tex}
+% \end{questions}
+
+% Question 7: Shortest Paths (f2020 Mock Final)
+\newpage
+\section{Bay Area Day Trip}
+\begin{questions}
+\subimport{topics/graphs/shortest-paths/dijkstras/medium/}{network-spt.tex}
+\end{questions}
+
+% Question 8: Data Structure Design (f2020 Mock Final)
+\newpage
+\section{Data Structure Design}
+\begin{questions}
+\subimport{topics/algorithm-design/hard/}{data-structure-design.tex}
+\end{questions}
+
+\end{document}

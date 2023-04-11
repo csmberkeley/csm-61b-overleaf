@@ -1,0 +1,19 @@
+%ID: 612053
+\question Determine whether an integer is a multiple of 4 using only a mask and equality operators.
+
+\ifprintanswers\else
+\begin{lstlisting}
+static boolean isMultipleOfFour(int x) {
+
+    return
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+static boolean isMultipleOfFour(int x) {
+    return 0 == (x & 3);
+}
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,42 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+%  \printmeta % uncomment me
+
+\discnumber{4}
+\title{Pointers, Arrays, \& Lists}
+\date{September 13-17, 2021}
+
+\begin{document}
+\maketitle
+
+\section{Switcheroo}
+\subimport{topics/pass-by-value/text/}{golden-rule-of-equals.tex}
+\begin{questions}
+\subimport{topics/reference/easy/}{simple-swap.tex}
+\subimport{topics/reference/easy/}{swap-object.tex}
+\end{questions}
+
+
+\clearpage
+
+\section{Flatter Me}
+\subimport{topics/arrays/text/}{intro.tex}
+\begin{questions}
+\subimport{topics/arrays/easy/}{middle.tex}
+\subimport{topics/arrays/medium/}{flatten.tex}
+\end{questions}
+
+\clearpage
+
+\section{Mystery Linked List}
+\begin{questions}
+\subimport{topics/linked-lists/encapsulated/medium/}{multiples.tex}
+\end{questions}
+
+
+\clearpage
+
+\end{document}

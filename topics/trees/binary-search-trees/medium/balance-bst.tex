@@ -1,0 +1,93 @@
+\begin{blocksection}
+\question Implement \lstinline$balanceBST$ which given a binary search tree, 
+returns a balanced binary search tree with the same node values.
+
+\ifprintanswers
+\else
+\begin{lstlisting}
+public class Node {
+    int value;
+    Node left;
+    Node right;
+    
+    Node() {}
+    
+    Node(int value) {
+        this.value = value;
+    }
+    
+    Node(int value, Node left, Node right) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class BinarySearchTreeBalancer {
+    List<Node> sortedArr = new ArrayList<>();
+
+    public Node balanceBST(Node root) {
+        inorderTraverse(root);
+        return sortedArrayToBST(0, sortedArr.size() - 1);
+    }
+
+    private void inorderTraverse(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorderTraverse(root.left);
+        sortedArr.add(root);
+        inorderTraverse(root.right);
+    }
+
+    Node sortedArrayToBST(int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+
+
+
+
+
+
+
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+public class BinarySearchTreeBalancer {
+    List<Node> sortedArr = new ArrayList<>();
+
+    public Node balanceBST(Node root) {
+        inorderTraverse(root);
+        return sortedArrayToBST(0, sortedArr.size() - 1);
+    }
+
+    void inorderTraverse(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorderTraverse(root.left);
+        sortedArr.add(root);
+        inorderTraverse(root.right);
+    }
+
+    Node sortedArrayToBST(int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        Node root = sortedArr.get(mid);
+        root.left = sortedArrayToBST(start, mid - 1);
+        root.right = sortedArrayToBST(mid + 1, end);
+        return root;
+    }
+}
+\end{lstlisting}
+
+\textbf{Meta}: Be sure to explain how to get a balanced BST from a sorted array with a few examples!
+
+\end{solution}
+\end{blocksection}

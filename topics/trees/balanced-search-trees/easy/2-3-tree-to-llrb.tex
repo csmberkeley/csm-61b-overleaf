@@ -1,0 +1,51 @@
+%ID: 61241
+\begin{blocksection}
+\question Now, convert the resulting 2-3 tree to a left-leaning red-black tree.
+
+\begin{solution}
+\begin{center}
+
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=50mm/#1},level distance=30pt]
+\node[vertex,color=black]{$14$}
+child {
+    node[vertex,color=red]{$8$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$6$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,color=black]{$3$}
+        }
+        child {
+            node[vertex,color=black]{$7$}
+        }
+    }
+    child {
+        node[vertex,color=black]{$12$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,color=black]{$10$}
+        }
+        child {
+            node[vertex,color=black]{$13$}
+        }
+    }
+}
+child {
+    node[vertex,color=black]{$16$}
+    edge from parent[draw=black]
+    child {
+            node[vertex,color=black]{$15$}
+        }
+        child {
+            node[vertex,color=black]{$18$}
+        }
+};
+
+\end{tikzpicture}
+\end{center}
+\end{solution}
+\else
+\vspace{2in}
+\end{blocksection}

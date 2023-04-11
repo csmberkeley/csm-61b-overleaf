@@ -1,0 +1,44 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{11}
+\title{Reductions \& Sorting}
+\date{November 2 - 4, 2022}
+
+\begin{document}
+\maketitle
+
+\section{Topological Practice}
+\begin{questions}
+\subimport{topics/sorting/medium/topological-mechanical/}{topological-mechanical.tex}
+\end{questions}
+
+% \pagebreak
+% \section{(Challenge) Incomparable Pairs}
+% \begin{questions}
+% \subimport{topics/sorting/hard/}{incomparable-pairs.tex}
+% \end{questions}
+
+\pagebreak
+\section{Sorting Potpourri}
+\begin{questions}
+\subimport{topics/sorting/easy/}{insertion-sort-cases.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{selection-vs-insertion-sort.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{heapsort-intro.tex}
+\vspace{20mm}
+\subimport{topics/sorting/easy/}{heapsort-mech.tex}
+\end{questions}
+\clearpage
+
+\pagebreak
+\section{DIY MergeSort}
+\begin{questions}
+\subimport{topics/sorting/medium/}{mergesort-implementation.tex}
+\end{questions}
+
+\end{document}

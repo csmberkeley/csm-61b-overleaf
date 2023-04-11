@@ -1,0 +1,110 @@
+%ID: 612062
+\question Here’s a class for a hashtable that takes key, value pairs and stores them in a hashtable with external chaining. The keys in this problem are all strings, and the hashcode for each string is its length. Implement the hash function \lstinline{hashfunc(String key)} and complete the method \lstinline{insert} that inserts new key value pairs into the hashtable. You will be implementing the part of \lstinline{insert} that handles resizing. It should be done recursively.
+
+\begin{lstlisting}
+// A node of the external chains
+class HashNode<String, V> { 
+    String key; 
+    V value; 
+    HashNode<String, V> next; 
+  
+    public HashNode(String key, V value) { 
+        this.key = key; 
+        this.value = value; 
+    } 
+} 
+
+// class for the actual table
+class HashTable<String, V> {
+    private HashNode<String,V>[] hashtable;
+    private int numBuckets;
+    private int numElements;
+    private int maxLoad = 0.75;
+
+    public HashTable() { 
+        numBuckets = 10; 
+        numElements = 0;
+        hashtable = new HashNode<String,V>[numBuckets]; 
+  
+    %     // Create empty chains 
+    %     for (int i = 0; i < numBuckets; i++) 
+    %         hashtable[i] = null; 
+    % } 
+
+    // Given a key, returns the hashcode for that key
+    private int hashfunc(String key) {
+        return __________________;
+    }
+
+    public void insert(String key, V value) {
+        int index = hashfunc(key);
+        HashNode<String, V> head = hashtable[index];
+
+        //check if key is already in table
+        while (head != null) {
+            if (head.key.equals(key)) { 
+                head.value = value; 
+                return; 
+            } 
+            head = head.next;
+        }
+
+        // resize
+        if (_______________________) {
+            numBuckets = ___________________;
+            HashNode<String,V>[] temp = hashtable;
+            hashtable = new HashNode<String,V>[numBuckets];
+            numElements = _____________;
+
+            for (int i = 0; i < numBuckets; i++) {
+                ________________________________; 
+  	}
+
+            for (HashNode<String, V> headNode : __________) { 
+                while (_________________________) {
+                    ________________________________________;
+                    ________________________________________;
+                } 
+            }
+        }
+
+        // add new key, value as a HashNode
+        numElements++;
+        index = hashfunc(key);
+        head = hashtable[index];
+        HashNode<String, V> newNode = new HashNode<String, V>(key, value);
+        newNode.next = head;
+        hashtable[index] = newNode;
+    }
+}
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+    private int hashfunc(K key) {
+        return key.length() % numBuckets;
+    }
+    
+    // resize
+    // Note we cast numElements+1 to a float so integer division
+    // does not give us a floored integer
+    if ((double) (numElements+1) / numBuckets > maxLoad) {
+        numBuckets *= 2;
+        HashNode<K,V>[] temp = hashtable;
+        hashtable = new HashNode<K,V>[numBuckets];
+        numElements = 0;
+
+        for (int i = 0; i < numBuckets; i++) 
+            hashtable[i] = null;
+
+        for (HashNode<K, V> headNode : temp) { 
+            while (headNode != null) { 
+                insert(headNode.key, headNode.value); 
+                headNode = headNode.next; 
+            } 
+        }
+    }
+
+
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,39 @@
+%ID: 612058
+\question We have a list of points on the plane.  Find the K closest points to the origin (0, 0). (Here, the distance between two points on a plane is the Euclidean distance.)\newline\newline
+You may return the answer in any order.  The answer is guaranteed to be unique (except for the order that it is in.)\newline\newline 
+\textbf{Example}\newline 
+Input: points = [[3,3],[5,-1],[-2,4]], K = 2\newline
+Output: [[3,3],[-2,4]]\newline
+(The answer [[-2,4],[3,3]] would also be accepted.)\newline\newline 
+This problem is taken from Leetcode: https://leetcode.com/problems/k-closest-points-to-origin/
+
+\begin{solution}[1in]
+\textbf{Intuition}\newline
+Sort the points by distance, then take the closest K points.\newline\newline
+\textbf{Algorithm}\newline
+In Java, we find the K-th distance by creating an array of distances and then sorting them. After, we select all the points with distance less than or equal to this K-th distance.\newline\newline 
+\begin{lstlisting}
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        int N = points.length;
+        int[] dists = new int[N];
+        for (int i = 0; i < N; ++i)
+            dists[i] = dist(points[i]);
+
+        Arrays.sort(dists);
+        int distK = dists[K-1];
+
+        int[][] ans = new int[K][2];
+        int t = 0;
+        for (int i = 0; i < N; ++i)
+            if (dist(points[i]) <= distK)
+                ans[t++] = points[i];
+        return ans;
+    }
+
+    public int dist(int[] point) {
+        return point[0] * point[0] + point[1] * point[1];
+    }
+}
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,49 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{15}
+\title{Final Review}
+\date{November 29 - December 3, 2021}
+\begin{document}
+\maketitle
+
+\section{Asymptotics \& Hashing}
+\begin{questions}
+\subimport{topics/asymptotics/medium/}{convoluted.tex}
+\subimport{topics/asymptotics/medium/}{debug-binary-search.tex}
+\subimport{topics/asymptotics/data-structures/}{external-chaining.tex}
+\end{questions}
+
+\newpage
+\section{Berkeley Bytes}
+\begin{questions}
+\subimport{topics/sorting/berkeley-bytes/easy/}{age-sort.tex}
+\end{questions}
+
+\newpage
+\section{MST's}
+\begin{questions}
+% \subimport{topics/sorting/hard/}{sorting-mechanics.tex}
+\subimport{topics/graphs/minimum-spanning-trees/easy/}{network.tex}
+\subimport{topics/graphs/minimum-spanning-trees/easy/}{primsVskruskals.tex}
+\end{questions}
+
+\newpage
+\section{More Graphs}
+\begin{questions}
+\subimport{topics/graphs/}{true-false.tex}
+\end{questions}
+
+\newpage
+\section{Weighted QuickUnion}
+\begin{questions}
+\subimport{topics/union-find/weighted-quick-union-uf/easy/}{connect-find.tex}
+
+\subimport{topics/union-find/weighted-quick-union-uf/medium/}{max-height.tex}
+\end{questions}
+
+\end{document}

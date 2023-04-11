@@ -1,0 +1,89 @@
+\question Josh has decided that a fold method is absolutely necessary to ensure the complete functionality of DLList. Fill in the following methods to DLList to complete his vision.
+
+Implement \lstinline$center$, which returns the middle node of the \lstinline$DLList$ (Doubly Linked List). If there are an even number of nodes in the list, return the one to the right. You can assume this DLList has one sentinel at the end and one at the beginning. (there is a solution that uses less lines!)
+\begin{lstlisting}
+
+public IntNode center() {
+    IntNode _______ = __________________;
+    IntNode _______ = __________________;
+    
+    while(_____________ && _______________) {
+        __________ = __________________________;
+        __________ = __________________________;
+    }
+
+    return _______________;
+}
+
+
+
+
+
+
+\end{lstlisting}
+\question Now, implement \lstinline$fold$, which modifies the DLList by "folding" the first half of the \lstinline$DLList$ over its second half, merging the intersecting nodes by summing their values. We don't care about the values of the sentinel nodes.
+
+For the doubly linked list \lstinline$3 <-> 1 <-> 2 <-> 4$, (the sentinel nodes are omitted, but there is one to the left of \lstinline$3$ and one to the right of \lstinline$4$) the first half \lstinline$3 <-> 1$ folds over the second half \lstinline$2 <-> 4$, which results in the linked list \lstinline$3 <-> 7$.
+
+For the linked list \lstinline$1 <-> 2 <-> 3$, (sentinel nodes omitted) the hinge is the second node \lstinline$2$, so the \lstinline$1$ node folds over and results in the linked list \lstinline$2 <-> 4$.
+
+\clearpage
+
+\begin{lstlisting}
+
+public void foldDLList() {
+	__________________ = _________________________;
+	__________________ = _________________________;
+	int addCounter = size/2;
+    
+	while (_____________________________) {
+		____________________________ = __________________________;
+		______________________ = ____________________;
+		______________________ = ____________________;
+		_____________________________________________;
+	}
+	
+	_____________________ = this.___________________; //this refers to the DLList we are working on, this.____ takes some ____ attribute of the DLList and returns it. 
+	_________________________ = _____________________________________;
+	_________________________ = _____________________________________;
+	this._____________ = ______________________________;
+}
+\end{lstlisting}
+
+\newpage
+\begin{solution}
+\begin{lstlisting}
+public IntNode center() {
+	IntNode left = first;
+	IntNode right = last;
+	
+	// advance left and right and wait until they meet, or are about to meet
+	while (left != right && left.next != right) {
+		left = left.next;
+		right = right.prev;
+	}
+
+	return right;
+}
+
+alternatively, students might point out that a solution using size could be faster.
+
+public void foldDLList() {
+	IntNode left = first;
+	IntNode right = last;
+	int addCounter = size/2;
+    
+	while (addCounter > 0) {
+		right.item = left.item + right.item;
+		left = left.next;
+		right = right.prev;
+		addCounter--;
+	}
+	
+	first = this.center();  connect to the old sentinel
+	first.prev = sentFront; // set prev of first to be sentFront
+	sentFront.next = first;
+	this.size = size - size/2; //this works but is ugly, FIX!
+}
+\end{lstlisting}
+\end{solution}

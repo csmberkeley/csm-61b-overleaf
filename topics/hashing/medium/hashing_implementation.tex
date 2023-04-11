@@ -1,0 +1,74 @@
+\begin{blocksection} 
+
+You are a software engineer for a ticket-selling company who wishes to find a more efficient way to store customer information than using a simple array, and you decide to store info using hashing with singly-linked lists. Design a put method for TicketTable to work properly. Assume a load factor of 3.0.
+\\
+
+\begin{lstlisting}
+public class Customer {
+    public Customer tail;
+    public int ticketID;
+    private string name;
+    private boolean VIP;
+    
+    public int hashCode() {
+        return ticketID;
+    }
+    
+public class TicketTable {
+    private Customer[] heads;
+    private int bucketN, size; // # of buckets in the table, # of customers.
+
+    private void resize() { // resizes the table to have more buckets, resorts all customers.
+        ...
+    }
+    
+    //initializers and other methods not shown
+}
+\end{lstlisting}
+\end{blocksection}
+\clearpage
+
+\question
+
+\begin{lstlisting}
+public void put(Customer fred) {
+
+    if (_________________________________) {
+    
+        _______________________________________________;
+    }
+    ____________________________ = ________________________________;
+    
+    if (_________________________________) {
+    
+    ____________________________ = ________________________________;
+    } else {
+        while (____________________________________) {
+        
+            _______________________ = _____________________________;
+        }
+        _______________________ = _____________________________;
+    }
+    size++;
+}
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+public void put(Customer fred) {
+    if ((size + 1)/bucketN >= 3) {
+        resize();
+    }
+    Customer c = heads[fred.hashcode() % bucketN];
+    if (c == null) {
+        heads[fred.hashcode() % bucketN] = fred;
+    } else {
+        while (c.tail != null) {
+            c = c.tail
+        }
+        c.tail = fred;
+    }
+    size++;
+}
+\end{lstlisting}
+\end{solution}

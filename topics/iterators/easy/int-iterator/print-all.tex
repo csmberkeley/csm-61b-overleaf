@@ -1,0 +1,27 @@
+%ID: 61237
+\question Define a method, \lstinline$printAll$, that prints every element in
+an \lstinline$Iterator$ \textbf{regardless of how the iterator is
+implemented.}
+\ifprintanswers\else
+\begin{lstlisting}
+
+public static void printAll(Iterator<____________> iter) {
+
+
+
+
+
+
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}%[1in]
+\begin{lstlisting}
+public static void printAll(Iterator<Integer> iter) {
+    while (iter.hasNext()) {
+        System.out.println(iter.next());
+    }
+}
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,82 @@
+%ID: 612102
+\question
+
+Consider the following interface and implementing class:
+
+\begin{lstlisting}
+
+interface Worker {
+    public String favorite_resource();
+    public String favorite_phrase();
+    
+    default void work() {
+        System.out.println("Gathering " + favorite_resource() + ". " + favorite_phrase());
+    }
+}
+
+// Note: SCV stands for "Space Construction Vehicle"
+class SCV implements Worker {
+    @Override
+    public String favorite_resource() {
+        return "Minerals";
+    }
+
+    @Override
+    public String favorite_phrase() {
+        return "Woohoo! Overtime!";
+    }
+}
+\end{lstlisting}
+
+\begin{parts}
+\begin{blocksection}
+\part Do we need a \lstinline{work} method in \lstinline{SCV} in order to make an SCV work?
+\begin{solution}[1in]
+No, we do not need the \lstinline{work} method because it is already defined as a default method in the \lstinline{Worker} interface.
+Java will look up the parent's (which in this case is an interface) method if it cannot find one in the child class.
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part What does the following two lines print?
+\begin{lstlisting}
+Worker scv = new SCV();
+scv.work();
+\end{lstlisting}
+\begin{solution}[1in]
+\lstinline{Gathering Minerals. Woohoo, Overtime!}
+
+Even though \lstinline{favorite_resource} and \lstinline{favorite_phrase} are not implemented
+in \lstinline{Worker}, they are implemented within the \lstinline{SCV} class, which will be looked
+up by Java.
+\end{solution}
+\end{blocksection}
+
+
+\begin{blocksection}
+\part Now let's suppose we define a new class that inherits from \lstinline{Worker} and attempt to run a few lines of code:
+\begin{lstlisting}
+class Probe implements Worker {
+    @Override
+    public String favorite_resource() {
+        return "Vespene Gas";
+    }
+}
+
+Worker probe = new Probe();
+probe.work();
+\end{lstlisting}
+Do these lines error? Is it a compile-time or run-time error?
+
+\begin{solution}[0.5in]
+These lines result in a compile-time error. Some students may be tempted into saying it is a run-time error,
+since when the \lstinline{work} method in \lstinline{Worker} looks for \lstinline{Probe}'s \lstinline{favorite_phrase} method,
+it sees that the method is not implemented. Keep in mind that compile-time always comes before run-time, so \lstinline{probe.work()} actually never runs!
+
+However, it is important to keep in mind that an implementing class must implement all methods declared in its parent interface.
+As a result, the Java compiler will see that \lstinline{favorite_phrase} is not implemented, triggering a compile-time error.
+This is where IntelliJ's "does not override" warning comes from.
+\end{solution}
+\end{blocksection}
+
+\end{parts}

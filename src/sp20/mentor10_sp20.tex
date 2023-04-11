@@ -1,0 +1,78 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+%\printmeta % uncomment me
+
+\discnumber{10}
+\title{Heaps \& Hashing}
+\date{March 30, 2020}
+
+\begin{document}
+\maketitle
+\begin{solution}
+Link to meta: https://tinyurl.com/vbkl5dp
+\end{solution}
+
+\section{Heaps Review}
+The following invariants apply for heaps: 
+\begin{itemize}
+  \item For a max-heap: for every node, the value of both its children must be less than the value of itself. 
+  \item For a min-heap: for every node, the value of both its children must be greater than the value of itself. 
+\end{itemize}
+Heaps are usually represented using arrays, and can be created through heapification. Heapification can either be done level order + bubbling up (O(NlogN)), or reverse level order + bubbling down (O(N)). 
+\begin{questions}
+\subimport{topics/heaps/easy/}{min-heapify-example.tex}
+\marginpar{\subimport{topics/heaps/}{example-tree2.tex}}
+\end{questions}
+
+% \section{More Heaps}
+% \begin{questions}
+% \subimport{../topics/heaps/easy/}{min-heap-sorted-array.tex}
+% \subimport{../topics/heaps/easy/}{sorted-array-max-heap.tex}
+% \end{questions}
+\section{Min-Heapify This}
+\begin{questions}
+\subimport{topics/heaps/easy/}{methods.tex}
+\subimport{topics/heaps/easy/}{min-heap-sorted-array.tex}
+\subimport{topics/heaps/easy/}{sorted-array-max-heap.tex}
+\end{questions}
+
+\section{K Largest Items}
+\begin{questions}
+\subimport{topics/heaps/medium/}{k-largest-items.tex}
+\end{questions}
+
+\section{Ls for LinkedLists}
+\begin{questions}
+\subimport{topics/hashing/easy/}{motivation.tex}
+\end{questions}
+
+\section{Hashing Practice}
+\begin{questions}
+\subimport{topics/hashing/basics/}{diagram.tex}
+\end{questions}
+\clearpage
+
+\section{Kelp!}
+\begin{questions}
+\subimport{topics/heaps/hard/}{sixty-one-pq.tex}
+\end{questions}
+
+\section{\extra{Game Trees}}
+\begin{questions}
+\subimport{topics/trees/game-trees/}{game-tree-easy-2.tex}
+\end{questions}
+
+\section{\extra{Hash Codes}}
+\begin{questions}
+\subimport{topics/hashing/hash-codes/}{intro.tex}
+\subimport{topics/hashing/hash-codes/}{person.tex}
+\subimport{topics/hashing/hash-codes/}{phonebook.tex}
+\clearpage
+\subimport{topics/hashing/hash-codes/}{poketime.tex}
+\end{questions}
+
+
+\end{document}

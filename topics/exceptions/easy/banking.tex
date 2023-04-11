@@ -1,0 +1,182 @@
+%\begin{blocksection}
+\question
+\begin{parts}
+
+\item The CSM content mentors have opened a bank called CSM Bank! This bank allows customers to store money and take out loans.
+
+The bank keeps track of 10 customers, where each customer is represented by a number from 0 to 9 (inclusive). A customer of the bank can either deposit some amount into their account, withdraw some amount from their account,
+take out a loan, or pay back a loan using their account number \lstinline{account_number}.
+
+However, to comply with UC Berkeley regulations, CSM needs your help to make the system just a bit more responsible and secure! 
+First, a customer cannot withdraw money from the bank if it causes their account to be negative. Also, a customer should not be able to take out a loan if they already owe the bank money.
+
+In addition, the bank keeps track of two other values for regulatory reasons: \lstinline{total_money} represents the amount of physical money the bank has in its vaults, 
+and \lstinline{total_assets} represents the amount of money the bank is responsible for, i.e., the total amount of money in the bank's accounts.
+In order to ensure sufficient reserves, the bank should never give out a loan if giving the loan causes the amount of money in the bank's vaults to fall below 20\% of its total assets.
+
+Please implement exceptions in the methods below to ensure that CSM Bank complies with UC Berkeley regulations.
+
+\ifprintanswers\else
+\begin{lstlisting}
+
+class Bank {
+
+    double total_money;
+    double total_assets;
+    double[] accounts;
+    double[] loans;
+    
+    public Bank() {
+        total_money = 0;
+        total_assets = 0;
+        accounts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        loans = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    }
+    
+\end{lstlisting}
+
+\pagebreak
+\begin{lstlisting}
+ 
+    public double deposit(int account_number, double amount) {
+
+
+
+
+
+
+
+        total_money += amount
+        total_assets += amount
+        accounts[account_number] += amount;
+        return accounts[account_number];
+    }
+    
+\end{lstlisting}
+\begin{lstlisting}
+ 
+    public double withdraw(int account_number, double amount) {
+
+
+
+
+
+
+
+        total_money -= amount;
+        total_assets -= amount;
+        accounts[account_number] -= amount;
+        return accounts[account_number];
+    }
+    
+\end{lstlisting}
+\begin{lstlisting}
+ 
+    public double take_loan(int account_number, double amount) {
+
+
+
+
+
+
+
+        total_money -= amount;
+        loans[account_number] += amount;
+        return loans[account_number];
+    }
+    
+\end{lstlisting}
+\pagebreak
+\begin{lstlisting}
+ 
+    public double pay_loan(int account_number, double amount) {
+
+
+
+
+
+
+
+        total_money += amount;
+        loans[account_number] -= amount;
+        return loans[account_number];
+    }
+}
+
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+class Bank {
+
+    double total_money;
+    double total_assets;
+    double[] accounts;
+    double[] loans;
+    
+    public Bank() {
+        total_money = 0;
+        total_assets = 0;
+        accounts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        loans = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    }
+
+    public double deposit(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw IllegalArgumentException("Please enter a valid account number");
+        }
+        
+        total_money += amount
+        total_assets += amount
+        accounts[account_number] += amount;
+        return accounts[account_number];
+    }
+
+    public double withdraw(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw IllegalArgumentException("Please enter a valid account number");
+        }
+        if (amount > this.accounts[account_number]) {
+            throw Exception("You do not have the necessary funds to make a withdrawal");
+        }
+        
+        total_money -= amount;
+        total_assets -= amount;
+        accounts[account_number] -= amount;
+        return accounts[account_number];
+    }
+
+    public double take_loan(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw IllegalArgumentException("Please enter a valid account number");
+        }
+        if (this.total_money - amount < 0.2 * this.total_assets) {
+            throw Exception("We do not have the funds to supply this loan");
+        }
+        
+        total_money -= amount;
+        loans[account_number] += amount;
+        return loans[account_number];
+    }
+
+    public double pay_loan(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw IllegalArgumentException("Please enter a valid account number");
+        }
+        if (loans[account_number] < 0) {
+            throw Exception("Pay us back your loan first!");
+        }
+        
+        total_money += amount;
+        loans[account_number] -= amount;
+        return loans[account_number];
+    }
+}
+
+\end{lstlisting}
+\end{solution}
+    
+\end{parts}
+
+%\end{blocksection}

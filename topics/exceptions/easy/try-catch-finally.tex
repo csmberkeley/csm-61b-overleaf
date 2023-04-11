@@ -1,0 +1,75 @@
+%\begin{blocksection}
+\question
+\begin{lstlisting}[aboveskip=-\baselineskip]
+
+
+try {
+    doSomething();
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("caught array index exception");
+} catch (Exception e) {
+    System.out.println("caught an exception");
+    throw e;
+} catch (NullPointerException e) {
+    System.out.println("caught null pointer exception");
+} finally {
+    System.out.println("may be an ID-10T error, consult 61B content mentors to check.");
+}
+\end{lstlisting}
+
+\begin{parts}
+\part This code causes a compile time error. Which blocks could we remove to fix the issue?
+
+\begin{solution}
+The \lstinline$catch (NullPointerException e)$ causes a compile time error because it is unreachable, 
+because \lstinline$catch (Exception e)$ will always catch null pointer errors before we reach the line \lstinline$catch (NullPointerException e)$. 
+
+Java doesn't like ambiguity or unreachable code, so it causes a compile time error. (Q: Why would a NullPointerException count as an Exception? A: Because NullPointerException is a subclass of Exception!) 
+
+We can remove either \lstinline$catch (NullPointerException e)$ or \lstinline$catch (Exception e)$ to fix the error. Discuss with your students the pros and cons of removing either, then see if anyone has suggestions for a way we could fix the code without removing either line. (Swap the positions of the block \lstinline$catch (Exception e)$ and \lstinline$catch (NullPointerException e)$.)
+\end{solution}
+
+\clearpage
+
+\part We have fixed the problematic code causing the compile time error. What will now print if \lstinline$doSomething()$ throws a
+\lstinline$NullPointerException$?
+\begin{solution}[0.75in]
+Students will have different answers depending on how they chose to fix the code. If they removed \lstinline$catch (NullPointerException e)$, the correct answer would be:
+\begin{verbatim}
+caught an exception
+may be an ID-10T error, consult 61B content mentors to check.
+NullPointerException
+\end{verbatim}
+If they removed \lstinline$catch (Exception e)$ or swapped the location of the blocks, the answer would be:
+\begin{verbatim}
+caught null pointer exception
+may be an ID-10T error, consult 61B content mentors to check.
+\end{verbatim}
+If time allows, it might be worthwhile to discuss all possibilities here.
+Point out that \lstinline$NullPointerException$ is on the last line of output for the first solution but not the second because of the \lstinline$throw e$ line in the second block of the original code.
+\end{solution}
+
+\part What if \lstinline$doSomething()$ throws an
+\lstinline$ArrayIndexOutOfBoundsException$?
+\begin{solution}[0.75in]
+\vspace{-2em}
+\begin{verbatim}
+caught array index exception
+may be an ID-10T error, consult 61B content mentors to check.
+\end{verbatim}
+\end{solution}
+
+\part What if \lstinline$doSomething()$ doesn't error?
+\begin{solution}[0.75in]
+\begin{verbatim}
+may be an ID-10T error, consult 61B content mentors to check.
+\end{verbatim}
+\end{solution}
+\end{parts}
+
+\begin{solution}
+\textbf{Meta:} Remember that completing a catch prevents all other catches
+in the same block from running. Even on a re-throw, no other catches in the
+same block are called, because the exception has already been `handled'!
+\end{solution}
+%\end{blocksection}

@@ -1,0 +1,32 @@
+%ID:61203
+\begin{blocksection}
+\begin{lstlisting}
+
+public class WQUnion {
+    private int[] parentArr; // Each node's index in this array contains the index of their parent node. If the node has no parent, the index stores the negative of the size of the tree it is in. 
+    public WQUnion<Type>(int size) {
+        parentArr = new int[size];
+        for (int i = 0; i < size; i++) {
+            parentArr[i] = -1;
+        }
+    }
+    private int findRoot(int x) {
+        int root = x;
+        while (parentArr[root] >= 0) {
+            root = parentArr[root];
+        }
+        return root;
+    }
+    public void connect(int x, int y) {
+        ???
+    }
+    public boolean isConnected(int x, int y) {
+        if(findRoot(x) == findRoot(y)) {
+            return true;
+            }
+        return false;
+    }
+}
+\end{lstlisting}
+\end{blocksection}
+\clearpage

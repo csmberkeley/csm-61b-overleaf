@@ -1,0 +1,149 @@
+\begin{lstlisting}
+public static void f1(int N) {
+    int sum = 0;
+    for (int i = N; i > 0; i -= 1) {
+        for (int j = 0; j < i; j += 1) {
+            sum += 1;
+        }
+    }
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N^2)
+\end{solution}
+
+\begin{lstlisting}
+public static void f2(int N) {
+    int sum = 0;
+    for (int i = 1; i <= N; i *= 2) {
+        for (int j = 0; j < i; j += 1) {
+            sum += 1;
+        }
+    }
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N)
+\end{solution}
+
+
+\begin{lstlisting}
+public static void f3(int[] a) {
+    if (a.length == 0) { return; }
+    int N = a.length;
+    int[] newA = new int[N-1];
+    for (int i = 0; i < newA.length; i += 1) {
+        newA[i] = a[i];
+    }
+    f3(newA);
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N^2)
+\end{solution}
+
+\begin{lstlisting}
+public static void f5(int N) {
+    f1(N);
+    f2(N);
+    f3(new int[N]);
+    f4(N); // \Theta(N)
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N^2)
+\end{solution}
+
+\begin{lstlisting}
+public static void spacejam(int N) {
+    if (N == 1) {
+        return;
+    }
+    
+    for (int i = 0; i < N; i += 1) {
+        spacejam(N - 1);
+    }
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N!)
+\end{solution}
+
+\begin{lstlisting}
+public static void f(int N) {
+    f1(N);
+    f2(N);
+    f3(new int[N]);
+    f4(N); // \Theta(N)
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N^2)
+\end{solution}
+
+\begin{lstlisting}
+public static void g1(int N) {
+	for (int i = 0; i < N*N*N; i += 1) {
+		for (int j = 0; j < N*N*N; j += 1) {
+			System.out.print("fyhe");
+		}
+	}
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N^6)
+\end{solution}
+
+\begin{lstlisting}
+public static void g2(int N) {
+	for (int i = 0; i < N; i += 1) {
+		int numJ = Math.pow(2, i + 1) -1; // <--constant time!
+		for (int j = 0; j < numJ; j += 1) {
+			System.out.print("fhet");
+		}
+	}
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(2^N)
+\end{solution}
+
+\begin{lstlisting}
+public static void g3(int N) {
+	for (int i = 2; i < N; i *= i) {}
+	for (int i = 2; i < N; i++) {}
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N)
+\end{solution}
+
+\begin{lstlisting}
+public static void g4(int N) {
+	if (N == 0) { 
+		return; 
+	}
+	g4(N -1);
+	if (k(N)) { 
+		g4(N -1); 
+	}
+}
+\end{lstlisting}
+\begin{solution}
+\Theta(N)
+\end{solution}
+
+$O(2^N)$
+\begin{lstlisting}
+public static void g5(int N) {
+	if (N == 0) { 
+		return; 
+	}
+	g5(N / 2);
+	if (k(N)) { 
+		g5(N / 2); 
+	}
+}
+\end{lstlisting}
+$O(log(N))$
+$O(N)$

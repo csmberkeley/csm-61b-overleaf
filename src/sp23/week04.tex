@@ -1,0 +1,79 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% Use the following to toggle solutions/metas
+%\printsolutions % uncomment me
+\printmeta %
+
+\discnumber{4}
+\title{Midterm Review}
+\date{Feburary 6-9, 2023}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week04}{https://tinyurl.com/CSMsp23-week04}
+%%%%%%%%%%%%%%%%%%%%
+% Linked List Manipulation problem % X
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Mystery Linked List}
+%\begin{questions}
+%\href{https://www.youtube.com/watch?v=VvOErjBeCpY}{https://www.youtube.com/watch?v=VvOErjBeCpY}
+\begin{questions}
+\subimport{topics/linked-lists/naive/medium/}{mystery-IntNode.tex}
+\end{questions}
+
+%\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Pass by Value problem % X
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Switcheroo}
+%\href{https://www.youtube.com/watch?v=dpUViR-u5_w}{Link to the video walkthrough for this problem is here}\\
+\subimport{topics/pass-by-value/text/}{golden-rule-of-equals.tex}
+\begin{questions}
+\subimport{topics/reference/easy/}{simple-swap.tex}
+\subimport{topics/reference/easy/}{swap-object.tex}
+\end{questions}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% 'Crocodile' problem %
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Tom Nook's Cult?}
+\begin{questions}
+\subimport{topics/dynamic-programming/easy/}{villager.tex}
+\end{questions}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Arrays problem % X 
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Dimensionality Reduction}
+%https://www.youtube.com/watch?v=XCQe2h5Kciw (timestamp)
+\begin{questions}
+\subimport{topics/arrays/text}{flatten-text.tex}
+\subimport{topics/arrays/medium}{flatten.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% OOP problem % X
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Where's my Dad?}
+
+\begin{questions}
+\subimport{topics/polymorphism/easy}{fish.tex}
+\end{questions}
+
+
+
+\end{document}

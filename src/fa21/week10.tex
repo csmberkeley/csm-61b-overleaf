@@ -1,0 +1,53 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{10}
+\title{Hashing \& Sorting}
+\date{October 25 - 29, 2021}
+
+\begin{document}
+\maketitle
+
+\section{Hashing}
+\begin{questions}
+\subimport{topics/hashing/easy/}{motivation.tex}
+\clearpage
+\subimport{topics/hashing/easy/}{valid-hashcodes.tex}
+\end{questions}
+\clearpage
+
+\section{Hashing Practice}
+\begin{questions}
+\subimport{topics/hashing/basics/}{diagram.tex}
+\end{questions}
+\clearpage
+
+\section{Sorting Overview}
+\begin{questions}
+\subimport{topics/sorting/text/}{basic-sorts.tex}
+\subimport{topics/sorting/runtime/}{basic-with-quicksort-copy-2020.tex}
+\subimport{topics/sorting/easy/}{insertion-sort-cases.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{selection-vs-insertion-sort.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{heapsort-intro.tex}
+\vspace{20mm}
+\subimport{topics/sorting/easy/}{heapsort-mech.tex}
+\vspace{20mm}
+\subimport{topics/sorting/easy/}{quicksort.tex}
+\end{questions}
+\clearpage
+
+\section{In-Sort Meme Here}
+\begin{questions}
+\subimport{topics/sorting/hard/}{sorting-mechanics.tex}
+\end{questions}
+\clearpage
+
+
+\clearpage
+
+\end{document}

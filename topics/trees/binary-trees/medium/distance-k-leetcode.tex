@@ -1,0 +1,65 @@
+\question We are given a binary tree (with root node, root), a target node, and an integer value K. Return a list of the values of all nodes that have a distance K from the target node.  The answer can be returned in any order.\newline\newline 
+This problem is taken from Leetcode: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+\begin{solution}[1in]
+\textbf{Intuition}\newline
+If we know the parent of every node x, we know all nodes that are distance 1 from x. We can then perform a breadth first search from the target node to find the answer.\newline\newline
+\textbf{Algorithm}\newline
+We first do a depth first search where we annotate every node with information about it's parent.\newline
+After, we do a breadth first search to find all nodes a distance K from the target.\newline
+\begin{lstlisting}
+class Solution {
+    Map<TreeNode, TreeNode> parent;
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        parent = new HashMap();
+        dfs(root, null);
+
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(null);
+        queue.add(target);
+
+        Set<TreeNode> seen = new HashSet();
+        seen.add(target);
+        seen.add(null);
+
+        int dist = 0;
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node == null) {
+                if (dist == K) {
+                    List<Integer> ans = new ArrayList();
+                    for (TreeNode n: queue)
+                        ans.add(n.val);
+                    return ans;
+                }
+                queue.offer(null);
+                dist++;
+            } else {
+                if (!seen.contains(node.left)) {
+                    seen.add(node.left);
+                    queue.offer(node.left);
+                }
+                if (!seen.contains(node.right)) {
+                    seen.add(node.right);
+                    queue.offer(node.right);
+                }
+                TreeNode par = parent.get(node);
+                if (!seen.contains(par)) {
+                    seen.add(par);
+                    queue.offer(par);
+                }
+            }
+        }
+
+        return new ArrayList<Integer>();
+    }
+
+    public void dfs(TreeNode node, TreeNode par) {
+        if (node != null) {
+            parent.put(node, par);
+            dfs(node.left, node);
+            dfs(node.right, node);
+        }
+    }
+}
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,125 @@
+%Author: Kenny Huang & Arjun Sahai
+
+\question Consider the fibonacci sequence $S = $ 0, 1, 1, 2, 3, 5, 8, ... where the first two numbers in the sequence are 0 and 1 and the $i^{th}$ number is $S[i] = S[i - 1] + S[i-2]$. The following method calculates the $i^{th}$ element in the sequence using a recursive strategy... \n
+
+
+\begin{lstlisting}
+public int fib(int i) {
+    if (i == 0 || i == 1) {
+        return i;
+    }
+    return fib(i-1) + fib(i-2);
+}
+\end{lstlisting}
+
+
+\begin{parts}
+\item What is the runtime of the recursive solution, in terms of i?
+\begin{solution}
+$O(2^i)$
+
+Justification: It can be shown by drawing out the "tree" structure of the function frames. We can then see that given the number i, the tree will contain $O(2^i)$ nodes.
+\end{solution}
+\linebreak
+\linebreak
+\linebreak
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\item One of the problems with the implementation  is that we are recomputing the return value of certain function calls (if you are unsure why, draw out a recursive tree of the running function where the value of each node is the argument of each function call) Finish this problem by rewriting fib using Dynamic Programming! 
+
+More specifically, write a solution which stores the solutions of subproblems in a data structure to avoid recomputation.
+\ifprintanswers\else
+\begin{lstlisting}
+public int fib1(int i) {
+    if (i == 0 || i == 1) {
+        return i;
+    }
+    int[] dp = new int[i+1];
+    //TODO:
+    
+
+
+
+
+    
+    return dp[i];
+}
+\end{lstlisting}
+
+\newpage
+
+FOLLOWUP: Can you solve it by using constant extra space? i.e. by not using the array!
+
+\begin{lstlisting}
+public int fib2(int i) {
+    if (i == 0 || i == 1) {
+        return i;
+    }
+    //TODO:
+    
+    
+    
+    
+    
+    
+    return curr;
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+
+public int fib1(int i) {
+    if (i == 0 || i == 1) return i;
+    int[] dp = new int[i+1];
+    dp[0] = 0;
+    dp[1] = 1;
+    for (int index = 2; index < dp.length; index++) {
+        dp[index] = dp[index-1] + dp[index-2];
+    }
+
+    return dp[i];
+}
+\end{lstlisting}
+
+\newpage
+
+FOLLOWUP: Can you solve it by using constant extra space? i.e. by not using the array!
+\begin{lstlisting}
+
+public int fib2(int i) {
+    if (i == 0 || i == 1) return i;
+    int prev = 0;
+    int curr = 1;
+    for (int index = 2; index <= i; index++) {
+        int temp = prev + curr;
+        prev = curr;
+        curr = temp;
+    }
+
+    return curr;
+}
+\end{lstlisting}
+
+Justification:
+    For fib1: dp is an array that stores the ith fibonacci number where i refers to the index of the array.
+    
+    In the for loop, we update our fibonacci arrays in increasing order until we find our target number. And we update our array by using 2 of our previous numbers. This is the main idea of Dynamic Programming!
+    
+    For fib2: as mentioned above, we only use 2 of our previous numbers to update next number, thus we only need to store 2 ints: prev and curr to iteratively store our previous states.
+    Then, instead of using the array, which is $O(i)$ in space, we can use constant space to solve the problem.
+\end{solution}
+
+\item What is the runtime of the DP solution, in terms of i?
+\begin{solution}
+$O(i)$ Because we traverse the array once, updating each element. And updating for each element is O(1), so in total it is $O(i)$.
+\end{solution}
+
+
+
+\end{parts}
+

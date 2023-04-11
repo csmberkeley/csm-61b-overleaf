@@ -1,0 +1,41 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{8}
+\title{Trees}
+\date{March 7 - 11, 2021}
+
+\begin{document}
+\maketitle
+
+% \href{https://youtube.com/playlist?list=PLN303KpCz_KQpTbrqxzv6gsg-2lIpB1Ay}{Walkthrough Videos}
+
+\section{Stacks and Queues}
+\begin{questions}
+\subimport{topics/trees/binary-trees/text/}{fringe.tex}
+\subimport{topics/trees/binary-trees/medium/}{traversals.tex}
+\end{questions}
+\clearpage
+
+\section{Traversals}
+\subimport{topics/trees/binary-trees/text/}{traversals.tex}
+\subimport{topics/trees/binary-trees/}{example-tree.tex}
+\begin{questions}
+\subimport{topics/trees/binary-trees/easy/}{depth-first-traversals.tex}
+\subimport{topics/trees/binary-trees/easy/}{level-order-traversal.tex}
+\enlargethispage{2in}
+% ^ this line is to fit (b) on this page ... so we don't print out an extra sheet
+\end{questions}
+\clearpage
+
+\section{BST I}
+\begin{questions}
+\subimport{topics/trees/binary-trees/easy/}{height.tex}
+\subimport{topics/trees/binary-trees/easy/}{is-balanced.tex}
+\end{questions}
+\clearpage
+
+\end{document}

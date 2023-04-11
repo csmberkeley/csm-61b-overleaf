@@ -1,0 +1,340 @@
+\question Recall that in Huffman encoding, we would like to compress files into bitstring encodings such that the encoding is as short as possible, and the decoding to our original file is unique and loses no information.
+
+\begin{parts}
+    \item Suppose that we had a document that consisted of two repeating symbols:
+    
+    \lstinline{ cs61b csm cs61b csm...}
+
+    How can we compress this document into the smallest number of bits, and what encoding map would we use?
+
+    \begin{solution}[1in]
+        \begin{lstlisting}
+            cs61b &= 0 \\
+            csm &= 1 \\
+        \end{lstlisting}
+    \end{solution}
+
+    \item Now suppose that our document now has three symbols:
+
+    \lstinline{ cs61b csm josh cs61b csm josh...}
+
+    Would an encoding such as the one below give us a unique decoding of our document? If not, how come?
+
+    \begin{lstlisting}
+     
+            cs61b: 0, csm: 1, josh: 01
+    \end{lstlisting}
+    What is an encoding map that would allow us to compress our document into the smallest number of bits? Assume each symbol has the same frequency.
+
+    \begin{solution}[2in]
+        The given encoding map is ambiguous because the encoding for "cs61b" is a prefix of the encoding for "josh". As an example, the encoded string \lstinline{01} can be interpreted as either \lstinline{josh} or as \lstinline{cs61b csm}.
+
+        A better encoding would be (there are several possible answers):
+        \begin{lstlisting}
+     
+            cs61b: 01
+            csm: 00
+            josh: 1
+        \end{lstlisting}
+    \end{solution}
+
+    \pagebreak
+    \item Part (b) motivates an important concept in Huffman encoding, which is prefix-free codes. In a prefix-free code, no codeword is a prefix of any other codeword. For example, the following is a prefix-free code, which we can represent in tree form:
+
+    \lstinline{ a: 1, b: 01, c: 001, d: 000}
+    
+    \begin{forest}
+        for tree={circle,draw, s sep=30pt}
+        [ 
+            [, edge label={node[midway,left] {0}}
+                [, edge label={node[midway,left] {0}}
+                    [d, edge label={node[midway,left] {0}}]
+                    [c, edge label={node[midway,right] {1}}]
+                ]
+                [b, edge label={node[midway,right] {1}}]
+            ]
+            [a, edge label={node[midway,right] {1}}]
+        ]
+    \end{forest}
+
+    Here's another one, again with its representation in tree form:
+
+    \lstinline{ a: 00, b: 01, c: 10, d: 11}
+    
+    \begin{forest}
+        for tree={circle,draw, s sep=30pt}
+        [
+            [, edge label={node[midway,left] {0}}
+                [a, edge label={node[midway,left] {0}}]
+                [b, edge label={node[midway,right] {1}}]
+            ]
+            [, edge label={node[midway,right] {1}}
+                [c, edge label={node[midway,left] {0}}]
+                [d, edge label={node[midway,right] {1}}]
+            ]
+        ]
+    \end{forest}
+
+    Notice how every symbol appears as a \emph{leaf} of their encoding tree. This is what guarantees the "prefix-freeness" of each code. By having prefix-free codes, we can guarantee that there is no ambiguity during decoding.
+
+    Let's discuss the pros and cons of each of the two encodings above. What letter frequencies of a, b, c, and d would make the first encoding produce a shorter compression than the second encoding? What symbol frequencies would make the second encoding produce a shorter compression than the first encoding?
+
+    \begin{solution}[2in]
+        The first encoding is good if a is a very frequent symbol in our document. For example, the first encoding is optimal for the following symbol frequencies:
+        \begin{lstlisting}
+            a: 0.9, b: 0.06, c: 0.02, d: 0.02
+        \end{lstlisting}
+
+        The second encoding is good if each symbol has equal frequency. I.e., the frequencies are:
+        \begin{lstlisting}
+            a: 0.25, b: 0.25, c: 0.25, d: 0.25
+        \end{lstlisting}
+    \end{solution}
+
+    \pagebreak
+    \item The Huffman encoding algorithm achieves a provably optimal balance between producing a "bushy" encoding tree and giving frequent symbols short encodings. The algorithm is as follows:
+
+    \begin{enumerate}
+        \item Assign each symbol to a node with its weight as its relative frequency.
+        \item Take the two smallest nodes and merge them into a "super node" with the weight equal to the sum of weights.
+        \item Repeat until everything is part of a tree.
+    \end{enumerate}
+
+    Intuitively, by merging nodes with smallest weights first, they get placed lower in our encoding tree, while nodes with larger weights get merged later, and hence get placed higher in our encoding tree.
+
+    Now, find the Huffman encoding for the following alphabet and set of
+    frequencies.
+    
+    $\{(a, 0.12), (b, 0.38), (c, 0.1), (d, 0.05), (e, 0.25), (f, 0.06), (g, 0.01), (h, 0.03)\}$
+    
+    When you build up your Huffman tree, you should place the branch of lower
+    weight on the left. A left or right branch should respectively correspond to a
+    0 or 1 in the codeword.
+
+    \begin{solution}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[a 0.12]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[c 0.1]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[d 0.05]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[f 0.06]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[g 0.01]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[h 0.03]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[a 0.12]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[c 0.1]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[d 0.05]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[f 0.06]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[0.04
+                [g, edge label={node[midway,left] {0}}]
+                [h, edge label={node[midway,right] {1}}]
+            ]
+        \end{forest}
+        
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[a 0.12]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[c 0.1]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[f 0.06]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}
+            [0.09
+                [, edge label={node[midway,left] {0}}
+                    [g, edge label={node[midway,left] {0}}]
+                    [h, edge label={node[midway,right] {1}}]
+                ]
+                [d, edge label={node[midway,right] {1}}]
+            ]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[a 0.12]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[c 0.1]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}
+            [0.15
+                [f, edge label={node[midway,left] {0}}]
+                [, edge label={node[midway,right] {1}}
+                    [, edge label={node[midway,left] {0}}
+                        [g, edge label={node[midway,left] {0}}]
+                        [h, edge label={node[midway,right] {1}}]
+                    ]
+                    [d, edge label={node[midway,right] {1}}]
+                ]
+            ]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[0.22
+                [c, edge label={node[midway,left] {0}}]
+                [a, edge label={node[midway,right] {1}}]
+            ]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}
+            [0.15
+                [f, edge label={node[midway,left] {0}}]
+                [, edge label={node[midway,right] {1}}
+                    [, edge label={node[midway,left] {0}}
+                        [g, edge label={node[midway,left] {0}}]
+                        [h, edge label={node[midway,right] {1}}]
+                    ]
+                    [d, edge label={node[midway,right] {1}}]
+                ]
+            ]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[e 0.25]
+        \end{forest}
+        \begin{forest}
+            for tree={circle, draw, s sep=30pt}
+            [0.37
+                [, edge label={node[midway,left] {0}}
+                    [f, edge label={node[midway,left] {0}}]
+                    [, edge label={node[midway,right] {1}}
+                        [, edge label={node[midway,left] {0}}
+                            [g, edge label={node[midway,left] {0}}]
+                            [h, edge label={node[midway,right] {1}}]
+                        ]
+                        [d, edge label={node[midway,right] {1}}]
+                    ]
+                ]
+                [, edge label={node[midway,right] {1}}
+                    [c, edge label={node[midway,left] {0}}]
+                    [a, edge label={node[midway,right] {1}}]
+                ]
+            ]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}[b 0.38]
+        \end{forest}
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}
+            [0.62
+                [e, edge label={node[midway,left] {0}}]
+                [, edge label={node[midway,right] {1}}
+                    [, edge label={node[midway,left] {0}}
+                        [f, edge label={node[midway,left] {0}}]
+                        [, edge label={node[midway,right] {1}}
+                            [, edge label={node[midway,left] {0}}
+                                [g, edge label={node[midway,left] {0}}]
+                                [h, edge label={node[midway,right] {1}}]
+                            ]
+                            [d, edge label={node[midway,right] {1}}]
+                        ]
+                    ]
+                    [, edge label={node[midway,right] {1}}
+                        [c, edge label={node[midway,left] {0}}]
+                        [a, edge label={node[midway,right] {1}}]
+                    ]
+                ]
+            ]
+        \end{forest}
+    
+        \begin{forest}
+            for tree={circle,draw, s sep=30pt}
+            [
+                [b, edge label={node[midway,left] {0}}]
+                [, edge label={node[midway,right] {1}}
+                    [e, edge label={node[midway,left] {0}}]
+                    [, edge label={node[midway,right] {1}}
+                        [, edge label={node[midway,left] {0}}
+                            [f, edge label={node[midway,left] {0}}]
+                            [, edge label={node[midway,right] {1}}
+                                [, edge label={node[midway,left] {0}}
+                                    [g, edge label={node[midway,left] {0}}]
+                                    [h, edge label={node[midway,right] {1}}]
+                                ]
+                                [d, edge label={node[midway,right] {1}}]
+                            ]
+                        ]
+                        [, edge label={node[midway,right] {1}}
+                            [c, edge label={node[midway,left] {0}}]
+                            [a, edge label={node[midway,right] {1}}]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+        \begin{align*}
+            a &= 1111 \\
+            b &= 0 \\
+            c &= 1110 \\
+            d &= 11011 \\
+            e &= 10 \\
+            f &= 1100 \\
+            g &= 110100 \\
+            h &= 110101 \\
+        \end{align*}
+    \end{solution}
+
+    \pagebreak
+    \item Suppose that our file has 1000 symbols. Given the symbol frequencies is part (d) and the Huffman encoding we found, how many bits would it take to compress the entire document (not counting the bits needed to store the Huffman encoding itself)? In UTF-8, each character needs 8 bits to represent it. With our Huffman coded file, how many bits per symbol are needed on average?
+
+    \begin{solution}[1in]
+        We add together the number of times each symbol appears multiplied by the length of their bit encoding:
+        $$120(4) + 380(1) + 100(4) + 50(5) + 250(2) + 60(4) + 10(6) + 30(6) = 2490$$
+        This gives us $2490 / 1000 = 2.49$ bits per symbol on average!
+    \end{solution}
+\end{parts}

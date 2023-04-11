@@ -1,0 +1,74 @@
+%ID: 612084
+\question Give the runtime to complete the \lstinline{partA} method in $\Theta$ notation if possible, or $O$ notation otherwise.
+
+\begin{lstlisting}
+public static int[] partA(int[] x){
+    int N = x.length;
+    int[] sugar = f(x); 
+    int[] spice = new int[N]; 
+    for (int i = 0; i < N; i++) { 
+        spice[i] = sugar[i] + x[i];
+    }
+    int[] everything = g(spice); 
+    int[] nice = h(everything); 
+    return nice;
+}
+\end{lstlisting}
+
+\ifprintanswers\else
+\begin{oneparcheckboxes}
+\choice $O(1)$ \choice $O(\log N)$
+\choice $O(N)$
+\choice $O(N^2)$
+\choice $O(N^3)$
+\choice $O(2^N)$
+\choice $\Theta(1)$
+\choice $\Theta(\log N)$
+\choice $\Theta(N)$
+\choice $\Theta(N^2)$
+\choice $\Theta(N^3)$
+\choice $\Theta(2^N)$
+\end{oneparcheckboxes}
+\fi
+
+\begin{solution}
+\begin{oneparcheckboxes}
+\choice $O(1)$ \choice $O(\log N)$
+\choice $O(N)$
+\choice $O(N^2)$
+\choice $O(N^3)$
+\choice $O(2^N)$
+\choice $\Theta(1)$
+\choice $\Theta(\log N)$
+\choice $\Theta(N)$
+\CorrectChoice $\Theta(N^2)$
+\choice $\Theta(N^3)$
+\choice $\Theta(2^N)$
+\end{oneparcheckboxes}
+\end{solution}
+
+\question Fill the runtimes for each line of code into the corresponding blank space. Use $\Theta$ notation when possible and $O$ notation otherwise.
+
+\ifprintanswers\else
+\begin{lstlisting}
+public static void partB(int[] x) { 
+    int[] hooray = f(x); 	        _______________
+    int[] theWeeknd = f(f(x));		_______________
+    int[] wasNow = g(f(x)); 		_______________
+    int[] nominatedFor = f(h(x));	_______________
+    int[] aGrammy = h(f(g(x)));         _______________
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}[mathescape=true]
+public static void partB(int[] x) { 
+    int[] hooray = f(x); 		$\underline{\Theta(N)}$
+    int[] theWeeknd = f(f(x));		$\underline{\Theta(N)}$
+    int[] wasNow = g(f(x));		$\underline{\Theta(N^2)}$
+    int[] nominatedFor = f(h(x));	$\underline{O(N^2)}$
+    int[] aGrammy = h(f(g(x)));	        $\underline{\Theta(N^2)}$
+}
+\end{lstlisting}
+\end{solution}

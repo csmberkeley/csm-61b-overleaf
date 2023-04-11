@@ -1,0 +1,39 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{13}
+\title{Sorting and Review}
+\date{November 16 - 18, 2022}
+
+\begin{document}
+\maketitle
+
+\section{Insertion Sort}
+\begin{questions}
+\subimport{topics/sorting/medium/}{inversions.tex}
+\end{questions}
+
+\pagebreak
+\section{Graphs Review}
+\begin{questions}
+\subimport{topics/graphs/minimum-spanning-trees/hard}{max-spanning-tree.tex}
+\pagebreak
+\subimport{topics/graphs/minimum-spanning-trees/medium}{cut-property.tex}
+\end{questions}
+
+\pagebreak
+\section{Bipartite}
+\begin{questions}
+\subimport{topics/graphs/traversal/crib-sheet}{is-bipartite.tex}
+\end{questions}
+
+\pagebreak
+\section{Successors}
+\begin{questions}
+\subimport{topics/trees/binary-search-trees/hard/}{successor.tex}
+\end{questions}
+
+\end{document}

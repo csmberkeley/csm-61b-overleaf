@@ -1,0 +1,37 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+ \printmeta % uncomment me
+
+\discnumber{5}
+\title{Pointers \& Inheritance}
+\date{February 15-19, 2020}
+
+\begin{document}
+\maketitle
+
+\section{Mystery Linked List}
+\begin{questions}
+\subimport{../../topics/linked-lists/encapsulated/medium/}{multiples.tex}
+\end{questions}
+
+\section{Dogs Yay}
+\begin{questions}
+\subimport{../../topics/polymorphism/easy/}{dogs.tex}
+\subimport{../../topics/polymorphism/medium/}{poodle.tex}
+\end{questions}
+
+\clearpage
+
+\section{\extra{Pokemon}}
+\begin{questions}
+\marginpar{\subimport{../../topics/polymorphism/medium/pokemon/}{commands.tex}}
+\subimport{../../topics/polymorphism/medium/pokemon/}{question.tex}
+\subimport{../../topics/polymorphism/medium/pokemon/}{code.tex}
+\subimport{../../topics/polymorphism/medium/pokemon/}{solution.tex}
+\end{questions}
+
+
+\end{document}

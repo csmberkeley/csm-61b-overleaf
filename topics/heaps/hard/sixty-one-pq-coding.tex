@@ -1,0 +1,153 @@
+%ID: 612066
+\question You have been hired by Ethan to help design a priority queue
+implementation for \emph{Kelp}, the new seafood review startup, ordered on the
+timestamp of each \lstinline$Review$.
+
+We'd like to create a data structure that supports the following operations:
+
+\begin{itemize}
+\item \lstinline$insert(int id, Review r)$ a \lstinline$Review$ in $O(\log N)$.
+\item \lstinline$edit(int id, String body)$ any one \lstinline$Review$ in
+$\Theta(1)$.
+\item \lstinline$sixtyOne()$: Return the sixty-first latest \lstinline$Review$
+in $\Theta(1)$. If there are fewer than sixty-one reviews, return the earliest review.
+\item \lstinline$pollSixtyOne()$: Remove and return the sixty-first latest
+\lstinline$Review$ in $O(\log N)$, or the earliest review if fewer than sixty-one reviews.
+\end{itemize}
+
+To assist with your implementation, we have exposed the following abstract data types:
+
+\begin{lstlisting}
+public class Review implements Comparable<Review> {
+    // Note that larger timestamps correspond to more recent reviews
+    public int compareTo(Review r) {
+        return this.timeStamp() - r.timeStamp();
+    }
+    public int getId();
+    public void edit(String body);
+}
+public class MinHeap<E> {
+    public void add(E e);
+    public E poll(); // Removes from the heap
+    public E peek(); // Does not remove from the heap
+    public int size();
+}
+public class MaxHeap<E> {
+    public void add(E e);
+    public E poll(); // Removes from the heap
+    public E peek(); // Does not remove from the heap
+    public int size();
+}
+public class HashMap<K, V> {
+    public put(K key, V value);
+    public get(Object key);
+}
+\end{lstlisting}
+
+\pagebreak
+\begin{lstlisting}
+public class Kelp {
+    private MinHeap<Review> top;
+    private MaxHeap<Review> bot;
+    private HashMap<Integer, Review> reviews;
+    public Kelp() {
+        _____________________________________;
+        _____________________________________;
+        _____________________________________;
+    }
+
+    public Review sixtyOne() {
+        return top.__________________________;
+    }
+    public Review pollSixtyOne() {
+        Review sixtyOne = _____________________________;
+        _____________________________________;
+        if (bot.size() > 0) {
+            Review newSixtyOne = _____________________________;
+            _____________________________________;
+        }
+        return sixtyOne;
+    }
+    public void insert(Review r) {
+        _____________________________________;
+        if (top.size() < 61) {
+            _____________________________________;
+        } else if (r.compareTo(top.peek()) < 0) {
+            _____________________________________;
+        } else {
+            _____________________________________;
+            _____________________________________;
+            _____________________________________;
+        }
+    }
+    public void edit(int id, String body) {
+        if (_____________________________________) {
+            return;
+        }
+        _____________________________________;
+        _____________________________________;
+    }
+}
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+public class Kelp {
+    private MinHeap<Review> top;
+    private MaxHeap<Review> bot;
+    private HashMap<Integer, Review> reviews;
+    public Kelp() {
+        top = new MinHeap<>();
+        bot = new MaxHeap<>();
+        reviews = new HashMap<>();
+    }
+
+    public Review sixtyOne() {
+        return top.peek();
+    }
+    public Review pollSixtyOne() {
+        Review sixtyOne = top.poll();
+        reviews.remove(sixtyOne.getId());
+        if (bot.size() > 0) {
+            Review newSixtyOne = bot.poll();
+            top.add(newSixtyOne);
+        }
+        return sixtyOne;
+    }
+    public void insert(Review r) {
+        reviews.put(r.getId(), r);
+        if (top.size() < 61) {
+            top.add(r);
+        } else if (r.compareTo(top.peek()) < 0) {
+            // r is an older review than the 61st review
+            bot.add(r);
+        } else {
+            oldSixtyOne = pollSixtyOne();
+            bot.add(oldSixtyOne);
+            top.add(r);
+        }
+    }
+    public void edit(int id, String body) {
+        if (! reviews.containsKey(id)) {
+            return;
+        }
+        Review r = reviews.get(id);
+        r.edit(body);
+    }
+}
+\end{lstlisting}
+
+By convention, larger timestamps mean that a \lstinline$Review$ is more recent. We will use two heaps \lstinline$top$ and \lstinline$bot$, as well as a \lstinline$HashMap$ \lstinline$map$.
+
+\lstinline$top$ will be a min-heap (the oldest review inside is on top), and the invariant will be that it contains the 61 most recent \lstinline$Review$s. This implies the top of this heap is the sixty-first latest \lstinline$Review$.
+
+\lstinline$bot$ will be a max-heap (the most recent review inside is on top), and the invariant will be that it contains the rest of the \lstinline$Review$s that are older than the sixty-first latest \lstinline$Review$. This implies that the top of this heap is the sixty-second latest \lstinline$Review$.
+
+For \lstinline$sixtyOne()$, peek at the first value of \lstinline$top$ $\implies \Theta(1)$
+
+For \lstinline$insert(Review r)$, there are two cases: either \lstinline$r$ is older than the sixty-first latest \lstinline$Review$, or it is more recent. For the first case, insert \lstinline$r$ into \lstinline$bot$. For the second case, remove the first element from \lstinline$top$, insert it into \lstinline$bot$, and then insert \lstinline$r$ into \lstinline$top$. This "pushes" the former sixty-first latest \lstinline$Review$ down into the second heap in order to enforce the invariants. One or two heap insertion operations $\implies O(\log N)$.
+
+For \lstinline$pollSixtyOne()$, remove the first element from \lstinline$top$ and save it as the return value. Then, remove the first element from \lstinline$bot$ and insert it into \lstinline$top$. Finally, return the element from the first step. After removing the sixty-first latest \lstinline$Review$, this pushes the old sixty-second latest \lstinline$Review$ up into the first heap in order to enforce the invariants. Two heap operations $\implies O(\log N)$.
+
+For \lstinline$edit(int id, String body)$, map the \lstinline$Review$ \lstinline$r$'s \lstinline$id$ to itself at the end of \lstinline$insert(Review r)$, and delete the removed \lstinline$Review$'s mapping at the end of \lstinline$pollSixtyOne()$. Maintaining this \lstinline$HashMap$ means we have access to constant time lookup $\implies \Theta(1)$.
+\end{solution}

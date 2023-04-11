@@ -1,0 +1,64 @@
+\begin{blocksection}
+\question Given an array of strictly the characters 'R', 'G', and 'B', segregate the values of the array so that all the Rs come first, the Gs come second, and the Bs come last. You can only \textbf{swap} elements of the array.
+
+Do this in linear time and in-place.
+
+For example, given the array ['G', 'B', 'R', 'R', 'B', 'R', 'G'], it should become ['R', 'R', 'R', 'G', 'G', 'B', 'B'].
+
+\begin{lstlisting}
+class Solution {
+    public static void rgbSort(char[] x) {
+        int rCount = 0;
+        int gCount = 0;
+        int bCount = ___________; // HINT: this is not 0
+        while (gCount <= bCount) {
+            if ('R' == x[gCount]) {
+                char swap = x[______];
+                x[______] = x[______];
+                x[______] = swap;
+                ______ += 1;
+                ______ += 1;
+            } else if ('G' == x[gCount]) {
+                gCount += 1;
+            } else if ('B' == x[gCount]) {
+                char swap = x[gCount];
+                x[______] = x[bCount];
+                x[bCount] = ______;
+                ________;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{solution}[1in]
+
+Linear time and in-place should imply that you need to swap values. Looking at the while loop condition, we can infer to start bCount at the end of the array and have that pointer move backwards until it hits the greenCount pointer. The important thing is that the greenCounter pointer has to be moved along when 'R' values are seen because green values should always be after red in the finally sorted array (note that since we count B's starting from the end we don't need to add 1 to those counters)!
+
+\begin{lstlisting}
+class Solution {
+    public static void rgbSort(char[] x) {
+        int rCount = 0;
+        int gCount = 0;
+        int bCount = x.length - 1;
+        while (gCount <= bCount) {
+            if ('R' == x[gCount]) {
+                char swap = x[rCount];
+                x[rCount] = x[gCount];
+                x[gCount] = swap;
+                rCount += 1;
+                gCount += 1;
+            } else if ('G' == x[gCount]) {
+                gCount += 1;
+            } else if ('B' == x[gCount]) {
+                char swap = x[gCount];
+                x[gCount] = x[bCount];
+                x[bCount] = swap;
+                bCount -= 1;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

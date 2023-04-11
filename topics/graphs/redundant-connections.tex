@@ -1,0 +1,29 @@
+%used to be in union find
+\question
+For any connected graph with $N$ vertices and $N$ edges, there is at least $1$ edge whose removal will keep the graph connected (graph would become a tree).
+
+Given a graph represented with an \textbf{edge set}, design an algorithm that would find the $K$ redundant edges of minimum weight. If there are not $K$ redundant edges, return all redundant edges. 
+
+\textit{Hint: Consider how Kruskal's Algorithm checks for a cycle.}
+
+This problem is adapted from Leetcode: https://leetcode.com/problems/redundant-connection/solution/
+
+\begin{solution}
+
+\textbf{Intuition} \newline 
+We know from Kruskal's Algorithm that we can find a redundant edge in the graph. If we use that as inspiration, there is a method to find redundant edges. Simply find all the redundant edges and place them into a Priority Queue. 
+
+\textbf{Algorithm} \newline
+Since the graph is represented as an edge set, simply iterate through the edges and unioning those vertices with a Disjoint Sets object, checking beforehand that they are not connected. If we find that two vertices are connected, the current edge we are looking at is a redundant edge! Add this edge to a PriorityQueue \textit{smallestRedundantEdges} . 
+
+Repeat this process but make sure to add the edges in \textit{smallestRedundantEdges} first, to make sure that we are always finding a new redundant edge. If we run through this process without finding a redundant edge, we have found all the redundant edges.
+
+Once we have found all the redundant edges, simply pop from \textit{smallestRedundantEdges} $K$ times if possible. 
+
+\end{solution}
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+% https://courses.engr.illinois.edu/cs374/sp2017/labs/solutions/lab9bis-sol.pdf
+\question \emph{This question was adapted from the University of Illinois Urbana-Champaign CS 374.}
+
+Given a directed acyclic graph $G$ with $V$ nodes and $E$ edges, two distinct nodes $A$ and $B$ are said to be incomparable if there is no path from $A$ to $B$ and there is no path from $B$ to $A$. Is there an $O(V+E)$ algorithm to check whether a DAG has an incomparable pair of nodes?
+
+To help with the intuition of this problem, recall that a topological sort of a DAG has no "backward edges". For example, suppose we are given a topological sort of graph $G$: $A, B, C, D$. Then, there exists no edge in $G$ from $D$ to $C$, from $D$ to $B$, from $C$ to $B$, etc.
+
+Given this fact, consider two consecutive nodes in a topological search, for example, nodes $A$ and $B$ above. If $A$ comes before $B$ in the topological sort, and there is no edge from $A$ to $B$, are $A$ and $B$ incomparable? Can we use this conclusion and a reduction to topological sort to create our desired algorithm?
+
+\begin{solution}
+Note that if node $A$ comes before node $B$ in a topological sort, and the nodes are consecutive in the topological sort, then if there exists no edge from $A$ to $B$, $A$ and $B$ must be incomparable. This is because there cannot be any path from $B$ to $A$ by properties of topological sorts, and if there is no edge from $A$ to $B$, any path from $A$ to $B$ must go through a node that comes after $B$ or before $A$ in the topological sort. In either case, our topological sort must have a "backward edge".
+
+We can then use a topological sort of $G$ to detect incomparable pairs. We first compute a topological sort of $G$ in $O(V+E)$ time. Suppose our topological ordering is $V_1, \ldots, V_n$. For each consecutive pair of nodes in the topological sort $V_{i}$ and $V_{i+1}$, if there is no edge from $V_{i}$ to $V_{i+1}$, then they must be incomparable. On the other hand, if there are no such pair of consecutive vertices, then there are no incomparable pairs, since we have the path $V_1 -> V_2 -> \cdots -> V_n$. 
+
+We can perform each edge lookup in constant time by creating a hashset of all edges in the graph. Examining each pair of vertices and creating the hashset of all edges takes a combined runtime of $O(E+V)$. Adding this runtime to the $O(V+E)$ time needed to create our topolgical ordering gives our algorithm a combined runtime of $O(V+E)$
+\end{solution}

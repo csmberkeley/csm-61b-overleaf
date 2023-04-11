@@ -1,0 +1,156 @@
+\question Implement a circular iterator using an index cursor. The iterator should start at the beginning of the content array and warp to the beginning of the array after the end element of the content array. Please do not use the iterator of List.
+
+\begin{lstlisting}
+public class QueueBuffer<T> implements Iterable<T> {
+    // Try to modify this CircularBuffer class as little as possible.
+    List<T> content;
+    public QueueBuffer() { content = new ArrayList<>(); }
+    public void add(T item){content.add(item);}
+    public T pop(T item) {  return content.remove(0); }
+    @Override public Iterator<T> iterator() { return new CirculerIterator(); }
+
+    public class CircularIterator implements Iterator<T>
+    {// Add instance variables and methods as fit
+    
+    
+    
+        @Override
+        public boolean hasNext()
+        {// TODO
+            
+            
+            
+        }
+
+        @Override
+        public T next() 
+        {// TODO
+            
+            
+            
+            
+        }
+    }
+}
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+public class QueueBuffer<T> implements Iterable<T> {
+
+    List<T> content;
+
+    public QueueBuffer() {
+        content = new ArrayList<>();
+    }
+
+    public void add(T item) {
+        content.add(item);
+    }
+
+    public T pop(T item) {
+        return content.remove(0);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CircularIterator();
+    }
+
+    public class CircularIterator implements Iterator<T>{}
+        int index = 0;
+        @Override
+        public boolean hasNext() {
+            return content.size() > 0;
+        }
+
+        @Override
+        public T next() {
+            T value = content.get(index);
+            index = (index + 1) % content.size();
+            return value;
+        }
+    }
+}
+\end{lstlisting}
+\end{solution}
+\begin{meta}
+As long as the buffer isn't empty, we have the next element because the buffer is circular and we just wrap around when we encounter the end of \emph{content}. Since get the value from \emph{content}, increment the index, return the value and that's how \emph{next} would be implemented.
+\end{meta}
+\newpage
+
+\question Our iterators will have weird behavior if the structure of an in-use iterator is mutated. We want to modify QueueBuffer so that it throws a runtime exception if the iterator is used after content is modified since the said iterator is instantiated. \textbf{Note:} \emph{why can't we throw an exception when content is modified?}
+\begin{solution}
+The note is a trick question. The JRE interpreter can't tell when the program has finished using the iterator. It could be that we have finished using the iterator before it has reached the end, and we decided to modify its contents. Thus it makes more sense that we throw an exception when the program tries to use an iterator who original content has changed since the iterator was instantiated.
+\end{solution}
+
+Does the following approach work?
+
+Add an instance boolean variable \emph{modfiedSinceLastIter} to QueueBuffer (not inside CircularIterator).\\
+Set \emph{modifiedSinceLastIter} to \emph{false} when we instantiate CircularIterator\\
+Set \emph{modifiedSinceLastIter} to \emph{true} in \emph{add} and \emph{pop}\\
+If when \emph{hasNext} or \emph{next} is called, \emph{modfiedSinceLastIter} is true, throw run time exception.
+
+\begin{solution}
+This works if we are using one iterator at a time sequentially. The intuition is that we are keep track of if the content unmodified and if it's modified, the iterator class would catch that and throw an exception. This doesn't work if we are using multiple iterators at once. Say iterator one is instantiated, contents are modified, iterator two is instantiated, and iterator one is used. Iterator one wouldn't throw an error because iterator two caused  \emph{modifiedSinceLastIter} to be set to false, and iterator one successfully passes the \emph{modifiedSinceLastIter} check.
+\end{solution}
+
+\begin{meta}
+Just a question to see if the student knows iterators well enough to know what it means to throw an error.
+\end{meta}
+
+\question Implement the the exception scheme in the previous part that works when two iterators are used concurrently.
+
+\begin{solution}
+\begin{lstlisting}
+public class QueueBuffer<T> implements Iterable<T> {
+
+    List<T> content;
+    long modTimeStamp;
+
+    public QueueBuffer() {
+        modTimeStamp = 0;
+        content = new ArrayList<>();
+    }
+
+    public void add(T item) {
+        modTimeStamp++;
+        content.add(item);
+    }
+
+    public T pop(T item) {
+        modTimeStamp++;
+        return content.remove(0);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CircularIterator();
+    }
+
+    public class CircularIterator implements Iterator<T>{}
+        int index;
+        long initTimeStamp;
+        private void checkMod() {
+            if (initTimeStamp != modTimeStamp)
+                throw new RuntimeException("Iterating a modified CircularBuffer");
+        }
+        @Override
+        public boolean hasNext() {
+            checkMod();
+            return content.size() > 0;
+        }
+
+        @Override
+        public T next() {
+            checkMod();
+            T value = content.get(index);
+            index = (index + 1) % content.size();
+            return value;
+        }
+    }
+}
+\end{lstlisting}
+\end{solution}
+\begin{meta}
+We need to keep track of a timestamp for every iterator so that each can tell if the content is out of date with the iterator.
+\end{meta}

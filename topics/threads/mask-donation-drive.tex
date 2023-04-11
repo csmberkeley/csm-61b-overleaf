@@ -1,0 +1,125 @@
+\question Let's explore how we can write multi-threaded Java programs. Due to COVID-19, CSM would like to start a mask donation and distribution program for the needy. Here is the single-threaded version:
+\clearpage
+
+\begin{lstlisting}
+public class MaskDonationDrive {
+    public static int mask_count = 0;
+    public static int getCount() { return mask_count; }
+    public static void changeCount(int m) { mask_count += m; }
+
+    public static void main(String[] args) {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("How many masks would you like to donate?");
+            
+            // Suspends execution until user specifies an integer at the command-line.
+            int donated_masks = scanner.nextInt();
+            
+            System.out.println("Thank you for donating " + donated_masks + " masks!");
+            MaskDonationDrive.changeCount(donated_masks);
+            
+            int mask_count = MaskDonationDrive.getCount();
+            if (mask_count > 0) {
+                System.out.println("Donated " + mask_count + " masks to the needy!");
+                MaskDonationDrive.changeCount(-1 * mask_count);
+            }
+        }
+    }
+}
+\end{lstlisting}
+Fill in the skeleton code below for the multi-threaded version of the program. One thread will constantly receive donations and update the mask count. The other thread will distribute donations to the needy every 5 seconds.
+\ifprintanswers\else
+\begin{lstlisting}
+public class MaskDonationDrive {
+    public static int mask_count = 0;
+
+    public static int getCount() { return mask_count; }
+
+    public static void changeCount(int m) { mask_count += m; }
+
+    public static void main(String[] args) {
+        Thread donator = new Thread(new Donator());
+        Thread distributor = new Thread(new Distributor());
+
+        _____________________________________________________;
+        _____________________________________________________;
+    }
+}
+
+public class Donator extends MaskDonationDrive implements Runnable {
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("How many masks would you like to donate?");
+            
+            _____________________________________________________;
+            _____________________________________________________;
+            _____________________________________________________;
+            _____________________________________________________;
+        }
+    }
+}
+
+public class Distributor extends MaskDonationDrive implements Runnable {
+    public void run() {
+        while (true) {
+            Thread.sleep(5000); // Suspends execution of the thread for 5 seconds.
+            _____________________________________________________;
+            _____________________________________________________;
+            _____________________________________________________;
+            _____________________________________________________;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+public class MaskDonationDrive {
+    public static int mask_count = 0;
+
+    public static int getCount() { return mask_count; }
+
+    public static void changeCount(int m) { mask_count += m; }
+
+    public static void main(String[] args) {
+        Thread donator = new Thread(new Donator());
+        Thread distributor = new Thread(new Distributor());
+
+        donator.start();
+        distributor.start();
+    }
+}
+
+public class Donator extends MaskDonationDrive implements Runnable {
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("How many masks would you like to donate?");
+            
+            // Suspends execution until user specifies an integer at the command-line.
+            int donated_masks = scanner.nextInt();
+            
+            System.out.println("Thank you for donating " + donated_masks + " masks!");
+            MaskDonationDrive.changeCount(donated_masks);
+        }
+    }
+}
+
+public class Distributor extends MaskDonationDrive implements Runnable {
+    public void run() {
+        while (true) {
+            Thread.sleep(5000); // Suspends execution of the thread for 5 seconds.
+            int mask_count = MaskDonationDrive.getCount();
+            if (mask_count > 0) {
+                System.out.println("Donated " + mask_count + " masks to the needy!");
+                MaskDonationDrive.changeCount(-1 * mask_count);
+            }
+        }
+    }
+}
+\end{lstlisting}
+Multi-threaded programs can take advantage of processors with multiple cores. In this example, the Donator thread and Distributor thread can run simultaneously on different cores. For heavy computational workloads, parallel computing may potentially save a lot of time. However, access to shared memory must be synchronized correctly to avoid incorrect behavior.
+\end{solution}

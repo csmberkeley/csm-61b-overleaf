@@ -1,0 +1,113 @@
+\question Implement a helper function for DFS $explore$ which takes in an adjacency array representing the graph $G$, a start vertex $v$, and a $visited$ array indicating which nodes have been visited already and which have not. $explore$ then does a depth-first traversal of the given node and returns a new "visited" array to indicate which nodes $explore$ traversed and which it did not. Essentially, $explore$ runs DFS starting only from one vertex and returns an array of what is reachable from that vertex and what is not.\\
+
+For a better understanding of $G$, consider the following example. If $G$ was represented by:\\
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex]{$0$}
+child {
+    node[vertex]{$1$}
+    child {
+        node[vertex]{$2$}
+    }
+    child {
+        node[vertex]{$3$}
+    }
+    child {
+        node[vertex]{$6$}
+    }
+}
+child {
+    node[vertex]{$4$}
+    child {
+        node[vertex]{$5$}
+    }
+};'
+\end{tikzpicture}
+
+$G$ would look like: $G = [[1,4], [0,2,3,6], [1], [1], [0,4], [4], [1]]$
+
+\begin{lstlisting}
+public int[] explore(int[][] G, boolean[] visited, int v) {
+
+    _____________________ = ___________________________;
+    
+    for (_______________________________________________) {
+    
+        if (____________________________________________) {
+        
+            _________________________ = ______________________;
+        }
+    }
+    _____________________________________________________;
+} 
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+public int[] explore(int[][] G, boolean[] visited, int v) {
+    visited[v] = true;
+    for(int i = 0; i < G[v].length; i++) {
+        if(!visited[G[v][i]]) {
+            visited = explore(G, visited, G[v][i]);
+        }
+    }
+    return visited;
+}   
+\end{lstlisting}
+\end{solution}
+
+\question If we added the line of code \lstinline{    System.out.println("Now Visiting " + v);} just after the method title (on the 2nd line) and just before what is now on the second line, what would the sequence of numbers the method prints be?
+
+\vspace{35mm}
+
+\begin{solution}
+The pre-order of the DFS of $G$ starting from $v$ up until the first vertex which is not connected to $v$. 
+\end{solution}
+
+\question If we added the line of code \lstinline{    System.out.println("Finished Visiting " + v);} just before the return statement and just after the end of the for loop, what would the sequence of numbers the method prints be?
+
+\vspace{25mm}
+
+\begin{solution}
+The post-order of the DFS of $G$ starting from $v$ up until the first vertex which is not connected to $v$. 
+\end{solution}
+
+\question Would the sequence of prints be the same if we changed the starting value of $v$?
+
+\vspace{25mm}
+
+\begin{solution}
+Both orderings would definitely change with a different $v$, simply because the first pre-ordering is always $v$ and the last post-ordering (when running DFS on only one vertex) will always be $v$. When running DFS in its entirety, the pre-orderings and post-orderings will stay the same as long as we don't pick the next vertex to iterate on randomly. 
+\end{solution}
+
+\question Now implement DFS using your helper $explore$. This particular method has no output, it is simply intended to be used to further your understanding of DFS. It is not necessary to use all lines, but it may make your code cleaner. Attempt to explore nodes in order, starting from vertex $0$ and incrimenting as needed.
+
+\begin{lstlisting}
+public int[] dfs(int[][] G) {
+
+    __________________________ = _________________________;
+    
+    __________________________ = _________________________;
+    
+    for (_____________________________________________) {
+    
+        if (__________________________________________) {
+        
+            _____________________ = ______________________;
+        }
+    }
+}   
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+public void dfs(int[][] G) {
+    int n = G.length;
+    boolean[] visited = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            visited = explore(G, visited, i);
+        }
+    }
+}    
+\end{lstlisting}
+\end{solution}

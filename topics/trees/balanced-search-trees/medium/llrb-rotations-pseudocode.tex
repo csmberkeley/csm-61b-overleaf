@@ -1,0 +1,40 @@
+%ID: 612101
+Consider the following pseudo-code on inserting into a red-black tree:
+\begin{lstlisting}
+
+     public void put(Key key, Value val) {
+        root <- recursively call helper function put();
+        root.color <- BLACK;
+    }
+    
+     private Node put(Node h, Key key, Value val) { 
+        if h is null: 
+           return Node with key, value, color Red and size 1. 
+           
+           
+        if node has key equals to input key: 
+            h.val <- val
+            
+        if node h has key smaller than input key: 
+            recursively call helper put() on left tree
+    
+        else: 
+            recursively call helper put() on right tree
+            
+
+        if both left and right nodes are red: 
+            flip node colors on h 
+            
+        if only right node is red: 
+            rotate left on h 
+        
+        if left, and subsequent left nodes are red: 
+            rotate right on h 
+            
+            
+        h.size <- size of left tree + size of right tree + 1
+       
+        return h;
+    }
+
+\end{lstlisting}

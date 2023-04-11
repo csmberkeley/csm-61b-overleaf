@@ -1,0 +1,49 @@
+Give the following runtimes in terms of $N$, $R$, and $W$ where $N$ is the length of the list, $R$ is the size of the alphabet (only used in radix),
+and $W$ is the length of the longest item being sorted (also known as word) (also only used in radix).\\
+
+As a reminder, stability refers to whether or not elements will stay in the same relative place after being sorted. For example: if we are sorting integers and we have two copies of 5, will the copy that came first in the unsorted list be guaranteed to be the first five in the sorted list. If yes, the sorting algorithm we used is stable. 
+\ifprintanswers\else
+{
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{12pt}
+\begin{tabularx}{\textwidth}{Xlll}
+Algorithm         & Best-case & Worst-case & Stable \\\hline
+Selection Sort    &           &            &        \\
+Insertion Sort    &           &            &        \\
+Merge Sort        &           &            &        \\
+Quicksort         &           &            &        \\
+Heapsort          &           &            &        \\
+Counting Sort     &           &            &        \\
+LSD Radix Sort    &           &            &        \\
+MSD Radix Sort    &           &            &
+\end{tabularx}
+}
+\fi
+
+\begin{solution}
+{
+\renewcommand{\arraystretch}{2}
+\setlength{\tabcolsep}{12pt}
+\begin{tabularx}{\textwidth}{Xlll}
+Algorithm         & Best-case          & Worst-case          & Stable \\\hline
+Selection Sort    & $\Theta(N^2)$      & $\Theta(N^2)$       & Depends\\
+Insertion Sort    & $\Theta(N)$        & $\Theta(N^2)$       & Yes    \\
+Merge Sort        & $\Theta(N \log N)$ & $\Theta(N \log N)$  & Yes    \\
+Quicksort         & $\Theta(N \log N)$        & $\Theta(N^2)$       & Depends\\
+Heapsort          & $\Theta(N)$        & $\Theta(N \log N)$  & Hard   \\
+Counting Sort     & $\Theta(N + R)$    & $\Theta(N + R)$     & Yes    \\
+LSD Radix Sort    & $\Theta(W(N + R))$ & $\Theta(W(N + R))$  & Yes    \\
+MSD Radix Sort    & $\Theta(N + R)$    & $\Theta(W(N + R))$  & Depends\\
+\end{tabularx}
+}
+
+Where $N$ is the length of the list, $R$ is the size of the alphabet (only used in radix),
+and $W$ is the length of the longest item being sorted (also known as word) (also only used in radix).
+
+Stable selection sort can be achieved if an additional data structure is used
+to keep track of the original positions of each element. The best case for
+quicksort implies using three-way partitioning. Quicksort stability depends on
+the partitioning strategy. Heapsort can be made stable with a stable priority
+queue implementation. MSD radix sort can be made stable with additional space
+for a buffer.
+\end{solution}

@@ -1,0 +1,21 @@
+% use in caution: duplicate with official hw worksheet Sp '22
+\emph{After spending a long night doing 61B Homework, I couldn't help but wonder... Are there real "red-black" trees? After much research, I stumbled upon the Black Diamond Crepe Myrtle, a real black-leaved tree with red flowers that isn't a data structure. }
+\\
+\\
+\begin{blocksection}
+
+Here is a refresher on inserting into a red-black tree:
+\begin{parts}
+\item Sort the new node into the tree as if the tree was a BST. The edge from the new node connecting it to its parent is always red. 
+
+\item Starting from the new node, recursively iterate upwards checking for the following issues at each step. 
+
+\subitem 1) If the two children of the node are both connected to the node         with a red edge, flip all the colors of edges touching the node. 
+
+\subitem 2) If the edge to the left child, and the edge connecting the left         child to its left child are both red, rotate the branch right on the node. 
+
+\subitem 3) If the edge to the right child of the node is red and the edge         to the left child is black, rotate left on the node.
+
+\subitem 4) If none of these problems occur, return and recurse on the             parent node.
+\end{parts}
+\end{blocksection}

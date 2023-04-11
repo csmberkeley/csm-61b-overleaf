@@ -1,0 +1,50 @@
+You are a programmer for Nintendo, working on the new Animal Crossing game 'New Binary-Search-Trees'. Given the following class definition, predict the outputs of some print statements. 
+\begin{lstlisting}
+
+public class Villager {
+    public String Name;
+    public String Species;
+    public static String Personality;
+    public int Friendship;
+    }
+
+    public Villager(name, species, personality) {
+        this.Name = name;
+        this.Species = species;
+        this.Personality = personality;
+        this.Friendship = 0;
+        }
+
+    public void indoctrinate() {
+        this.Personality = "Normal";
+    }
+}
+\end{lstlisting}
+\question
+\begin{lstlisting}
+Villager coco = new Villager("Coco", "Rabbit", "Normal")
+Villager jeremiah = new Villager("Jeremiah", "Frog", "Lazy")
+System.out.println(coco.personality)
+Villager raymond = new Villager("Raymond", "Cat", "Smug")
+System.out.println(coco.personality)
+System.out.println(Villager.personality)
+jeremiah.indoctrinate()
+System.out.println(jeremiah.personality)
+System.out.println(raymond.personality)
+System.out.println(Villager.personality)
+\end{lstlisting}
+
+\begin{solution}
+Lazy\\
+Smug\\
+Smug\\
+Normal\\
+Normal\\
+Normal
+\end{solution}
+
+After looking through the code, you notice that personality values don't seem to be outputting as expected. What is going on? How can we fix it?
+
+\begin{solution}
+Personality being a static type variable means that whenever Personality is defined for any instance, it is defined the same for every instance. To fix this, we can get rid of 'static' in the line 'public static String Personality;'. 
+\end{solution}

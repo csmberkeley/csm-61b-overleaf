@@ -1,0 +1,58 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{12}
+\title{Balanced Search Trees \& Tries}
+\date{April 11 - 15, 2022}
+
+\begin{document}
+\maketitle
+
+\href{https://youtube.com/playlist?list=PLN303KpCz_KQBcICLFly8pBMITG2cr4cc}{Walkthrough Videos}
+
+\section{2-3 Forever}
+
+\subimport{topics/trees/balanced-search-trees/}{example-2-3-tree.tex}
+
+\begin{questions}
+\subimport{topics/trees/balanced-search-trees/easy/}{2-3-tree-insertion.tex}
+\subimport{topics/trees/balanced-search-trees/easy/}{2-3-tree-to-llrb.tex}
+\end{questions}
+\clearpage
+
+\section{2-3 Potpourri}
+
+\begin{questions}
+\subimport{topics/trees/balanced-search-trees/medium/}{2-3-potpourri.tex}
+\end{questions}
+\clearpage
+
+\section{LLRB Rotations}
+
+\subimport{topics/trees/balanced-search-trees/medium/}{llrb-rotations-pseudocode.tex}
+
+\begin{questions}
+\subimport{topics/trees/balanced-search-trees/medium/}{llrb-rotations.tex}
+\end{questions}
+\clearpage
+
+
+\section{Trie Me}
+\begin{questions}
+\subimport{topics/trees/tries/easy/}{trie-mechanical.tex}
+\subimport{topics/trees/tries/medium/}{runtime.tex}
+\end{questions}
+\clearpage
+
+% \section{Graphs}
+% \begin{questions}
+% \subimport{topics/graphs/search/}{pseudocode.tex}
+% \subimport{topics/graphs/search/easy/}{seen-set.tex}
+% \subimport{topics/graphs/search/easy/}{runtime.tex}
+% \end{questions}
+% \clearpage
+
+\end{document}

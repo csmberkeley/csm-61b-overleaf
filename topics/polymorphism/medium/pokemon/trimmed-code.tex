@@ -1,0 +1,35 @@
+%ID: 61236
+\begin{lstlisting}
+public class Pokemon {
+    public int hp, power;
+    public Pokemon() {
+        hp = 50;
+    }
+    public void attack(Pokemon p) {
+        p.hp -= power;
+    }
+    public void eat() {
+        System.out.println("nom nom");
+    }
+}
+public class Pikachu extends Pokemon {
+    public Pikachu() {
+        power = 30;
+        hp = 100;
+    }
+    public void attack(Pokemon p) {
+        p.hp = 0;
+    }
+    public void eat() {
+        System.out.println("nom Pika nom");
+    }
+}
+public class Squirtle extends Pokemon {
+    public Squirtle() {
+        power = 20;
+    }
+    public void attack() {
+        System.out.println("Water gun!!");
+    }
+}
+\end{lstlisting}

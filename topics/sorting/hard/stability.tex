@@ -1,0 +1,72 @@
+\emph{Stability in a sorting algorithm means preserving the relative ordering of elements with the same key from before we sorted. Stability is important because it allows us to \textbf{stack} sorts. Suppose for example we receive a list of names sorted only by first name. We want the list sorted by last name, then first name.}\\
+
+\question Take the following list sorted by last initial only and create a max heap of it sorting by first initial, ignoring the last initial. Heapify by adding items to the max heap in the order of the input list. First initials with letters later in the alphabet get treated as larger. If two items in the max heap with the same key (first initial) are being compared, do not swap the nodes. \\
+% two items equal swap?
+
+2Y, 3C, 4S, VJ, CK, YS, VU, SY\\
+
+%\begin{itemize}
+%    \item Yu, Bin
+%    \item Clinton, Catherine
+%    \item Song, Dawn
+%    \item Vaid, Jyotsna
+%    \item Clinton, Kate
+%    \item Yu, Stella
+%    \item Vaid, Urvashi
+%    \item Song, Yun
+%\end{itemize}\\
+
+\begin{solution}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=30mm/#1},level distance=45pt]
+\node[vertex]{$YB$}
+child {
+    node[vertex]{$VJ$}
+    child {
+        node[vertex]{$SY$}
+        child {
+            node[vertex]{$CC$}
+        }
+    }
+    child {
+        node[vertex]{$CK$}
+    }
+}
+child {
+    node[vertex]{$YS$}
+    child {
+        node[vertex]{$SD$}
+    }
+    child {
+        node[vertex]{$VU$}
+    }
+};
+\end{tikzpicture}
+\end{solution}
+
+\question Now with your heap, perform heap sort as normal. Recall that heap sort works by removing at each step and adding the removed element to the last spot of the list which has not yet been filled. When deciding what to bubble up, if two elements are equal in value bubble up the left value. (Remember we are only considering last name).
+
+\begin{solution}
+    YB, YS, VJ, VU, SY, SD, CC, CK
+\end{solution}
+
+\question Does this ordering preserve stability from our original ordering? 
+
+\begin{solution}
+    No it does not, SY and SD are swapped.
+\end{solution}
+
+\question If we continue sorting only by first initial, is there a simple way for us to change the algorithm to guarantee in-place ordering no matter the input? 
+
+\begin{solution}
+    Without adding additional meta-information to nodes (which would take more space) it is impossible to force heap sort to be stable. This would remove the benefits of using heap sort in that it has less memory complexity, so it is not worth doing in most cases.
+\end{solution}
+
+\question (Challenge) Why is quicksort not normally stable and how can it be implemented to be stable?
+
+\begin{solution}
+    Normally with quicksort when we pick a pivot, items equal to the pivot either get moved to the less than or to the greater than side without regard to where they originally were with respect to the pivot. This makes it so if we have 5A, 5B, and 5C for instance where 5B is the pivot, we might end up with 5A 5C 5B or 5B 5A 5C, neither of which preserve original relative ordering.\\
+    
+    If we instead make it so quicksort does not occur in place and we store less than and greater than elements in separate lists so all elements equal to the pivot stay in the list with the pivot, we can make quicksort stable. One can visualize this as though there are three lists: less than, equal to, and greater than lists. 
+    
+    In practice this takes up more space complexity, so it not always desirable.
+\end{solution}

@@ -1,0 +1,48 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+%\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{8}
+\title{Asymptotics \& Trees}
+\date{October 11 - 15, 2021}
+
+\begin{document}
+\maketitle
+
+\section{Tricurse}
+
+\begin{questions}
+
+\subimport{topics/asymptotics/recursive/}{ternary-tree.tex}
+\end{questions}
+
+
+\section{Shoutout Recursion}
+
+\begin{questions}
+\subimport{topics/asymptotics/recursive/}{recursive.tex}
+\end{questions}
+
+\clearpage
+
+\section{Traversals}
+\subimport{topics/trees/binary-trees/text/}{traversals.tex}
+\subimport{topics/trees/binary-trees/}{example-tree.tex}
+\begin{questions}
+\subimport{topics/trees/binary-trees/easy/}{depth-first-traversals.tex}
+\subimport{topics/trees/binary-trees/easy/}{level-order-traversal.tex}
+\enlargethispage{2in}
+% ^ this line is to fit (b) on this page ... so we don't print out an extra sheet
+\end{questions}
+\clearpage
+
+\section{Stacks and Queues}
+\begin{questions}
+\subimport{topics/trees/binary-trees/text/}{fringe.tex}
+\subimport{topics/trees/binary-trees/medium/}{traversals.tex}
+\end{questions}
+\clearpage
+
+\end{document}

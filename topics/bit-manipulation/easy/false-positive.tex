@@ -1,0 +1,45 @@
+% Author: Arjun Sahai Fall 2019
+
+\question Given two sequences of bits where the first sequence represents whether Darren lost to Arjun on a given game of Super Smash Bros Ultimate (0 = Darren lost; 1 = Darren won), and the second sequence represents our predictions of each game, return a sequence of bits where there is a 1 if our prediction was a false positive and 0 otherwise. A false positive is when we predict that Darren will win but he actually lost. \newline
+actual:     01100101 \newline
+prediction: 10111001 \newline
+return:     10011000 \newline
+Give at least two different single line solutions
+
+\ifprintanswers\else
+\begin{lstlisting}
+static int falsePositiveFirst(int actual, int predictions) {
+    return
+}
+
+static int falsePositiveSecond(int actual, int predictions) {
+    return
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+static int falsePositiveFirst(int actual, int predictions) {
+    return (actual ^ predictions) & predictions;
+}
+    Our goal is to return 1 if actual = 0 and prediction = 1. 
+    One way to do it is to use xor: xor return 1 iff the two elements are different in bits. (aka. actual = 1 & prediction = 0 OR actual = 0 & prediction = 1)
+    Then we & the result with prediction such that only when prediction = 1 (and actual = 0), we will have 1.
+
+static int falsePositiveSecond(int actual, int predictions) {
+    return ~actual & predictions;
+}
+
+    A more straightforward way to do this is to understand the True/False Table:
+    the function will return 1 if:
+        actual = 0, prediction = 1. 
+        
+    the function will return 0 if:
+        actual = 0, prediction = 0. OR 
+        actual = 1, prediction = 1. OR 
+        actual = 1, prediction = 0. 
+        
+    Thus we can directly use AND operation to solve the problem. 
+\end{lstlisting}
+\end{solution}

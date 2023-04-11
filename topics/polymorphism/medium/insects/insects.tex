@@ -1,0 +1,18 @@
+\ifprintanswers\else
+\begin{lstlisting}
+Insect i = new Insect();
+i.speak();
+Ant a = new Ant();
+a.speak();
+Bee b = new Bee();
+b.speak();
+i = new Ant();
+i.speak();
+i.attack();
+((Ant) i).attack();
+b = new Insect();
+b.speak();
+b.move();
+\end{lstlisting}
+\fi
+% \end{blocksection}

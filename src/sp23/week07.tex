@@ -1,0 +1,66 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{7}
+\title{Asymptotics \& BSTs}
+\date{March 1 - 3rd, 2023}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week07}{https://tinyurl.com/CSMsp23-week07}
+
+%%%%%%%%%%%%%%%%%%%%
+% BST Problem % X 
+% BST GENERAL: https://youtu.be/h23KMhFGZgo, 
+% ACTUAL VID: https://youtu.be/AGtZFdq_U1Y
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Binary Search Trees}
+\begin{questions}
+\subimport{topics/trees/binary-search-trees/medium}{bst-insertion-removal.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% BST problem 2 % X https://youtu.be/tagl6k861mE
+%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{Balanced Trees}
+\begin{questions}
+\textit{The video walkthrough refers to this problem as "Bushy Trees", which is inaccurate. The desired algorithm makes a balanced tree. There is no way to guarantee a bushy tree using BSTs unless the input array size is a power of 2 minus one.}\\
+\subimport{topics/trees/binary-search-trees/medium}{from-sorted-array-simplified.tex}
+\end{questions}
+
+% \section{Mercantilism}
+% \begin{questions}
+% \subimport{topics/exceptions/medium/}{mercantilism.tex}
+% \end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% Asymptotics problem  % X https://www.youtube.com/watch?v=aBd-GY50Zxs
+% TIMESTAMP ABOVE, SLIDES NEEDED
+%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{Scarlet Koi}
+\begin{questions}
+\subimport{topics/asymptotics/fish/medium}{scarlet-koi.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% BST/Asymptotics problem % X 
+% TIMESTAMP VID: https://youtu.be/Xg0K6ACgFlI
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Radar}
+\begin{questions}
+\subimport{topics/asymptotics/medium/}{debug-binary-search.tex}
+\end{questions} 
+
+
+\end{document}

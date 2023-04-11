@@ -1,0 +1,82 @@
+\question
+\begin{lstlisting}[aboveskip=-\baselineskip]
+
+
+public interface Bee {
+    public void nom();
+}
+public abstract class HoneyBee implements Bee {
+    String name;
+    String sex;
+    public abstract void dance();
+    public void sting() {
+        if (sex.equals("female")) {
+            System.out.println(name + " stings her target! Ouch!");
+        }
+        else {
+            System.out.println(name + " is a drone (male bee)! He doesn't have a stinger :(.");
+        }
+        
+    }
+}
+public class GuardBee extends HoneyBee {
+    public void dance() {
+        System.out.println("Guard bee " + name + " does the 'I see you' (ISY) dance to warn workers of a nearby threat, and to let the potential attacker know that their plan has been exposed!");
+    }
+    public void nom() {
+        System.out.println("Guard bee " + name + " chows down on the worker bee's vomit (honey)! Yum!");
+    }
+}
+\end{lstlisting}
+
+\begin{parts}
+\begin{blocksection}
+\part Compare and contrast interfaces and abstract classes.
+\begin{solution}[1in]
+\begin{itemize}
+\item Java classes cannot extend multiple superclasses (unlike Python) but
+classes can implement multiple interfaces.
+\item Interfaces are implicitly public.
+\item Interfaces can't have fields declared as instance variables; any fields
+that are declared are implicitly \lstinline$static$ and \lstinline$final$.
+\item Interfaces use the \lstinline$default$ keyword to declare \emph{concrete}
+implementations while abstract classes use the \lstinline$abstract$ keyword to
+declare \emph{abstract} implementations.
+\item Interfaces define the way we interact with an implementing object or
+functions of an object. Conversely, abstract classes define an ``is-a''
+relationship and tell us more about the object's fundamental identity.
+\end{itemize}
+
+\begin{meta}
+
+\textbf{Meta:} Warn students to be careful searching about this topic as CS 61B
+uses Java 8 but most content online covers Java 7, which behaves differently.
+\end{meta}
+
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part Do we need the \lstinline$sting$ method in \lstinline$GuardBee$?
+
+\begin{solution}[0.5in]
+No, we do not need the \lstinline$sting$ method because it's already defined in
+the abstract class. Java will lookup the parent class's method if it cannot
+find it in the child class.
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part Does this compile? \lstinline$Bee bweep = new GuardBee();$
+
+\begin{solution}[0.5in]
+Yes, the code compiles since \lstinline$GuardBee$ inherits from the
+\lstinline$HoneyBee$ class which implements the \lstinline$Bee$ interface.
+\end{solution}
+\end{blocksection}
+\end{parts}
+
+\begin{solution}
+%\textbf{Meta:} Use this question as a mini-lecture for interfaces to build up
+%to the next question. This question should not take a lot of time.
+\end{solution}

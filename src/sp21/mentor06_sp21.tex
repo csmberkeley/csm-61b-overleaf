@@ -1,0 +1,52 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+\printmeta % uncomment me
+
+\discnumber{6}
+\title{Asymptotics \& Iterators}
+\date{February 22, 2021}
+
+\begin{document}
+\maketitle
+
+\section{Asymptotics}
+\begin{questions}
+\subimport{../../topics/asymptotics/text/}{runtime.tex}
+
+\\Formulas:
+\subimport{../../topics/asymptotics/text/}{formulas.tex}
+Tips:
+\subimport{../../topics/asymptotics/text/}{tips.tex}
+
+\subimport{../../topics/asymptotics/easy/}{notation.tex}
+\subimport{../../topics/asymptotics/easy/}{intlist-contains.tex}
+
+\section{Fishy Fish}
+Give a tight asymptotic runtime bound for each of the following functions. Assume array is an M × N matrix (rows × cols) and that M and N are both large.
+\begin{questions}
+\subimport{../../topics/asymptotics/fish/easy}{red-herring.tex}
+\subimport{../../topics/asymptotics/fish/easy}{crimson-tuna.tex}
+\subimport{../../topics/asymptotics/fish/medium}{scarlet-koi.tex}
+\end{questions}
+
+\end{questions}
+
+\pagebreak
+\section{Iterator}
+\begin{questions}
+\subimport{../../topics/iterators/}{interface.tex}
+\subimport{../../topics/iterators/easy/int-iterator}{array-iterator.tex}
+\subimport{../../topics/iterators/easy/int-iterator}{intlist-iterator.tex}
+\subimport{../../topics/iterators/easy/int-iterator}{print-all.tex}
+\end{questions}
+
+\pagebreak
+\section{Inheritance}
+\begin{questions}
+\subimport{../../topics/polymorphism/medium/}{insects.tex}
+\end{questions}
+
+\end{document}

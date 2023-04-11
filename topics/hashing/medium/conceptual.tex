@@ -1,0 +1,46 @@
+\begin{blocksection}
+
+\question You are now a TA For CS61B (Congratulations by the way)! Your section has 10 students and you want to build a database using a HashMap to track each student's total score on their exams and assignments. You decide to use the last 3 digits of their SID as the key and the value of the map is the total number of points.
+
+\\\tabStudent IDs (last 3 digits) = [512, 437, 689, 812, 346, 813, 489, 128, 281, 362]
+\\\tabHash Function = x mod 10
+
+\begin{parts}
+\part Which SIDs above would hash to 2?
+\begin{solution}[1.5in]
+SIDs 512, 812, and 362 as all of them have 2 as their final digit.
+\end{solution}
+\begin{meta}
+Make sure that your students understand how hashing works and what mod means mathematically!
+\end{meta}
+
+\part Say we started with 10 buckets initially and use a load factor of 0.75. Assume also that our resize function multiplies the number of buckets by 2. How many buckets would I have after inserting all 10 of my students into the map? 
+\begin{solution}[1.5in]
+We would have 20 buckets because after adding the 8th student, the map would resize since 0.75*10=7.5. 
+\end{solution}
+\begin{meta}
+This problem tests to see their understanding of resize -- make sure to clarify how the buckets resize and what load factor means if any students are confused.
+\end{meta}
+
+\part What is the average runtime to retrieve Student A with SID: 4374167812?
+\begin{solution}[1.5in]
+If hashcodes do not collide, the runtime is constant so $\theta(1)$. More generally, our worst case would be that all values share the same hashcode in which case the runtime would follow worst case $\Theta(n)$, best case $\Theta(1)$. The latter should never occur given well-implemented hashing, and is exponentially less likely to occur as our dataset increases- so our overall average runtime to retrieve a value is $\Theta(1)$. \end{solution}
+\begin{meta}
+This question assesses understanding of HashMap runtime (constant for retrieval on average)
+\end{meta}
+
+\part Name one problem you see with our design.
+\begin{solution}[1.5in]
+Here are some options:
+\begin{itemize}
+  \item We would have a lot of collisions in our HashMap making retrieval slow as we only have 10 possible keys with that hash function
+  \item Using only the last 3 digits is problematic as students may have the same last 3 digits (use the entire SID as that is confidently unique)
+\end{itemize}
+\end{solution}
+\begin{meta}
+Encourage students to be creative! This question is pretty open-ended and feel free to discuss solutions for these problems as well (such as using a different hash function or a different initial bucket size)
+\end{meta}
+
+\end{parts}
+
+\end{blocksection}

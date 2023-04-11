@@ -1,0 +1,22 @@
+\emph{After spending a long night doing a 61B Homework, I couldn't help but wonder... Are there real "red-black" trees? After much research, I stumbled upon the Black Diamond Crepe Myrtle, a real black-leaved tree with red flowers that isn't a data structure. 
+} \\
+
+\n
+
+Here is a refresher on the rules on inserting into a (data structure) red-black tree. 
+
+First, insert the new node as you would into a regular BST. In this case, if we come across a node with the same key as our new node, we will replace the vale of the old node with the new node's value, but change nothing else. Newly inserted nodes will always be red, unless we have overwritten an old node.
+
+After insertion, we recursively check to make sure our new insertion has not caused any problems in the red-black tree. If we run into problems, we fix them recursively. The following psuedocode describes how we act recursively on red-black trees.
+\begin{lstlisting}
+if both left and right nodes are red: 
+            flip node colors on h 
+            
+        if only right node is red: 
+            rotate left on h 
+        
+        if left, and subsequent left nodes are red: 
+            rotate right on h 
+\end{lstlisting}
+
+

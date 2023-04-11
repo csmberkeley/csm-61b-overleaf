@@ -1,0 +1,63 @@
+\begin{blocksection}
+
+\question Construct a solution for the sums method, which takes in an integer array called \lstinline$input$, and returns an array where the ith element of the returned array equals the sum of all elements in \lstinline$input$ except the element at index i. 
+
+For an extra challenge, try implementing this function without using subtraction!
+
+Inspired by https://leetcode.com/problems/product-of-array-except-self/
+
+\ifprintanswers\else
+\begin{lstlisting}
+
+// example - input: [1, 2, 3, 4], output: [9, 8, 7, 6]
+public static int[] sums(int[] input) {
+
+
+
+
+
+
+
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+Solution 1:
+public int[] sums(int[] input) {
+    int n = input.length;
+    int output[] = new int[n];
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += input[i]
+    }
+    for (int i = 0; i < n; i++){
+        output[i] = total - input[i]
+    }
+    return output;
+}
+
+Solution 2 (without using subtraction):
+public int[] sums(int[] input) {
+    int n = input.length;
+    int[] output = new int[n];
+    
+    output[0] = 0;
+    for (int i = 1; i < n; i++) {
+        output[i] = output[i - 1] + input[i - 1];
+    }
+    
+    int right = 0;
+    for (int i = n - 2; i >= 0; i--) {
+        output[i] = output[i + 1] + right;
+        right += input[i];
+    }
+
+    return output;
+}
+
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}

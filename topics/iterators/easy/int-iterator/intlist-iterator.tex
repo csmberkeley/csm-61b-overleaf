@@ -1,0 +1,63 @@
+%ID: 61237
+\question Define an \lstinline$IntListIterator$ class that adheres to the integer
+\lstinline$Iterator$ interface.
+\ifprintanswers\else
+\begin{lstlisting}
+
+public class IntListIterator __________________ Iterator<__________> {
+    private IntNode node;
+
+
+    public IntListIterator(IntNode list) {
+
+
+
+    }
+    
+    public boolean hasNext() {
+
+
+
+
+
+    }
+    
+    public ____________ next() {
+    
+    
+    
+    
+    
+    
+    }
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+public class IntListIterator implements Iterator<Integer> {
+    private IntNode node;
+    public IntListIterator(IntNode list) {
+        node = list;
+    }
+    public boolean hasNext() {
+        return node != null;
+    }
+    public Integer next() {
+        int value = node.first;
+        node = node.rest;
+        return value;
+    }
+}
+\end{lstlisting}
+
+\begin{meta}
+
+\textbf{Meta:} This can be gone through and explained faster since the students
+just implemented \lstinline$IntArrayIterator$.
+
+\end{meta}
+
+\end{solution}
+

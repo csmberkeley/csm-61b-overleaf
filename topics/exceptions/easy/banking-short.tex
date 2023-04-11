@@ -1,0 +1,119 @@
+%ID: 61222
+\question
+\begin{parts}
+
+\item The CSM content mentors have opened a bank called CSM Bank!
+
+The bank keeps track of 10 customers, where each customer is represented by a number from 0 to 9 (inclusive). A bank customer can either deposit some amount into their account or withdraw some amount from their account using their account number \lstinline{account_number}.
+
+However, to comply with UC Berkeley regulations, CSM needs your help to make the system just a bit more responsible and secure!
+Of course, a customer cannot withdraw money from the bank if it causes their account to be negative.
+We'd also like to make sure arguments to \lstinline{deposit} and \lstinline{withdraw} are valid; think about what values of \lstinline{account_number} and \lstinline{amount} we wouldn't allow for each method.
+
+Please implement exceptions in the methods below to ensure that CSM Bank complies with UC Berkeley regulations.
+Don't forget to include informative error messages!
+The following built-in Java exceptions may be helpful:
+\begin{itemize}
+    \item \lstinline{IllegalArgumentException}: Method parameter is a bad input. Method cannot be executed with given inputs.
+    \item \lstinline{IndexOutOfBoundsException}: Some index is out of bounds.
+\end{itemize}
+
+\ifprintanswers\else
+\begin{lstlisting}
+
+class Bank {
+
+    double total_money;
+    double[] accounts;
+    
+    public Bank() {
+        total_money = 0;
+        accounts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    }
+    
+\end{lstlisting}
+
+\pagebreak
+\begin{lstlisting}
+ 
+    public double deposit(int account_number, double amount) {
+        if (__________________________________) {
+            throw new _________________________(____________________________________);
+        }
+        
+        if (__________________________________) {
+            throw new _________________________(____________________________________);
+        }
+
+        total_money += amount;
+        accounts[account_number] += amount;
+        return accounts[account_number];
+    }
+ 
+    public double withdraw(int account_number, double amount) {
+        if (__________________________________) {
+            throw new _________________________(____________________________________);
+        }
+        
+        if (__________________________________) {
+            throw new _________________________(____________________________________);
+        }
+        
+        if (__________________________________) {
+            throw new _________________________(____________________________________);
+        }
+
+        total_money -= amount;
+        accounts[account_number] -= amount;
+        return accounts[account_number];
+    }
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+class Bank {
+
+    double total_money;
+    double[] accounts;
+    
+    public Bank() {
+        total_money = 0;
+        accounts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    }
+
+    public double deposit(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw new IndexOutOfBoundsException("Please enter a valid account number");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Please enter a positive amount to deposit");
+        }
+        
+        total_money += amount;
+        accounts[account_number] += amount;
+        return accounts[account_number];
+    }
+
+    public double withdraw(int account_number, double amount) {
+        if (account_number > 9 || account_number < 0) {
+            throw new IndexOutOfBoundsException("Please enter a valid account number");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Please enter a positive amount to withdraw");
+        }
+        if (amount > this.accounts[account_number]) {
+            throw new IllegalArgumentException("You do not have the necessary funds to make a withdrawal");
+        }
+        
+        total_money -= amount;
+        accounts[account_number] -= amount;
+        return accounts[account_number];
+    }
+}
+\end{lstlisting}
+Note that we do not need to check for null values since \lstinline{null} cannot be assigned to Java primitives.
+\end{solution}
+    
+\end{parts}

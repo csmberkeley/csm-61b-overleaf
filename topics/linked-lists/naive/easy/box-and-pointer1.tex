@@ -1,0 +1,13 @@
+\begin{blocksection}
+\\
+\textit{This problem has been adapted from Discussion 3 from 61B Fa21}\\
+\question Draw a box and pointer diagram to represent the IntLists Sonic, Shadow, and Eggman after each statement.\\
+\begin{lstlisting}
+IntList Sonic = IntList.list(1, 2, 3, 4);
+IntList Shadow = Sonic.tail.tail;
+IntList Eggman = IntList.list(5, 6, 7);
+Eggman.tail.tail.tail = Eggman;
+Sonic.tail.tail = Eggman.tail.tail.tail.tail;
+Shadow.tail.tail = Sonic;
+\end{lstlisting}
+\end{blocksection}

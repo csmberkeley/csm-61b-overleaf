@@ -1,0 +1,111 @@
+%ID: 61231
+\question We have a basket of fruit, some of which are spoiled, and we want to distribute fruit to our friends. We want to iterate through the fruit basket such that we only return non spoiled fruit (we don’t want to poison our friends). 
+
+Fill in the \lstinline$FruitBasket$ class so that it is a proper iterable. The \lstinline$Fruit$ class is provided for reference. If the next method is called and there are no more items, throw a \lstinline$NoSuchElementException$.
+
+\begin{lstlisting}
+
+class Fruit {
+    boolean isSpoiled;
+    public Fruit() {
+        ...
+    }
+    
+    // returns true if this fruit is spoiled and false otherwise
+    boolean isSpoiled() {
+        return this.isSpoiled;
+    }
+
+    ...
+}
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}
+class FruitBasket _______________ Iterable<Fruit> {
+    Fruit[] fruits;
+    public FruitBasket(Fruit[] fruits) {
+        this.fruits = fruits;
+    }
+    
+    private class FruitBasketIterator _______________ Iterator<Fruit> {
+        int index;
+    	FruitBasketIterator() {
+    	    
+    	    
+        }
+    
+    	public boolean hasNext() {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        public Fruit next() {
+            
+            
+            
+            
+            
+            
+        }
+    }
+
+    public Iterator<Fruit> iterator() {
+    	return new FruitBasketIterator();
+    }
+    // other FruitBasket methods
+}
+\end{lstlisting}
+
+\begin{solution}[3in]
+Solution:
+\begin{lstlisting}
+class FruitBasket implements Iterable<Fruit> {
+    Fruit[] fruits;
+    public FruitBasket(Fruit[] fruits) {
+        this.fruits = fruits;
+    }
+    
+    private class FruitBasketIterator implements Iterator<Fruit> {
+        int index;
+    	FruitBasketIterator() {
+    	    this.index = 0;
+        }
+    
+    	public boolean hasNext() {
+            if (index >= fruits.length) {
+                return false;
+            }
+    	    Fruit currFruit = fruits[index];
+    	    while(currFruit.isSpoiled() && index < fruits.length) {
+    	        index++;
+    	        currFruit = fruits[index];
+    	    }
+    	    return index < fruits.length;
+        }
+
+        public Fruit next() {
+            if (hasNext()) {
+                int currIndex = index;
+                index++;
+                return fruits[currIndex];
+            }
+            throw new NoSuchElementException("No unspoiled fruit left");
+        }
+    }
+
+    public Iterator<Fruit> iterator() {
+    	return new FruitBasketIterator();
+    }
+    
+    // other FruitBasket methods
+}
+\end{lstlisting}
+\end{solution}

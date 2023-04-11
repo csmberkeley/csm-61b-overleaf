@@ -1,0 +1,87 @@
+%ID: 612082
+\begin{blocksection}
+\question Define \lstinline$isMirror$ which checks whether the binary tree is a mirror of itself.
+For example, here is a binary tree that is a mirrored.
+
+\begin{center}
+%ID: 612082
+\begin{tikzpicture}[very thick,level/.style={sibling distance=20mm/#1},level distance=45pt,baseline=(current bounding box.north)]
+\node[vertex]{$8$}
+child {
+    node[vertex]{$6$}
+    child {
+        node[vertex]{$3$}
+    }
+    child {
+        node[vertex]{$7$}
+    }
+}
+child {
+    node[vertex]{$6$}
+    child {
+        node[vertex]{$7$}
+    }
+    child {
+        node[vertex]{$3$}
+    }
+};
+\end{tikzpicture}
+\end{center}
+
+\ifprintanswers\else
+\begin{lstlisting}
+public boolean isMirror() {
+    if (root == null) {
+        return true;
+    }
+    return isMirror(root.left, root.right); // use helper method
+}
+
+private boolean isMirror(Node left, Node right) {
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+    _______________________________________________________
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+public boolean isMirror() {
+    if (root == null) {
+        return true;
+    }
+    return isMirror(root.left, root.right); // use helper method
+}
+
+private boolean isMirror(Node left, Node right) {
+    if (left == null) {
+        return right == null; // if left is null, right must also be null
+    } else if (right == null) {
+        return false;         // left is not null but right is null, so not symmetric
+    } else if (!left.value.equals(right.value)) {
+        return false;         // left value and right value are unequal
+    } else {
+        return isMirror(left.right, right.left) &&
+               isMirror(left.left, right.right);
+    }
+}
+\end{lstlisting}
+
+\textbf{Meta}: We can use a helper function here to create a new method that
+takes in two parameters, the left and the right branch of the current tree we
+are rooted at.  This allows us to more easily compare the content of the two
+branches to see if they are the same.
+\end{solution}
+\end{blocksection}

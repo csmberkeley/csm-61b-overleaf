@@ -1,0 +1,28 @@
+% Spring 2021 Zijin Cui 
+\begin{blocksection}
+\question Suppose we have a network between two end points: endpoint A and endpoint B. The network consists of vertices and weighted undirected edges, and there exists path between point A and point B. Consider each edge as a water pipe with its weight being its capacity and each vertex as joints where pipes join. Water can flow in any direction in these pipes, and the water originate from A, the source, to travel to B, the destination. Let the max-flow of the network be the most amount of water you can push from A to B.
+\begin{parts}
+\part Show that the minimum cut cannot be less than the max flow.
+\begin{solution}
+For any cut between A and B, the sum of weights must be at least the max flow, because given the max flow, every cut's edge weights must at least to that much. Thus the statement is proven.
+\end{solution}
+\part Convince yourself that the minimum cut cannot be more than the max flow. What's the relationship between the minimum cut of this network graph and the max flow of this graph?
+\begin{solution}
+They are the same.
+\end{solution}
+\part If we lighten an edge in the minimum cut, what could happen to the max flow?
+\begin{solution}
+The max flow will decrease by the same amount.
+\end{solution}
+\part If we weighten an edge in the minimum cut, what could happen to the max flow?
+\begin{solution}
+The max flow will not necessarily increase by that amount, because there could be another minimum cut that doesn't contain the edge we just weightened, thus the max flow will remain.
+\end{solution}
+\part Answer the previous two question assuming the there exists only one unique set.
+\begin{solution}
+For the lightening scenario, the answer is the same because any one minimum cut that's tighten'd will bottle-neck the entire network.\\
+For the weightening scenario, the answer is that the max flow will increase. Because every other cut is greater than the unique cut, increasing the weight of any edge in the unique cut will cause the afterward global minimum cut to increase.
+\end{solution}
+\end{parts}
+
+\end{blocksection}

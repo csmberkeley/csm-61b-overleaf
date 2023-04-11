@@ -1,0 +1,44 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{12}
+\title{More Sorting}
+\date{November 9 - 11, 2022}
+
+\begin{document}
+\maketitle
+
+\section{Quicksort}
+\begin{questions}
+\subimport{topics/sorting/easy/}{quicksort.tex}
+\vspace{30mm}
+\subimport{topics/sorting/quickco/easy/}{runtime.tex}
+\vspace{15mm}
+\subimport{topics/sorting/quickco/easy/}{why-quicksort.tex}
+\end{questions}
+\clearpage
+
+\pagebreak
+\section{Sorting Runtimes}
+\begin{questions}
+% the \question is necessary with the current weird split -- otherwise the blocksection isn't an \item in the \questions environment and the layout breaks. Ideally basic-sorts would be merged into basic-with-quicksort-copy-2020, but I'm not gonna change too much. -Ethan
+\question\subimport{topics/sorting/text/}{basic-sorts.tex}
+\subimport{topics/sorting/runtime/}{basic-with-quicksort-copy-2020.tex}
+\end{questions}
+
+\pagebreak
+\section{Identify Sort}
+\begin{questions}
+\subimport{topics/sorting/hard/}{identify-sort.tex}
+\end{questions}
+
+\pagebreak
+\section{Bonus Asymptotics}
+\begin{questions}
+\subimport{topics/asymptotics/MockMidterm/}{Q3.tex}
+\end{questions}
+
+\end{document}

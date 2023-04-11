@@ -1,0 +1,60 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{9}
+\title{Heaps, Traversals, Hashing, and B-Trees}
+\date{March 15 - 17th, 2023}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week09}{https://tinyurl.com/CSMsp23-week09}
+
+%%%%%%%%%%%%%%%%%%%%
+% Heaps 
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Heaps of Heaps}
+\begin{questions}
+\subimport{topics/heaps/easy}{min-heap-sorted-array.tex}
+\subimport{topics/heaps/easy}{min-heapify.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Graph Traversal 1
+%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{Implement DFS}
+\begin{questions}
+\subimport{topics/graphs/traversal}{implement-dfs.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Hashing %
+%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{More Hashing}
+\begin{questions}
+\subimport{topics/hashing/medium}{conceptual.tex}
+\subimport{topics/hashing/medium}{hashing_implementation.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% 2-3 trees %  X
+%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+\section{2-3 Trees}
+\begin{questions}
+\subimport{topics/trees/balanced-search-trees/medium/}{2-3-potpourri}  
+\subimport{topics/trees/balanced-search-trees/easy/}{2-3-tree-insertion-tf}
+\subimport{topics/trees/balanced-search-trees/medium/}{2-3-tree-asymptotics}
+\end{questions}
+
+\end{document}

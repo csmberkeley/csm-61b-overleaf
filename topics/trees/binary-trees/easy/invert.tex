@@ -1,0 +1,35 @@
+\begin{blocksection}
+\question Write a function, \lstinline$invert$, which takes in a tree and inverts (mirrors) it destructively.
+
+\ifprintanswers
+\else
+\begin{lstlisting}
+private void invert(Node node) {
+
+
+
+
+
+
+
+
+}
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+private void invert(Node node) {
+    if (node == null) {
+        return;
+    }
+    invert(node.left);
+    invert(node.right);
+    Node temp = node.left;
+    node.left = node.right;
+    node.right = temp;
+    }
+}
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

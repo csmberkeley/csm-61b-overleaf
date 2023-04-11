@@ -1,0 +1,59 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{5}
+\title{Polymorphism \& Asymptotics}
+\date{Feburary 13 - 17, 2022}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week05}{https://tinyurl.com/CSMsp23-week05}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Interfaces problem %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kitten Time}
+\begin{questions}
+\subimport{topics/inheritance/easy/}{kittentime.tex}
+\end{questions}
+%https://www.overleaf.com/project/63042844e02b627cfd1e2c79
+%%%%%%%%%%%%%%%%%%%
+% Casting problem %
+%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{pokemon}
+\begin{questions}
+\marginpar{\subimport{topics/polymorphism/medium/pokemon/}{commands.tex}}
+\subimport{topics/polymorphism/medium/pokemon/}{question.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{trimmed-code.tex}
+\subimport{topics/polymorphism/medium/pokemon/}{solution.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% Exceptions problem %
+%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{IntelliJ my Beloved}
+\begin{questions}
+\subimport{topics/debugging/easy}{common-exceptions.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% ???? problem %
+%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+
+\section{Sieve of Eratosthenes}
+\begin{questions}
+\subimport{topics/arrays/easy/}{sieve-of-eratosthenes.tex}
+\end{questions}
+
+\end{document}

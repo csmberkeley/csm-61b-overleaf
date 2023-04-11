@@ -1,0 +1,111 @@
+%ID: 612065
+\begin{blocksection}
+\question (Challenge Question) If time allows, now implement remove(), which returns the lightest slime and removes it from the SlimePQ. 
+\begin{lstlisting}
+public Slime remove() {
+    int switchIndex = _____________________________________________;
+    
+    _______________________________________________________________;
+    
+    _______________________________________________________________;
+    
+    _______________________________________________________________;
+    
+    _______________________________________________________________;
+    
+    while (_____________________________________________________) {
+    
+        if (____________________________________________________) {
+        
+            if (pq[_________________].weight > pq[_________________]) {
+            
+                temp = pq[_________________];
+                
+                pq[_________________] = pq[_________________];
+                
+                pq[_________________] = ____________________;
+            }
+            break;
+        }
+        else if (pq[_________________].weight < pq[_________________] &&
+        
+        pq[_________________].weight < pq[_________________]) {
+        
+            break;
+        }
+        else if (pq[_________________].weight < pq[_________________]) {
+        
+            temp = pq[_________________];
+            
+            pq[_________________] = pq[_________________];
+            
+            pq[_________________] = ____________________;
+            
+            __________________________________________________________;
+        } 
+\end{lstlisting}
+\end{blocksection}
+\begin{blocksection}
+\begin{lstlisting}
+else {
+            temp = pq[_________________];
+            
+            pq[_________________] = pq[_________________];
+            
+            pq[_________________] = ____________________;
+            
+            __________________________________________________________;
+        }
+    }
+    __________________________________________________________;
+    
+    __________________________________________________________;
+}
+\end{lstlisting}
+% \ifprintanswers
+% \else
+
+% \fi
+\end{blocksection}
+\clearpage
+\begin{blocksection}
+\begin{solution}
+\begin{lstlisting}
+public Slime remove() {
+    int switchIndex = 1;
+    Slime temp;
+    Slime result = pq[1];
+    pq[1] = pq[size]; 
+    pq[size] = null;
+    while (size - 1 >= switchIndex*2) {
+        if (size - 1 == switchIndex*2) {
+            if (pq[switchIndex].weight > pq[switchIndex*2].weight) {
+                temp = pq[switchIndex*2];
+                pq[switchIndex*2] = pq[switchIndex];
+                pq[switchIndex] = temp;
+            }
+            break;
+        }
+        else if (pq[switchIndex].weight < pq[switchIndex*2].weight &&
+        pq[switchIndex].weight < pq[switchIndex*2 + 1]) {
+            break;
+        }
+        else if (pq[switchIndex*2].weight < pq[switchIndex*2 + 1].weight) {
+            temp = pq[switchIndex*2];
+            pq[switchIndex*2] = pq[switchIndex];
+            pq[switchIndex] = temp;
+            switchIndex = switchIndex*2;
+        } else {
+            temp = pq[switchIndex*2 + 1];
+            pq[switchIndex*2 + 1] = pq[switchIndex];
+            pq[switchIndex] = temp;
+            switchIndex = switchIndex*2 + 1;
+        }
+    }
+    size--;
+    return result;
+}
+\end{lstlisting}
+\end{solution}
+\clearpage
+\end{blocksection}

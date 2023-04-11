@@ -1,0 +1,12 @@
+%ID: 61206
+\question 
+In a graph, there could be multiple shortest paths between two vertices. Given an undirected weighted graph $G$ with a start vertex $s$ and target vertex $t$, devise an algorithm that returns the shortest path from $s$ to $t$ that uses the fewest number of edges. Assume there will be no ties and that edge weights are positive integral values.
+
+\emph{Hint: Consider how you can modify the graph and run a shortest paths algorithm.}
+
+\begin{solution}
+The main idea is to add $1/|V|$ to each edge, and run Dijkstra's to find the shortest path from s to t.
+
+Adding $1/|V|$ ensures that all paths will increase by less than 1. Since edge weights are integral, this means that if pathA and pathB were originally two shortest paths between $s$ and $t$, $floor(len(pathA)) == floor(len(pathB))$. In other words, this maintains that paths that weren't among the original shortest paths won't be shorter than those paths. However, out of the original shortest paths, the path that uses less edges will be shorter given this modification.
+
+\end{solution}

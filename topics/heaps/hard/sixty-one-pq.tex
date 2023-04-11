@@ -1,0 +1,34 @@
+%ID: 612060
+\begin{blocksection}
+\question You have been hired by Alan to help design a priority queue
+implementation for \emph{Kelp}, the new seafood review startup, ordered on the
+timestamp of each \lstinline$Review$.
+
+Describe a data structure that supports the following operations.
+
+\begin{itemize}
+\item \lstinline$insert(Review r)$ a \lstinline$Review$ in $O(\log N)$.
+\item \lstinline$edit(int id, String body)$ any one \lstinline$Review$ in
+$\Theta(1)$.
+\item \lstinline$sixtyOne()$: return the sixty-first latest \lstinline$Review$
+in $\Theta(1)$.
+\item \lstinline$pollSixtyOne()$: remove and return the sixty-first latest
+\lstinline$Review$ in $O(\log N)$.
+\end{itemize}
+
+\begin{solution}[1.5in]
+By convention, larger timestamps mean that a \lstinline$Review$ is more recent. We will use two heaps \lstinline$top$ and \lstinline$bot$, as well as a \lstinline$HashMap$ \lstinline$map$.
+
+\lstinline$top$ will be a min-heap (the oldest review inside is on top), and the invariant will be that it contains the 61 most recent \lstinline$Review$s. This implies the top of this heap is the sixty-first latest \lstinline$Review$.
+
+\lstinline$bot$ will be a max-heap (the most recent review inside is on top), and the invariant will be that it contains the rest of the \lstinline$Review$s that are older than the sixty-first latest \lstinline$Review$. This implies that the top of this heap is the sixty-second latest \lstinline$Review$.
+
+For \lstinline$sixtyOne()$, peek at the first value of \lstinline$top$ $\implies \Theta(1)$
+
+For \lstinline$insert(Review r)$, there are two cases: either \lstinline$r$ is older than the sixty-first latest \lstinline$Review$, or it is more recent. For the first case, insert \lstinline$r$ into \lstinline$bot$. For the second case, remove the first element from \lstinline$top$, insert it into \lstinline$bot$, and then insert \lstinline$r$ into \lstinline$top$. This "pushes" the former sixty-first latest \lstinline$Review$ down into the second heap in order to enforce the invariants. One or two heap insertion operations $\implies O(\log N)$.
+
+For \lstinline$pollSixtyOne()$, remove the first element from \lstinline$top$ and save it as the return value. Then, remove the first element from \lstinline$bot$ and insert it into \lstinline$top$. Finally, return the element from the first step. After removing the sixty-first latest \lstinline$Review$, this pushes the old sixty-second latest \lstinline$Review$ up into the first heap in order to enforce the invariants. Two heap operations $\implies O(\log N)$.
+
+For \lstinline$edit(int id, String body)$, map the \lstinline$Review$ \lstinline$r$'s \lstinline$id$ to itself at the end of \lstinline$insert(Review r)$, and delete the removed \lstinline$Review$'s mapping at the end of \lstinline$pollSixtyOne()$. Maintaining this \lstinline$HashMap$ means we have access to constant time lookup $\implies \Theta(1)$.
+\end{solution}
+\end{blocksection}

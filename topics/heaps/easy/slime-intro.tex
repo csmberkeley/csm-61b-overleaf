@@ -1,0 +1,26 @@
+%ID: 612065
+\begin{blocksection}
+You are a dev on the team making Slime Rancher 3! The dev team has decided to implement a new feature: slime weight, which determines how quickly a slime gets hungry again. The only problem is, Beatrix LeBeau's vacpack still has the same motor strength as it did in the previous games. When Beatrix is shooting out slimes, the vacpack shoots out lighter slimes first to conserve energy. For example, after we have added a slime of weight 8, 1, 5, and 2 in that order, the first to be removed will be the slime of weight 1. Implement a priority queue for the vacpack using a Slime[] min-heap organized by slime weight. You can use fewer lines than the given skeleton, but not more.
+\\
+\begin{lstlisting}
+public class Slime {
+    public int weight;
+    
+    // other class variables, methods, and initializers are omitted for brevity.
+}
+
+public class SlimePQ {
+    private Slime[] pq;
+    private int typeID, size, max;
+    
+    public SlimePQ(Slime firstSlime, int maxSize) {
+        pq = new Slime[maxSize + 1];
+        pq[1] = firstSlime; // we skip the 0th spot to make indexing easier.
+        typeID = firstSlime.type;
+        size = 1;
+        max = maxSize;
+    }
+}
+\end{lstlisting}
+\clearpage
+\end{blocksection}

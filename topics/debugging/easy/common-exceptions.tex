@@ -1,0 +1,78 @@
+\question \textit{The very first computer bug was found in an early computer in 1947 at Harvard. The computer scientist that documented it was early computer scientist Grace Hopper. It was a moth caught in the paper-circuitry of the computer, hence why we call errors 'bugs', and why we call removing them 'debugging'!.}
+
+For each scenario below, describe what you think caused each error.
+
+\begin{parts}
+\begin{blocksection}
+\part
+\begin{verbatim}
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 55
+        at Sum.sum(Test.java:15)
+        at Sum.main(Test.java:28)
+\end{verbatim}
+
+where line 15 of \lstinline$Sum$ is:
+
+\begin{verbatim}
+total += nums[i];
+\end{verbatim}
+
+\begin{solution}[1in]
+\lstinline$i$ was incremented beyond the length of the array (\lstinline$i >= nums.length$).
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part
+\begin{verbatim}
+Exception in thread "main" java.lang.NullPointerException
+        at IntNode.traverse(IntNode.java:25)
+        at IntNode.main(IntNode.java:63)
+\end{verbatim}
+
+where line 25 of \lstinline$IntNode$ is:
+
+\begin{verbatim}
+nextNode = currNode.next;
+\end{verbatim}
+
+\begin{solution}[1in]
+Forgot to add a null check: \lstinline$currNode$ might be null.
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\part
+\begin{verbatim}
+Test.java:67: error: non-static variable name cannot be referenced
+from a static context
+                System.out.println(name);
+                                    ^
+\end{verbatim}
+
+\begin{solution}[1in]
+\lstinline$name$, an instance variable (non-static), was referenced from a static method.
+\end{solution}
+
+\part
+Talk with your section: What should you do if you run into a bug in your code you don't immediately know the solution to? Build a toolset of things you can do, organized by how much time it takes to implement.
+
+\begin{solution}[1in]
+\begin{parts}
+    \part \textbf{Easy Tools:} \\Look up your error message including as few specific variable names/data as possible to maximize the chance of you finding someone who had the same problem (with different variable names). Stack Exchange is your friend, and copying code from there in an attempt to debug is generally not seen as plagiarism! \\
+    Add in a print statement in a portion of the code you think may be bugging\\
+    Add assert statements to assure that no faulty data is being entered\\
+    \part \textbf{General Tools:} USE THE DEBUGGER!! It is daunting when you are first using it, but the more used to it you get the better time you will have. If you struggle to use a debugger in terminal, see if you can install your debugger to whichever software you use to program. The debugger allows you to track variable values without needing print statements and lets you pick where you want to start looking at the evaluation. \\
+    Draw a diagram of your evaluation process\\
+    Look up the documentation for functions you use (both those that are and aren't native to Java).
+    \part \textbf{Reach Out For Help:}
+    There is never any shame in reaching out for help!\\
+    Post on Ed (only including large portions of your code if the post is privated)\\
+    Post on Stack Exchange\\
+    Go to office hours\\
+    Ask a friend (without showing them your code or vice versa)
+\end{parts}
+\end{solution}
+
+\end{blocksection}
+\end{parts}

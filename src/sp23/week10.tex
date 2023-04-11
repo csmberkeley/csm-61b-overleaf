@@ -1,0 +1,56 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+ \printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{10}
+\title{Shortest Paths and Practice}
+\date{March 22 - 24th, 2023}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week10}{https://tinyurl.com/CSMsp23-week10}
+
+%%%%%%%%%%%%%%%%%%%%
+% Shortest Paths
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Bay Area Day Trip}
+\begin{questions}
+\subimport{topics/graphs/search/dijkstras/medium/}{network-spt.tex}
+\subimport{topics/graphs/search/dijkstras/easy/}{implementation.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Minimum Spanning Trees 1  X  (MAYBE COVER HEAPS IN OTHER PROBLEM??)
+%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+
+\section{Minimum Spanning Tree Algorithms}
+\begin{questions}
+\subimport{topics/graphs/minimum-spanning-trees/easy}{cut-property.tex}
+\subimport{topics/graphs/minimum-spanning-trees/easy}{network-prims.tex}
+\subimport{topics/graphs/minimum-spanning-trees/easy}{network-kruskals.tex}
+\subimport{topics/graphs/minimum-spanning-trees/easy}{primsVskruskals.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% Minimum Spanning Trees 2
+%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+\section{Recursive Asymptotics}
+\begin{questions}
+\subimport{topics/asymptotics/recursive}{ternary-tree.tex}
+\subimport{topics/asymptotics/recursive}{recursive.tex}
+\end{questions}
+
+\pagebreak
+\section{Towers of Hanoi}
+\begin{questions}
+\subimport{topics/recursion/tree-recursion/medium}{towers-of-hanoi.tex}
+\end{questions}
+
+\end{document}

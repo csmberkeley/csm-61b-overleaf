@@ -1,0 +1,318 @@
+Draw out the left leaning red black tree resulting from inserting the following- 35, 11, 49, 9, 7, 51 and 50. Draw red edges with two lines instead of one.
+
+\begin{solution}
+
+Insert 35, 11 and 49
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$11$}
+    edge from parent[draw=red]
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=red]
+    % edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Flip Colors of edges touching (35)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$11$}
+    edge from parent[draw=black]
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Insert 9
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$11$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$9$}
+        edge from parent[draw=red]
+    }
+    child {
+        edge from parent[draw=none]
+    }
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Insert 7
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$11$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$9$}
+        edge from parent[draw=red]
+        child {
+            node[vertex,color=black]{$7$}
+            edge from parent[draw=red]
+        }
+        child {
+            edge from parent[draw=none]
+        }
+    }
+    child {
+        edge from parent[draw=none]
+    }
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Rotate Right on (11)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=red]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=red]
+    }
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Flip Colors of edges touching (9)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+};
+\end{tikzpicture}
+
+Insert 51
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+
+
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$49$}
+    edge from parent[draw=black]
+    child {
+        edge from parent[draw=none]
+    }
+    child {
+        node[vertex,color=black]{$51$}
+        edge from parent[draw=red]
+    }
+};
+\end{tikzpicture}
+
+Rotate Left on (49)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$51$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$49$}
+        edge from parent[draw=red]
+    }
+    child {
+         edge from parent[draw=none]
+    }
+};
+\end{tikzpicture}
+
+Insert 50
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$51$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$49$}
+        edge from parent[draw=red]
+        child {
+            edge from parent[draw=none]
+        }
+        child {
+            node[vertex,color=black]{$50$}
+            edge from parent[draw=red]
+        }
+    }
+    child {
+        edge from parent[draw=none]
+    }
+};
+\end{tikzpicture}
+
+Rotate Left on (49)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$51$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$50$}
+        edge from parent[draw=red]
+        child {
+            node[vertex,color=black]{$49$}
+            edge from parent[draw=red]
+        }
+        child {
+            edge from parent[draw=none]
+        }
+    }
+    child {
+        edge from parent[draw=none]
+    }
+};
+\end{tikzpicture}
+
+Rotate Right on (51)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$50$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$49$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$51$}
+        edge from parent[draw=black]
+    }
+};
+\end{tikzpicture}
+
+Flip Colors of edges touching (35)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$35$}
+child {
+    node[vertex,color=black]{$9$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$7$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$11$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$50$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$49$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$51$}
+        edge from parent[draw=black]
+    }
+};
+\end{tikzpicture}
+\end{solution}

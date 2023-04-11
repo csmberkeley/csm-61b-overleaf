@@ -1,0 +1,185 @@
+%ID: 612067
+\question In this problem, we will examine some use cases of inorder,
+postorder, and preorder traversals.
+
+Inorder traversal:
+
+\begin{lstlisting}
+    1. Traverse the left subtree, i.e., call Inorder(node.left)
+    2. Visit the root
+    3. Traverse the right subtree, i.e., call Inorder(node.right)
+\end{lstlisting}
+
+Preorder traversal:
+
+\begin{lstlisting}
+    1. Visit the root
+    2. Traverse the left subtree, i.e., call Preorder(node.left)
+    3. Traverse the right subtree, i.e., call Preorder(node.right)
+\end{lstlisting}
+
+Postorder traversal:
+
+\begin{lstlisting}
+    1. Traverse the left subtree, i.e., call Postorder(node.left)
+    2. Traverse the right subtree, i.e., call Postorder(node.right)
+    3. Visit the root
+\end{lstlisting}
+
+\begin{parts}
+    \part Implement \lstinline$increasing$, which takes in the root of a BST and 
+    prints the values of the BST in increasing order.
+    
+    \begin{lstlisting}
+    private class Node {
+        private int val;
+        private Node left;
+        private Node right;
+    }
+    public void increasing(Node root) {
+        if (root == null) {
+            return;
+        }
+        _______________________________;
+        _______________________________;
+        _______________________________;
+        return;
+    }
+    \end{lstlisting}
+    
+    \begin{solution}
+    \begin{lstlisting}
+    public void increasing(Node root) {
+        if (root == null) {
+            return;
+        }
+        increasing(root.left);
+        System.out.println(root.val);
+        increasing(root.right);
+        return;
+    }
+    \end{lstlisting}
+    \end{solution}
+
+    \pagebreak
+    \part Implement \lstinline$createCopy$, which creates a copy of a binary tree. Your copy should
+    be a \emph{complete} copy of the original binary tree, with no nodes reused from the original
+    tree. Furthermore, \lstinline$createCopy$ should return the root of the copy.
+    
+    \emph{Hint: Do you want to visit a node first, or traverse its subtrees first?}
+
+    \begin{lstlisting}
+    private class Node {
+        private int val;
+        private Node left;
+        private Node right;
+        private Node(int v){
+            val = v;
+        }
+    }
+    public Node createCopy(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node newRoot = new Node(_____________________);
+        newRoot.left = ___________________________________;
+        newRoot.right = ___________________________________;
+        return newRoot;
+    }
+    \end{lstlisting}
+    
+    \begin{solution}
+    \begin{lstlisting}
+    public Node createCopy(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node newRoot = new Node(root.val);
+        newRoot.left = createCopy(root.left);
+        newRoot.right = createCopy(root.right);
+        return newRoot;
+    }
+    \end{lstlisting}
+    \end{solution}
+
+    \pagebreak
+    \part One cool fact about trees is that you can always write an arithmetic
+    expression as a binary tree to denote an order of operations using "number" and "operation" nodes.
+    For example, the following tree represents \lstinline{3 + ((5 - 9) * 2)}:
+    \begin{center}
+        \begin{tikzpicture}[very thick,level/.style={sibling distance=23mm/#1},level distance=34pt,baseline=(current bounding box.north)]
+            \node[vertex]{$+$}
+            child[sibling distance = 28mm] {
+                node[vertex]{$3$}
+            }
+            child[sibling distance = 28mm] {
+                node[vertex]{$*$}
+                child[sibling distance = 12mm] {
+                    node[vertex]{$-$}
+                    child[sibling distance=12mm] {
+                        node[vertex]{$5$}
+                    }
+                    child[sibling distance=12mm] {
+                        node[vertex]{$9$}
+                    }
+                }
+                 child[sibling distance = 12mm] {
+                    node[vertex]{$2$}
+                }
+            };
+        \end{tikzpicture}
+    \end{center}
+    Write a function \lstinline{calculate} that calculates an arithmetic expression given its binary tree representation.
+    You can assume every operation node has exactly two children and number nodes have no children. You
+    should support 3 arithmetic operations: add, subtract, and multiply.
+    \begin{lstlisting}
+    private class Node {
+        // type is either "NUMBER" or "OPERATION"
+        // You can assume operation is the empty string for nodes of type "NUMBER"
+        private String type, operation;
+        private Node left, right;
+        private int val;
+    }
+    public int calculate(Node root) {
+        if (root.type.equals("NUMBER")) {
+            return ____________________________;
+        }
+        
+        _______________________________________;
+        _______________________________________;
+        String operation = root.operation;
+        if (operation.equals("ADD")) {
+            return ____________________________;
+        } else if (operation.equals("SUBTRACT")) {
+            return ____________________________;
+        } else if (operation.equals("MULTIPLY")) {
+            return ____________________________;
+        } else {
+            throw new Exception("Invalid operation");
+        }
+    }
+    \end{lstlisting}
+
+    \begin{solution}
+    \begin{lstlisting}
+    public int calculate(Node root) {
+        if (root.type.equals("NUMBER") {
+            return root.val;
+        }
+        
+        int leftVal = calculate(root.left);
+        int rightVal = calculate(root.right);
+        String operation = root.operation;
+        if (operation.equals("ADD")) {
+            return leftVal + rightVal;
+        } else if (operation.equals("SUBTRACT")) {
+            return leftVal - rightVal;
+        } else if (operation.equals("MULTIPLY")) {
+            return leftVal * rightVal;
+        } else {
+            raise new Exception("Invalid operation");
+        }
+    }
+    \end{lstlisting}
+    \end{solution}
+\end{parts}

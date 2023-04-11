@@ -1,0 +1,53 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{10}
+\title{Generics \& Sorting}
+\date{March 28 - April 1, 2022}
+
+\begin{document}
+\maketitle
+
+\href{https://youtube.com/playlist?list=PLN303KpCz_KRVG7-lorwS23aQIm5oh1fu}{Walkthrough Videos}
+
+\section{Generic AltList}
+\begin{questions}
+\subimport{topics/generics/medium/}{altlist.tex}
+\end{questions}
+
+
+\section{Sorting Overview}
+\begin{questions}
+\subimport{topics/sorting/text/}{basic-sorts.tex}
+\subimport{topics/sorting/runtime/}{basic-with-quicksort-copy-2020.tex}
+\subimport{topics/sorting/easy/}{insertion-sort-cases.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{selection-vs-insertion-sort.tex}
+\vspace{15mm}
+\subimport{topics/sorting/easy/}{heapsort-intro.tex}
+\vspace{20mm}
+\subimport{topics/sorting/easy/}{heapsort-mech.tex}
+\vspace{20mm}
+\subimport{topics/sorting/easy/}{quicksort.tex}
+\end{questions}
+\clearpage
+
+\section{DNA Sort}
+\begin{questions}
+\subimport{topics/sorting/medium/}{dna-sorting.tex}
+\end{questions}
+\clearpage
+
+
+\section{In-Sort Meme Here}
+\begin{questions}
+\subimport{topics/sorting/hard/}{sorting-mechanics.tex}
+\end{questions}
+\clearpage
+
+
+
+\end{document}

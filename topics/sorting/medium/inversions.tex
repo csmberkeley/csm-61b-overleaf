@@ -1,0 +1,37 @@
+\begin{blocksection}
+\question Suppose we have a list of $N$ unsorted elements, but to our
+surprise we recently discovered that there are at most $k$ pairs out of order,
+or $k$ \textbf{inversions}, in the list. The list
+\lstinline${ 0, 1, 2, 6, 4, 5, 3 }$, for example, contains 5 inversions:
+$(6, 4), (6, 5), (6, 3), (4, 3), (5, 3)$.
+
+\begin{parts}
+\part If $k$ is of the order of $O(\log N)$, in other words, $k \in O(\log N)$,
+which sorting algorithm would sort the list in linear time?
+\begin{solution}[0.75in]
+Insertion sort is the most efficient in this case because its runtime is
+$O(N + k)$. The overall runtime bound for insertion sort in this scenario is
+$O(N)$.
+\end{solution}
+
+\part What if $k \in O(N)$? Which sort would be most efficient in this case?
+\begin{solution}[0.75in]
+Insertion sort for the same reason above. The overall runtime bound for
+insertion sort in this scenario is $O(N)$.
+\end{solution}
+
+\part It seems like insertion sort runs pretty well on most inputs, yet we
+often use Quicksort on large arrays. What is an input that can cause insertion
+sort to perform poorly? What sorts would be most effective on this input? 
+(Hint: try to come up with an input that has $O(N^2)$ inversions.)
+\begin{solution}[0.75in]
+A reversed list has $(N-1) + (N-2) + \cdots + 2 + 1 = O(N^2)$ inversions.
+This would cause insertion sort to run in $O(N^2)$ time.
+
+Merge sort, quicksort, or heap sort would be ideal here since the number
+of inversions causes insertion sort to run in $O(N^2)$ runtime. Using one
+of the three sorts listed earlier yields a runtime in $O(N \log N )$ in the
+normal case.
+\end{solution}
+\end{parts}
+\end{blocksection}

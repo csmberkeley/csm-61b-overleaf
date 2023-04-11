@@ -1,0 +1,41 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+%  \printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{14}
+\title{Special Topics}
+\date{November 23, 2020}
+\begin{document}
+\maketitle 
+\section{Asymptotics}
+\begin{questions}
+\subimport{../../topics/asymptotics/medium/}{log-loop.tex}
+\subimport{../../topics/asymptotics/search/}{mystery-search.tex}
+
+\end{questions}
+\newpage
+\section{T,F,G,V,E}
+\begin{questions}
+\subimport{../../topics/graphs/}{review-true-false.tex}
+\end{questions}
+
+\pagebreak
+
+\section{Redundant Connections} 
+\begin{questions}
+\subimport{../../topics/union-find/weighted-quick-union-uf/medium/}{redundant-connections.tex}
+\end{questions}
+
+\pagebreak
+
+\section{Threads}
+\begin{questions}
+\subimport{../../topics/threads/}{intro.tex}
+\subimport{../../topics/threads/}{mask-donation-drive.tex}
+\end{questions}
+
+
+\end{document}

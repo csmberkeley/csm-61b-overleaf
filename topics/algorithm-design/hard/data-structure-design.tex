@@ -1,0 +1,77 @@
+%ID: 612079
+\question You are working for the Data Analytics team on Amazon, and your task is to define a class that takes in an input stream of purchase prices, and computes the median price at any given instant.
+Given that there are so many purchases on Amazon, your manager insists your solution be O(logN) runtime. Fill in the class PurchaseMedian below with the method addNum which given an int, stores it in the data structure of your choice and findMedian which returns the median of the data stream received so far.
+\begin{lstlisting}
+class PurchaseMedian {
+    _______________________________________
+    _______________________________________
+    _______________________________________
+    public void addNum(int num) {          // adds the number to the structure
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________    
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+    }
+    public double findMedian() {      // returns the median
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+        ________________________________________________
+    }
+}
+\end{lstlisting}
+
+\begin{solution}
+The key insight to this problem is that computing the median of an array like data
+structure involves maintaining a sorted copy of the array in some fashion. If we were to simply add the elements into a sorted array and find the middle most value, then inserting the element would take O(N) time. A different way to think about taking the median of two numbers is to maintain a copy of numbers smaller than half the numbers and a copy of numbers greater than half the numbers. This way we have 2 balanced copies of the data. Which data structures can we use to get direct access to the largest value of the smaller half of the data and the smallest value of the larger half of the data? We would need to use a Max-heap to store the smaller half of the numbers and a min heap to store the larger half of numbers. Then, adding an element to one of the heaps takes O(logN) time while accessing an element from the top of one of the heaps takes O(1) time. So in total, the median computation is O(logN). 
+
+Here is the code for the class:
+\begin{lstlisting}
+class PurchaseMedian{
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+    public void addNum(int num) {
+        if (!minHeap.isEmpty() && num < minHeap.peek()) {
+            maxHeap.add(num);
+            if (maxHeap.size() > minHeap.size() + 1) {
+                minHeap.add(maxHeap.poll());
+            }
+        } else {
+            minHeap.add(num);
+            if (minHeap.size() > maxHeap.size() + 1) {
+                maxHeap.add(minHeap.poll);
+            }
+        }
+    }
+    
+    public double findMedian() {
+        double median;
+        if (minHeap.size() < maxHeap.size()) {
+            median = maxHeap.peek();
+        } else if (minHeap.size() > maxHeap.size()) {
+            median = minHeap.peek();
+        ] else {
+            median = (minHeap.peek() + maxHeap.peek()) / 2;
+        }
+        return median;
+    }
+}
+\end{lstlisting}
+
+\end{solution}

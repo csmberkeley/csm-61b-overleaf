@@ -1,0 +1,55 @@
+% ID: 61220
+\begin{blocksection}
+\question
+
+For this problem, assume that $array$ is an $N$ by $M$ array where $N$ and $M$ are very large. This means that we have $N$ int arrays each with $M$ int elements.\\
+
+\begin{lstlisting}
+public static int crimsonTuna(int[][] array) {
+    if (array.length < 4) {
+        return 0;
+    }
+    for (int i = 0; i < array.length; i++) {
+        for (int j = 0; j < array[i].length; j++) {
+              if (i == 4) {
+                return -1;
+            }
+        }
+    }
+    return 1;
+}
+\end{lstlisting}
+\end{blocksection}
+
+\begin{blocksection}
+\begin{solution}
+$\Theta(M)$. This problem assumes that M and N are large numbers, which means that the input matrix has a large number of rows and columns. 
+\newline 
+Best Case- Although an input that has less than 4 rows would make this function return immediately, we can not consider it to be a 'best case' input, because that would mean we are imposing a limit on the number of rows. 
+A valid input matrix would therefore have to be one that is arbitrarily large, but satisfies the if (i == 4) condition almost immediately (ex- any matrix that has at least 4 rows).
+The work that this function has to do in order to reach the 4th row is dependent on how many elements it visits, which is equal to the number of elements in the previous 3 rows, or 3M.
+$\Theta(M)$ in the best case.
+
+Worst Case- No matter what the values of an input matrix are, the function will always hit the if (i == 4) condition at the start of the 4th (0-indexing) row, which means that it will always visit 4M elements before it will return out. 
+$\Theta(M)$ in the worst case.
+
+Therefore, the this function runs in $\Theta(M)$ overall.
+
+% The number of elements it's able to reach in four rows is dependent on the number of columns, which in this case
+% is $N$. \newline
+
+% Note: If we did not specify that M and N were both large, we would need to give an
+% $O$ bound instead of a $\Theta$ bound here. The reason is that we would need to
+% consider all three cases where the size of the input gets large: \newline 
+
+% 1. $M$ approaches infinity, $N$ is small \newline
+% 2. $N$ approaches infinity, $M$ is small \newline
+% 3. $M$ and $N$ both approach infinity \newline
+
+% If all three cases have the same $\Omega$ and $O$ bound then we can write a
+% $\Theta$ bound for this problem. However, if we consider case 2, we can see
+% that if $M < 4$, then the function will return immediately after the first
+% if statement. Thus not all three cases have the same  $\Omega$ and $O$ bound,
+% so we can only provide an $O$ bound for the runtime.
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,55 @@
+%ID: 612065
+\begin{blocksection}
+\question Implement the add method for SlimePQ. Assume we will never attempt to run add when we have the max number of slimes in our priority queue. 
+\\
+\begin{lstlisting}
+public void add(Slime slime) {
+    int switchIndex = _____________________________________________;
+    
+    _______________________________________________________________;
+    
+    _______________________________________________________________;
+    
+    while (__________________________________) {
+    
+        if (pq[_________________].weight < pq[________________].weight) {
+        
+            temp = pq[________________];
+            
+            pq[________________] = pq[________________];
+            
+            pq[________________] = temp;
+            
+            ___________________________ = _____________________________;
+        } else {
+            break;
+        }
+    _______________________________________________________________;
+    
+    _______________________________________________________________;
+    }
+}
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+public void add(Slime slime) {
+    int switchIndex = size + 1;
+    pq[switchIndex] = slime;
+    Slime temp;
+    while (switchIndex != 1) {
+        if (pq[switchIndex].weight < pq[switchIndex/2].weight) {
+            temp = pq[switchIndex/2];
+            pq[switchIndex/2] = pq[switchIndex];
+            pq[switchIndex] = temp;
+            switchIndex = switchIndex/2;
+        } else {
+            break; // switchIndex = 1 works here too. 
+        }
+    size++;
+    return;
+    }
+}
+\end{lstlisting}
+\end{solution}
+\clearpage
+\end{blocksection}

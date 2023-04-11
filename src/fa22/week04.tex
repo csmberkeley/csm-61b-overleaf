@@ -1,0 +1,52 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+\printmeta %
+
+\discnumber{4}
+\title{Pointers, Lists, \& Inheritance}
+\date{September 12-16, 2022}
+
+\begin{document}
+\maketitle
+
+\section{Switcheroo}
+\subimport{topics/pass-by-value/text/}{golden-rule-of-equals.tex}
+\begin{questions}
+\subimport{topics/reference/easy/}{simple-swap.tex}
+\subimport{topics/reference/easy/}{swap-object.tex}
+\end{questions}
+
+\clearpage
+
+\section{Mystery Linked List}
+\begin{questions}
+\subimport{topics/linked-lists/naive/medium/}{mystery-IntNode.tex}
+\end{questions}
+
+\clearpage
+
+\section{Dogs Yay}
+\begin{questions}
+\subimport{topics/polymorphism/easy/}{dogs.tex}
+\subimport{topics/polymorphism/medium/}{poodle.tex}
+\end{questions}
+
+\clearpage
+
+\section{Fold Your Lists!}
+
+\subimport{topics/linked-lists/naive/}{IntNode-DLList-code.tex}
+
+\begin{questions}
+
+
+
+\subimport{topics/linked-lists/naive/medium/}{fold-DLL.tex}
+\end{questions}
+
+
+
+\end{document}

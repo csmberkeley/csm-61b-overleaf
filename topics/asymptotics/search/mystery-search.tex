@@ -1,0 +1,34 @@
+\begin{blocksection}
+\question Give a tight asymptotic runtime bound for \lstinline$mysterySearch$
+as a function of $N$, the size of the array, in the \emph{best case, worst
+case, and overall}. Assume the array is sorted.
+
+\begin{lstlisting}
+public static boolean mysterySearch(int[] a, int value) {
+    if (Math.random() < 0.5) {
+        // Scans the array from left to right, searching for value
+        return linearSearch(a, value);
+    } else {
+        // Compares values at endpoint indices (e.g., 0 and a.length-1)
+        // to value being searched for, then recurses on half that could 
+        // contain value
+        return binarySearch(a, value, 0, a.length-1);
+    }
+}
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+This problem can be a bit confusing for students. It is tempting to say that 
+\lstinline$mysterySearch$ is $\Theta(\log{N})$ in the best case and $\Theta(N)$ in 
+the worst case, depending on what value \lstinline{Math.random} returns.
+
+The way to approach this problem when considering best or worst case runtimes is to think about what happens when we pass in "good" or "bad" parameters.
+If we make \lstinline{value} the element at the beginning of the array, both
+\lstinline{linearSearch} and \lstinline{binarySearch} will terminate in constant, $\Theta(1)$, time
+since \lstinline{binarySearch} also checks the endpoints of the interval it is searching.
+In the worst case, our value is the penultimate (second-to-last) element of our array, making our runtime on such an input bounded by
+$\Omega(\log{N})$, $O(N)$, with an overall worst case of linear time.
+
+Hence, our overall runtime is $\Omega(1)$ and $O(N)$, which we can write as just $O(N)$ since our lower bound is the best runtime achievable.
+\end{solution}
+\end{blocksection}

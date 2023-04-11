@@ -1,0 +1,101 @@
+
+\question Identify some characteristics of sequences that show the processes of different kinds of sorts.
+
+\begin{solution}
+General strategy: Before starting these problems on an exam, write the fully sorted list just above the first sequence of digits (in the same place as where they occur) so the student can easily compare the placement of items in the correct sequence to that of the items in the partially sorted sequences. Further, encourage your students to bring multi-colored highlighters to exams where these sequences are tested on so they can easily find and mark features of the partially sorted lists. If they highlight a feature which turns out to be irrelevant, they can then highlight the entire sequence in the same color and then go over it in a different color so they do not have to rewrite the sequence or risk being confused. 
+\end{solution}
+\begin{parts}
+\part Insertion Sort\\
+\begin{solution}
+To find this kind of sort, start from the end of the sequence. The tail end of an in-progress insertion sort should be the same as what it was in the unsorted list. Once you reach the first element from the end which is not in its original place in the unsorted list, everything from there to the beginning should be in low-to-high order. Since this sort is easy to recognize, this should be one of the first sorts you look for on an exam so you can save the most time. 
+\end{solution}
+\part Selection Sort\\
+\begin{solution}
+To find this kind of sort, look for lists which have at least one of their front-end elements in the correct final-order. Usually this alone will be enough to identify selection sort, but if not it should also be the case that of the remaining elements, some of the larger elements on the tail-end of the unsorted list are in the same place. If this still does not reveal the correct answer, doing selection sort on the unsorted list step-by-step should reveal the answer. Do not rely on things having swapped places alone since it is possible that the same location had more than one swap occur there. This is also one of the easier sorts to identify, but sometimes can look similar to other sorts. 
+\end{solution}
+\part Heapsort\\
+\begin{solution}
+Part of the tail end of this sort should be in the correct final order. The front-end of the list should be in max-heap format where the first element is the largest element which is not in the tail end of the list. This sort is also easy to find, so you should look for it before you look for more difficult sorts to maximize your time. 
+% \pagebreak
+% \break
+\end{solution}
+\part Merge Sort\\
+\begin{solution}
+This is one of the most difficult sorts to identify for certain, so it is best to start with others first so you can eliminate some options. Here are some different ways to idenfity it.\\
+1) Look at the differences between the first and second sequences. Find the largest group in sequence 2 which is sorted least to greatest. See if the location of this large group corresponds to the location of two groups in sequence 1 which are sorted from least to greatest. This is a strong indicator that this might be merge sort. \\
+2) All items in the first sequence should be close in location to where they were in the unsorted list. You should be able to identify small groups of size 2-4 from the unsorted list which were sorted relative to one another in the merge sorted list. 
+\end{solution}
+\part Quicksort\\
+\begin{solution}
+Look for this sort after you have identified some other sorts. Start from the first element of the sequence. At each element, see if you can find any elements to the right of it which are larger than it, or elements to the left of it which are larger. Keep going until you find an element which fulfills both conditions. This might be a pivot. If you still aren't sure if these are the quicksort sequences, look at the second sequence and see if you can identify the new pivot. If there is not a new pivot in one of the sides of the original pivot, then this is not the quicksort list.
+\end{solution}
+\end{parts}
+
+\question Each of the following sequences represent an array being sorted at
+some intermediate step. Match each sample with one of the sorting algorithms:
+\textbf{insertion sort, selection sort, heapsort, merge sort, quicksort}. The
+original array is below.
+
+\begin{ttfamily}
+\begin{tabular}{c}
+5103 9914 0608 3715 6035 2261 9797 7188 1163 4411
+\end{tabular}
+\end{ttfamily}
+
+\begin{parts}
+\part
+\begin{ttfamily}
+\begin{tabular}{c}
+0608 5103 9914 3715 6035 2261 7188 9797 1163 4411 \\
+0608 3715 5103 6035 9914 2261 7188 9797 1163 4411
+\end{tabular}
+\end{ttfamily}
+\begin{solution}
+Merge sort. Starting from the first sequence, we see 0608, 5103, and 9914 are sorted from least-greatest. They correspond to the grouping 5103, 9914, 0608 in the unsorted list, so this might be a grouping. Everything else is in the same place it was in the unsorted list except for 7188, 9797 whose places were swapped. They may have been grouped with 2261, but we can't know for sure. In sequence 2, we see that everything from 0608 to 9914 is sorted from least to greatest. It may have been the case that the group 0608, 5103, 9914 was combined with the group 3715, 6035. Nothing else in the sequence has changed from sequence 1. This is a strong indication that this is a merge sort list. 
+\end{solution}
+
+\part
+\begin{ttfamily}
+\begin{tabular}{c}
+0608 1163 5103 3715 6035 2261 9797 7188 9914 4411 \\
+0608 1163 2261 3715 6035 5103 9797 7188 9914 4411
+\end{tabular}
+\end{ttfamily}
+\begin{solution}
+Selection sort. First, we can eliminate the sequences which start with elements that are not 0608. Then, we see that the correct answer cannot be (a) since the second sequence in (a) has no more correctly sorted elements in the front part of the list than the first sequence does. For the same reason, (e) cannot be selection sort. Therefore (b) is the only remaining option, and must be correct. 
+\end{solution}
+
+\part
+\begin{ttfamily}
+\begin{tabular}{c}
+9797 7188 5103 4411 6035 2261 0608 3715 1163 9914 \\
+4411 3715 2261 0608 1163 5103 6035 7188 9797 9914
+\end{tabular}
+\end{ttfamily}
+\begin{solution}
+Heapsort. We immediately know this sequence to be heapsort because it is the only sequence which has the final element in the correct place. Further, the front-end elements are clearly organized in a max-heap structure. 
+\end{solution}
+
+\part
+\begin{ttfamily}
+\begin{tabular}{c}
+5103 0608 3715 2261 1163 4411 6035 9914 9797 7188 \\
+0608 2261 1163 3715 5103 4411 6035 9914 9797 7188
+\end{tabular}
+\end{ttfamily}
+\begin{solution}
+Quicksort. We can identify from the first sequence that 6035 must have been the first pivot. In the second sequence, we can see that 3715 was chosen as the new pivot. More detailed observations might depend on the specific implementation of quicksort, which varies.
+\end{solution}
+
+\part
+\begin{ttfamily}
+\begin{tabular}{c}
+0608 5103 9914 3715 6035 2261 9797 7188 1163 4411 \\
+0608 2261 3715 5103 6035 9914 9797 7188 1163 4411
+\end{tabular}
+\end{ttfamily}
+\begin{solution}
+Insertion sort. The way we can tell is because in the first sequence, everything from 3715 to 4411 (tail end) is in the original unsorted order and everything in the front end (everything which is not in the tail end) is in least-greatest order. This alone is strong evidence that this is insertion sort. In the second sequence we can see that the tail end grows smaller, and everything in the front end continues to be in least-greatest order (but not completely correct final-order). 
+\end{solution}
+\end{parts}
+

@@ -1,0 +1,52 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{6}
+\title{Bits \& Asymptotics}
+\date{February 21 - 25, 2022}
+
+\begin{document}
+\maketitle
+
+\href{https://youtube.com/playlist?list=PLN303KpCz_KTrEKYh1DI2Bali7OxSZ94V}{Walkthrough Videos}
+
+\section{Bits}
+\subimport{topics/bit-manipulation/text/}{intro.tex}
+
+\begin{questions}
+\subimport{topics/bit-manipulation/easy/}{operation-warmup.tex}
+\end{questions}
+
+\clearpage
+
+\section{Mask On}
+\begin{questions}
+\subimport{topics/bit-manipulation/easy/}{is-multiple-of-4.tex}
+\subimport{topics/bit-manipulation/easy/}{is-odd.tex}
+\subimport{topics/bit-manipulation/easy/}{rotate-left.tex}
+\subimport{topics/bit-manipulation/easy/}{number_of_one_bits.tex}
+\subimport{topics/bit-manipulation/easy/}{swap-bits.tex}
+\end{questions}
+
+\clearpage
+
+\section{Asymptotics}
+\begin{questions}
+\subimport{topics/asymptotics/text/}{runtime.tex}
+
+Formulas:
+\subimport{topics/asymptotics/text/}{formulas.tex}
+Tips:
+\subimport{topics/asymptotics/text/}{tips.tex}
+
+\subimport{topics/asymptotics/easy/}{notation.tex}
+
+\subimport{topics/asymptotics/easy/}{case-analysis.tex}
+\end{questions}
+
+\clearpage
+
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment me
+
+\discnumber{9}
+\title{More Trees \& Heaps}
+\date{October 18 - 22, 2021}
+
+\begin{document}
+\maketitle
+
+% Video already made for this one
+\section{Binary Search Trees}
+\begin{questions}
+\subimport{topics/trees/binary-search-trees/medium/}{from-sorted-array.tex}
+\end{questions}
+\clearpage
+
+% Confirm the new problem name lol 
+\section{Let the Games Begin}
+\begin{questions}
+\subimport{topics/trees/game-trees/}{game-tree-easy.tex}
+\end{questions}
+\clearpage
+
+% choose 1-2 priority queue or another tree prob?
+\section{Heaps}
+
+\begin{questions}
+\subimport{topics/heaps/easy/}{methods.tex}
+\subimport{topics/heaps/}{example-tree.tex}
+\subimport{topics/heaps/easy/}{min-heapify.tex}
+\end{questions}
+
+\clearpage
+
+\end{document}

@@ -1,0 +1,57 @@
+\question Implement \lstinline$inorder$, which takes in the root node of a BST and an empty list, and stores the values of the BST returned by an inorder traversal in the given list.
+
+\begin{lstlisting}
+
+private void inorder(Node node, List<Integer> vals) {
+
+
+
+
+}
+\end{lstlisting}
+
+
+\question Implement \lstinline$increasing$, which takes in the root of a BST and returns a list containing the values of the BST in increasing order. Use the function \lstinline$inorder$ implemented above.
+
+\begin{lstlisting}
+
+private class Node {
+    private int val;
+    private Node left;
+    private Node right;
+    private Node(int v){
+        val = v;
+    }
+}
+
+public List<Integer> increasing(Node root) {
+
+
+
+
+
+
+}
+\end{lstlisting}
+
+\newpage
+\begin{solution}
+\begin{lstlisting}
+private void inorder(Node node, List<Integer> vals) {
+    if (node != null) {
+        inorder(node.left);
+        vals.add(node.val);
+        inorder(node.right);
+    }
+}
+
+public List<Integer> increasing(Node root){
+    // an inorder traversal returns the values of our BST, so we can traverse the given BST using an inorder traversal, then return the generated list
+    
+    List<Integer> vals = new ArrayList<>();
+    inorder(root, vals);
+    return vals;
+}
+
+\end{lstlisting}
+\end{solution}

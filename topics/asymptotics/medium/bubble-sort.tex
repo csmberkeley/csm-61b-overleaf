@@ -1,0 +1,29 @@
+\question Give a tight runtime bound for \texttt{mystery} as a function of $N$, the length of the input array.
+
+\begin{lstlisting}
+public static int[] mystery(int[] array) {
+    boolean done = false;
+    while (!done) {
+        done = true;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i-1] > array[i]) {
+                done = false;
+                int tmp = array[i-1];
+                array[i-1] = array[i]
+                array[i] = tmp;
+            }
+        }
+    }
+    return array;
+}
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+This sorting algorithm, known as bubble sort, makes repeated passes through the array, swapping adjacent elements if they are out of order. The algorithm terminates if it completes a pass without swapping any elements. 
+
+Each pass must look through all elements of the array, and in the best case, if the initial array is fully sorted, only one pass is made and the runtime is $\Theta(N)$.
+
+In the worse case, if the initial array is in reverse sorted order, makes N passes through the array, and the runtime is $\Theta(N^2)$.
+
+Overall, the runtime for this function is $\Omega(N)$, $O(N^2)$.
+\end{solution}

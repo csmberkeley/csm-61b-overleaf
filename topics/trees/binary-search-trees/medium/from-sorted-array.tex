@@ -1,0 +1,83 @@
+%61226
+\begin{blocksection}
+\question Implement \lstinline$fromSortedArray$ for binary search trees. Given
+a sorted \lstinline$int[] array$, efficiently construct a balanced binary
+search tree containing every element of the array. For an efficient implementation,
+try to minimize the runtime of \lstinline$fromSortedArray$ while ensuring
+that the final BST is balanced.
+
+\ifprintanswers
+\else
+\begin{lstlisting}
+public class BinarySearchTree<T extends Comparable<T>> {
+    protected Node root;
+    protected class Node {
+        public T value;
+        public Node left;
+        public Node right;
+    }
+    public static BinarySearchTree<Integer> fromSortedArray(int[] values) {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        bst.root = bst.fromSortedArray(values, 0, values.length - 1);
+        return bst;
+    }
+    private Node fromSortedArray(int[] values, int lower, int upper) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+public class BinarySearchTree<T extends Comparable<T>> {
+    protected Node root;
+    protected class Node {
+        public T value;
+        public Node left;
+        public Node right;
+    }
+    public static BinarySearchTree<Integer> fromSortedArray(int[] values) {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        bst.root = bst.fromSortedArray(values, 0, values.length - 1); // setting a new root
+        return bst;
+    }
+    private Node fromSortedArray(int[] values, int lower, int upper) {
+       if (lower > upper) {
+           return null;
+       }
+       int middle = lower + ((upper - lower) / 2); // middle index of the array
+       Node mid = new Node();
+       mid.value = values[middle];
+       mid.left = fromSortedArray(values, lower, middle - 1);  // recurse on the left half
+       mid.right = fromSortedArray(values, middle + 1, upper); // recurse on the right half
+       return mid;
+    }
+}
+\end{lstlisting}
+
+A binary tree is any tree where each node has at most two children.
+A binary search tree enforces the additional constraint
+that, given any parent node, nodes within the left subtree are smaller in value than the parent's value and the
+nodes within the right subtree are larger in value than the parent's value.
+
+The main idea behind this solution is that, given an array of integers, in order to minimize the
+height of a binary search tree, you'd want to construct your BST with the median of the array as
+your root. This way, you "evenly distribute" nodes among the left and right subtrees. By extending
+this insight recursively, we can construct a completely balanced BST.
+
+As an interesting side note, the reason why we use \lstinline{int middle = lower + ((upper - lower) / 2);} instead
+of \lstinline{int middle = (upper + lower) / 2;} is to help prevent buffer overflows for large lists.
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,86 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+\usepackage{graphicx}
+\graphicspath{ {./images/sus.png} }
+
+% Use the following to toggle solutions/metas
+% \printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{9}
+\title{Midterm 2 Review}
+\date{October 19 - 21, 2022}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dynamic Method Selection Problem %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ants Vs. SomeBees}
+\begin{questions}
+\marginpar{\subimport{topics/polymorphism/medium/insects/}{insects.tex}}
+\subimport{../../topics/polymorphism/medium/insects/}{insects-code.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Asymptotics Problem %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Mystery Asymptotics}
+\begin{questions}
+\subimport{../../topics/asymptotics/MockMidterm/}{Q1.tex}
+\subimport{../../topics/asymptotics/MockMidterm/}{Q2.tex}
+\newpage
+\subimport{../../topics/asymptotics/MockMidterm/}{Q3.tex}
+\subimport{../../topics/asymptotics/search/}{mystery-search.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Union Find Problem %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Union Find}
+\subimport{topics/union-find/}{weighted-quick-union.tex}
+\begin{questions}
+\subimport{topics/union-find/weighted-quick-union-uf/easy/}{connect.tex}
+\pagebreak
+\subimport{topics/union-find/weighted-quick-union-uf/easy/}{path-compression-find.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%
+% Hashing Problem %
+%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Hashing}
+\begin{questions}
+\subimport{topics/hashing/MockMidterm/}{Q1.tex}
+\subimport{topics/hashing/MockMidterm/}{Q2.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%
+% Heaps Problem %
+%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Heaps of Reviews}
+\begin{questions}
+\subimport{../../topics/heaps/hard/}{sixty-one-pq-coding.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tree Traversal Problem %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{All the Traversals}
+\emph{Goldilocks stumbled upon a house in the middle of the forest. Inside were bowls of preorder porridge, inorder porridge, and postorder porridge. Which one is juuuuust right for Goldilocks?}
+\begin{questions}
+\subimport{topics/trees/traversal/}{all-the-traversals.tex}
+\end{questions}
+
+\end{document}

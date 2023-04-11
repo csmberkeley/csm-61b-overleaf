@@ -1,0 +1,63 @@
+% Author: Ashley Ye Spring 2022
+
+\question Given a decimal integer and an expected number of digits, manipulate the binary representation of that integer to have the expected number of digits (with no leading zeros) using bit operations.
+
+Return the manipulated number in decimal after the operations.
+
+For instance, 21 can be represented in binary form as 10101.
+
+expectedDigits(21, 5) would return 21. \newline 
+expectedDigits(21, 6) would return 42. \newline
+expectedDigits(21, 4) would return 10. 
+
+\ifprintanswers\else
+\begin{lstlisting}
+static int expectedDigits(int num, int expected) {
+
+   int upperLimit = _____________________________________________
+   int lowerLimit = _____________________________________________
+   
+   while (_____________________________________________) {
+     _____________________________________________
+   }
+ 
+   while (_____________________________________________) {
+     _____________________________________________
+   }
+   
+   return num;
+}
+
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+
+static int expectedDigits(int num, int expected) {
+
+   int upperLimit = 1 << expected;
+   int lowerLimit = 1 << (expected - 1);
+   
+   while (num >= upperLimit) {
+     num = num >> 1;
+   }
+ 
+   while (num < lowerLimit) {
+     num = num << 1;
+   }
+   
+   return num;
+}
+
+// Given decimal integer num, manipulating its binary representation to have expected number of digits is to divide or multiply num by 2, i.e. left/right shift num to get a binary number with the expected number of digits. 
+
+// If num is larger than the largest binary number with expected digits, i.e. 2^(expected digits), then we left shift/ divide by 2 to reduce num's bit digits.
+
+// If num is smaller than the smallest binary number with expected digits, i.e. 2^(expected digits - 1), then we right shift/ multiply by 2 to increase num's bit digits.
+
+// Otherwise, we return num itself. 
+
+
+\end{lstlisting}
+\end{solution}

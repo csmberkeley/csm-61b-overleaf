@@ -1,0 +1,57 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+\usepackage{graphicx}
+
+% Use the following to toggle solutions/metas
+\printsolutions % uncomment me
+% \printmeta % uncomment  me
+
+\discnumber{7}
+\title{Asymptotics, BSTs \& B-Trees}
+\date{October 5 - 9, 2022}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Harder Asymptotics Question %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Asymptotic Lists}
+\begin{questions}
+\subimport{topics/asymptotics/medium/}{linked-list-runtimes.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BST Insertion and Removal %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{BST Insertion and Removal}
+\begin{questions}
+\subimport{topics/trees/binary-search-trees/medium/}{bst-insertion-removal.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%
+% BST Problem %
+%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Bushy Trees}
+\begin{questions}
+\subimport{topics/trees/binary-search-trees/medium/}{from-sorted-array-simplified.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%
+% B-Tree Problem %
+%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{2-3 Potpourri}
+\begin{questions}
+\subimport{topics/trees/balanced-search-trees/easy}{2-3-tree-insertion.tex}
+\question \subimport{topics/trees/balanced-search-trees/medium}{2-3-potpourri.tex}
+\end{questions}
+
+
+\end{document}

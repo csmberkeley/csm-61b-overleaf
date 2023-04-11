@@ -1,0 +1,30 @@
+% ID: 61221
+\question Please give lower and upper bounds for the overall runtime of \lstinline$g$.
+
+\begin{lstlisting}
+void g(double N) {
+    if (N<=1) 
+    	return;
+    if (N%2 == 0) {
+    	for(double i = N/2; i >= N/4; i = i/2) {
+    		func(i) // linear with respect to i
+    	}
+    }
+    g(N/2)
+}
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+In this function, the runtime depends on whether the starting value of N is odd or a power of 2. 
+If N is odd then the condition of (N\%2 == 0) is never satisfied. Since N is a double, there is no case that dividing by 2 will yield another even number (because when dividing odds by 2 you will always get a non-integer value, and since we are doing division on doubles instead of integers we do not round down).
+As such, on each function call, the function does a constant amount of work. The function is called $\log(N)$ times since $N$ is divided by two on each recursive call. This yields a best case runtime of $\Theta(\log N)$. (Remember that this is not $\Omega$ bounded because the best case is taking into account runtime given a particular 'best' input, for which the runtime converges to a $\Theta$ bound. 
+
+The condition of (N\%2 == 0) is always satisfied on each recursive call if N is a power of 2. On the first call, when the argument is N, the function does 3N/4 work. On the next recursive call, when the argument is N/2, the function does 3N/8 work. On the next call, when the argument is N/4, the function does 3N/16 work. We see a pattern forming where the amount of work being done is roughly $3N/2^{(k+1)}$ where k denotes the level of the recursive tree we are on. When summing all the runtimes across recursive calls together, the runtime is 
+$$3N/4 + 3N/8 + 3N/16 + … + 3N/2^{logN} = 3N * (1/4 + 1/8 + 1/16 + … + 1/2^{logN}) = N $$
+So in the worst case, the runtime is $\Theta(N)$. 
+
+Note that the sum is a geometric sum where the largest term dominates.
+
+Hence, our lower and upper bound runtimes are $\Omega(\log N)$, $O(N)$ respectively.
+
+\end{solution}

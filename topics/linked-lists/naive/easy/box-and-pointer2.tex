@@ -1,0 +1,20 @@
+\begin{blocksection}
+\question Draw a box and pointer diagram to represent the IntLists Knuckles, Miles, and Silver after each statement.
+\begin{lstlisting}
+IntList Knuckles = IntList.list(1, 2, 3);
+IntList Miles = new IntList(4, Knuckles.tail);
+Miles.tail.head = 13;
+Knuckles.tail.tail.tail = Miles;
+IntList Silver = IntList.list(50);
+Miles.tail.tail = Silver;
+\end{lstlisting}
+
+\ifprintanswers\else
+\fi
+
+\begin{solution}
+
+% paste this underneath the problem \includegraphics{sonic-box-pointers2.png}
+
+\end{solution}
+\end{blocksection}

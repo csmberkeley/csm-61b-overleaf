@@ -1,0 +1,212 @@
+\begin{blocksection}
+
+\title{Fix-It Felix!}
+\question
+You are trying to convert a 2-3 tree into a LLRB using a program you wrote. However, since you worked on this at 3 AM last night, your program skips a couple of nodes, leaving them in their 2-3 representation. For the nodes that were converted, it did not do so correctly. Find the invalid LLRB nodes and fix them. Convert the 2-3 tree nodes into their LLRB representations and balance the resulting LLRB.
+
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$M$}
+child {
+    node[vertex,color=black]{$J$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$E$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,rectangle]{$A \; C$}
+            edge from parent[draw=black]
+        }
+        child {
+            node[vertex,color=black]{$H$}
+            edge from parent[draw=black]
+        }
+    }
+    child {
+        node[vertex,color=black]{$L$}
+        edge from parent[draw=red]
+    }
+}
+child {
+    node[vertex,color=black]{$R$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$P$}
+        edge from parent[draw=red]
+    }
+    child {
+        node[vertex,rectangle]{$S \; X$}
+        edge from parent[draw=red]
+    }
+};
+\end{tikzpicture}
+\end{blocksection}
+
+\pagebreak
+
+\begin{blocksection}
+\begin{solution}
+
+\textbf{Solution:}
+
+rotateRight(M)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$J$}
+child {
+    node[vertex,color=black]{$E$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black,rectangle]{$A \; C$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$H$}
+        edge from parent[draw=red]
+    }
+}
+child {
+    node[vertex,color=black]{$M$}
+    edge from parent[draw=red]
+    child {
+        node[vertex,color=black]{$L$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$R$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,color=black]{$P$}
+            edge from parent[draw=red]
+        }
+        child {
+            node[vertex,color=black,rectangle]{$S \; X$}
+            edge from parent[draw=red]
+        }
+    }
+};
+\end{tikzpicture}
+
+flipColor(J) and flipColor(R)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$J$}
+child {
+    node[vertex,color=black]{$E$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black,rectangle]{$A \; C$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$H$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$M$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$L$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$R$}
+        edge from parent[draw=red]
+        child {
+            node[vertex,color=black]{$P$}
+            edge from parent[draw=black]
+        }
+        child {
+            node[vertex,color=black,rectangle]{$S \; X$}
+            edge from parent[draw=black]
+        }
+    }
+};
+\end{tikzpicture}
+
+rotateLeft(M)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$J$}
+child {
+    node[vertex,color=black]{$E$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black,rectangle]{$A \; C$}
+        edge from parent[draw=black]
+    }
+    child {
+        node[vertex,color=black]{$H$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$R$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$M$}
+        edge from parent[draw=red]
+        child {
+            node[vertex,color=black]{$L$}
+            edge from parent[draw=black]
+        }
+        child {
+            node[vertex,color=black,]{$P$}
+            edge from parent[draw=black]
+        }
+    }
+    child {
+        node[vertex,color=black,rectangle]{$S \; X$}
+        edge from parent[draw=black]
+    }
+};
+\end{tikzpicture}
+
+convert(AC) and convert(SX)
+
+\begin{tikzpicture}[very thick,level/.style={sibling distance=25mm/#1},level distance=30pt]
+\node[vertex,color=black]{$J$}
+child {
+    node[vertex,color=black]{$E$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$C$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,color=black]{$A$}
+            edge from parent[draw=red]
+        }
+    }
+    child {
+        node[vertex,color=black]{$H$}
+        edge from parent[draw=black]
+    }
+}
+child {
+    node[vertex,color=black]{$R$}
+    edge from parent[draw=black]
+    child {
+        node[vertex,color=black]{$M$}
+        edge from parent[draw=red]
+        child {
+            node[vertex,color=black]{$L$}
+            edge from parent[draw=black]
+        }
+        child {
+            node[vertex,color=black]{$P$}
+            edge from parent[draw=black]
+        }
+    }
+    child {
+        node[vertex,color=black]{$X$}
+        edge from parent[draw=black]
+        child {
+            node[vertex,color=black]{$S$}
+            edge from parent[draw=red]
+        }
+    }
+};
+\end{tikzpicture}
+\end{solution}
+\end{blocksection}

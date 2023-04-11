@@ -1,0 +1,66 @@
+\documentclass[11pt]{exam}
+\usepackage{commonheader}
+
+% Use the following to toggle solutions/metas
+\printsolutions
+\printmeta
+
+\discnumber{13}
+\title{Intro to Sorting} % https://www.youtube.com/watch?v=Z1DXygPVltE
+\date{April 12 - 14th, 2023}
+
+\begin{document}
+\maketitle
+This week's video walkthroughs:
+\href{https://tinyurl.com/CSMsp23-week13}{https://tinyurl.com/CSMsp23-week13}
+
+%%%%%%%%%%%%%%%%%%%%
+% Heap sort
+%%%%%%%%%%%%%%%%%%%%  https://youtu.be/qPJyfYVGRW4
+% no slides
+
+\section{Heapsort}
+\begin{questions}
+\subimport{topics/sorting/easy}{heapsort-intro.tex}
+\subimport{topics/sorting/easy}{heapsort-mech.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Quick sort
+%%%%%%%%%%%%%%%%%%%%%% ONLY PART: https://www.youtube.com/watch?v=qPJyfYVGRW4
+% no slides
+\pagebreak
+
+\section{QuickCo}
+\begin{questions}
+\subimport{topics/sorting/quickco/text}{quickco.tex}
+\subimport{topics/sorting/easy/}{quicksort.tex}
+\vspace{30mm}
+\subimport{topics/sorting/quickco/easy}{worst-case-pivot.tex}
+\subimport{topics/sorting/quickco/easy}{runtime.tex}
+\subimport{topics/sorting/quickco/easy}{why-quicksort.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+% Identify Sort
+%%%%%%%%%%%%%%%%%%%% NO VIDEO
+% no video
+% slides
+\pagebreak
+\section{Identify Sort}
+\begin{questions}
+\subimport{topics/sorting/hard}{identify-sort.tex}
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Mergesort Implementation
+%%%%%%%%%%%%%%%%%%%%%% https://youtu.be/WndUhAuZFPg
+
+\pagebreak
+\section{DIY Mergesort (Challenge Q)}
+\begin{questions}
+\subimport{topics/sorting/medium}{mergesort-implementation.tex}
+\end{questions} 
+
+
+\end{document}
